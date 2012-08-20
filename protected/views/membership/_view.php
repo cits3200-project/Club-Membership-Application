@@ -6,7 +6,23 @@
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('membershipId')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->membershipId), 'view?id='.$data->membershipId, array('id'=>$data->membershipId)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->membershipId), array('view', 'id'=>$data->membershipId)); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
+	<?php echo CHtml::encode($data->name); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('familyName')); ?>:</b>
+	<?php echo CHtml::encode($data->familyName); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('phoneNumber')); ?>:</b>
+	<?php echo CHtml::encode($data->phoneNumber); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('alternatePhone')); ?>:</b>
+	<?php echo CHtml::encode($data->alternatePhone); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('emailAddress')); ?>:</b>
@@ -17,37 +33,21 @@
 	<?php echo CHtml::encode($data->alternateEmail); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('familyName')); ?>:</b>
-	<?php echo CHtml::encode($data->familyName); ?>
+	<?php /*
+	<b><?php echo CHtml::encode($data->getAttributeLabel('type')); ?>:</b>
+	<?php echo CHtml::encode($data->type); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('membershipName')); ?>:</b>
-	<?php echo CHtml::encode($data->membershipName); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('expiryDate')); ?>:</b>
+	<?php echo CHtml::encode($data->expiryDate); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('address')); ?>:</b>
-	<?php echo CHtml::encode($data->address); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('payMethod')); ?>:</b>
+	<?php echo CHtml::encode($data->payMethod); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('suburb')); ?>:</b>
-	<?php echo CHtml::encode($data->suburb); ?>
-	<br />
-	<?php
-	/*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('postcode')); ?>:</b>
-	<?php echo CHtml::encode($data->postcode); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('state')); ?>:</b>
-	<?php echo CHtml::encode($data->state); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('phoneNumber')); ?>:</b>
-	<?php echo CHtml::encode($data->phoneNumber); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('membershipStatus')); ?>:</b>
-	<?php echo CHtml::encode($data->membershipStatus); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
+	<?php echo CHtml::encode($data->status); ?>
 	<br />
 
 	*/ ?>

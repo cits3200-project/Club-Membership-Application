@@ -78,7 +78,6 @@ class MembershipController extends Controller
 			'model'=>$model,
 		));
 	}
-	
 
 	/**
 	 * Updates a particular model.

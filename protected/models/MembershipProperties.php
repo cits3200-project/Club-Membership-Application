@@ -1,21 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "role".
+ * This is the model class for table "{{membership_properties}}".
  *
- * The followings are the available columns in table 'role':
- * @property string $id
- * @property string $name
+ * The followings are the available columns in table '{{membership_properties}}':
+ * @property string $membershipId
+ * @property string $receiveGeneralNews
+ * @property string $receiveEventInvites
+ * @property string $receiveExpiryNotice
  *
  * The followings are the available model relations:
- * @property UserRole[] $userRoles
+ * @property Membership $membership
  */
-class Role extends CActiveRecord
+class MembershipProperties extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Role the static model class
+	 * @return MembershipProperties the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +29,7 @@ class Role extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'role';
+		return '{{membership_properties}}';
 	}
 
 	/**
@@ -38,11 +40,12 @@ class Role extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>10),
+			array('membershipId', 'required'),
+			array('membershipId', 'length', 'max'=>128),
+			array('receiveGeneralNews, receiveEventInvites, receiveExpiryNotice', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('membershipId, receiveGeneralNews, receiveEventInvites, receiveExpiryNotice', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +57,7 @@ class Role extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'userRoles' => array(self::HAS_MANY, 'UserRole', 'role_id'),
+			'membership' => array(self::BELONGS_TO, 'Membership', 'membershipId'),
 		);
 	}
 
@@ -64,8 +67,10 @@ class Role extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
+			'membershipId' => 'Membership',
+			'receiveGeneralNews' => 'Receive General News',
+			'receiveEventInvites' => 'Receive Event Invites',
+			'receiveExpiryNotice' => 'Receive Expiry Notice',
 		);
 	}
 
@@ -80,8 +85,10 @@ class Role extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('membershipId',$this->membershipId,true);
+		$criteria->compare('receiveGeneralNews',$this->receiveGeneralNews,true);
+		$criteria->compare('receiveEventInvites',$this->receiveEventInvites,true);
+		$criteria->compare('receiveExpiryNotice',$this->receiveExpiryNotice,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

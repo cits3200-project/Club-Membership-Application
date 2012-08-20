@@ -1,23 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "membership".
+ * This is the model class for table "{{membership}}".
  *
- * The followings are the available columns in table 'membership':
+ * The followings are the available columns in table '{{membership}}':
  * @property string $membershipId
+ * @property string $name
+ * @property string $familyName
+ * @property string $phoneNumber
+ * @property string $alternatePhone
  * @property string $emailAddress
  * @property string $alternateEmail
- * @property string $familyName
- * @property string $membershipName
- * @property string $address
- * @property string $suburb
- * @property integer $postcode
- * @property string $state
- * @property string $phoneNumber
- * @property string $membershipStatus
+ * @property string $type
+ * @property string $expiryDate
+ * @property string $payMethod
+ * @property string $status
  *
  * The followings are the available model relations:
  * @property Member[] $members
+ * @property PaymentMethod $paymentMethod
+ * @property MembershipStatus $membershipStatus
+ * @property MembershipProperties $membershipProperties
  */
 class Membership extends CActiveRecord
 {
@@ -36,7 +39,7 @@ class Membership extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'membership';
+		return '{{membership}}';
 	}
 
 	/**
@@ -47,18 +50,16 @@ class Membership extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('membershipId, emailAddress, familyName, membershipName, address, suburb, postcode, state, phoneNumber, membershipStatus', 'required'),
-			array('postcode', 'numerical', 'integerOnly'=>true),
-			array('membershipId', 'length', 'max'=>64),
-			array('emailAddress, alternateEmail', 'length', 'max'=>128),
-			array('familyName', 'length', 'max'=>30),
-			array('membershipName, suburb', 'length', 'max'=>100),
-			array('address', 'length', 'max'=>200),
-			array('state, membershipStatus', 'length', 'max'=>10),
-			array('phoneNumber', 'length', 'max'=>20),
+			array('membershipId, name, familyName, emailAddress, type, expiryDate', 'required'),
+			array('membershipId', 'length', 'max'=>128),
+			array('name, emailAddress, alternateEmail', 'length', 'max'=>100),
+			array('familyName', 'length', 'max'=>50),
+			array('phoneNumber, alternatePhone', 'length', 'max'=>20),
+			array('type', 'length', 'max'=>2),
+			array('payMethod, status', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('membershipId, emailAddress, alternateEmail, familyName, membershipName, address, suburb, postcode, state, phoneNumber, membershipStatus', 'safe', 'on'=>'search'),
+			array('membershipId, name, familyName, phoneNumber, alternatePhone, emailAddress, alternateEmail, type, expiryDate, payMethod, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +72,9 @@ class Membership extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'members' => array(self::HAS_MANY, 'Member', 'membershipId'),
+			'paymentMethod' => array(self::BELONGS_TO, 'PaymentMethod', 'payMethod'),
+			'membershipStatus' => array(self::BELONGS_TO, 'MembershipStatus', 'status'),
+			'membershipProperties' => array(self::HAS_ONE, 'MembershipProperties', 'membershipId'),
 		);
 	}
 
@@ -81,16 +85,16 @@ class Membership extends CActiveRecord
 	{
 		return array(
 			'membershipId' => 'Membership',
+			'name' => 'Name',
+			'familyName' => 'Family Name',
+			'phoneNumber' => 'Phone Number',
+			'alternatePhone' => 'Alternate Phone',
 			'emailAddress' => 'Email Address',
 			'alternateEmail' => 'Alternate Email',
-			'familyName' => 'Family Name',
-			'membershipName' => 'Membership Name',
-			'address' => 'Address',
-			'suburb' => 'Suburb',
-			'postcode' => 'Postcode',
-			'state' => 'State',
-			'phoneNumber' => 'Phone Number',
-			'membershipStatus' => 'Membership Status',
+			'type' => 'Type',
+			'expiryDate' => 'Expiry Date',
+			'payMethod' => 'Pay Method',
+			'status' => 'Status',
 		);
 	}
 
@@ -106,16 +110,16 @@ class Membership extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('membershipId',$this->membershipId,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('familyName',$this->familyName,true);
+		$criteria->compare('phoneNumber',$this->phoneNumber,true);
+		$criteria->compare('alternatePhone',$this->alternatePhone,true);
 		$criteria->compare('emailAddress',$this->emailAddress,true);
 		$criteria->compare('alternateEmail',$this->alternateEmail,true);
-		$criteria->compare('familyName',$this->familyName,true);
-		$criteria->compare('membershipName',$this->membershipName,true);
-		$criteria->compare('address',$this->address,true);
-		$criteria->compare('suburb',$this->suburb,true);
-		$criteria->compare('postcode',$this->postcode);
-		$criteria->compare('state',$this->state,true);
-		$criteria->compare('phoneNumber',$this->phoneNumber,true);
-		$criteria->compare('membershipStatus',$this->membershipStatus,true);
+		$criteria->compare('type',$this->type,true);
+		$criteria->compare('expiryDate',$this->expiryDate,true);
+		$criteria->compare('payMethod',$this->payMethod,true);
+		$criteria->compare('status',$this->status,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

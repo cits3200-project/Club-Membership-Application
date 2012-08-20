@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Memberships'=>array('index'),
-	$model->membershipId=>array('view','id'=>$model->membershipId),
+	$model->name=>array('view','id'=>$model->membershipId),
 	'Update',
 );
 

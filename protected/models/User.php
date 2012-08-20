@@ -1,15 +1,15 @@
 <?php
 
 /**
- * This is the model class for table "user".
+ * This is the model class for table "{{user}}".
  *
- * The followings are the available columns in table 'user':
- * @property string $id
+ * The followings are the available columns in table '{{user}}':
+ * @property string $userId
  * @property string $username
  * @property string $password
  *
  * The followings are the available model relations:
- * @property UserRole[] $userRoles
+ * @property userRole[] $userRoles
  */
 class User extends CActiveRecord
 {
@@ -22,7 +22,7 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	
+
 	/**
 	 * Returns an array of the publicly accessible user role names
 	 * @return array(string) array of the role names for the current user
@@ -31,7 +31,7 @@ class User extends CActiveRecord
 	{
 		$roleNames = array();
 		foreach($this->userRoles as $ur)
-			$roleNames[] = $ur->role->name;
+			$roleNames[] = $ur->role;
 
 		return $roleNames;
 	}
@@ -54,7 +54,7 @@ class User extends CActiveRecord
 	 */
     private function hashPassword($password)
     {
-        return hash("sha256", $password);
+        return hash("sha512", $password);
     }
 	
 	/**
@@ -62,7 +62,7 @@ class User extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'user';
+		return '{{user}}';
 	}
 
 	/**
@@ -77,7 +77,7 @@ class User extends CActiveRecord
 			array('username, password', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, username, password', 'safe', 'on'=>'search'),
+			array('userId, username, password', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,7 +89,7 @@ class User extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'userRoles' => array(self::HAS_MANY, 'UserRole', 'user_id'),
+			'userRoles' => array(self::MANY_MANY, 'UserRole', '{{user_to_roles}}(userId, roleId)'),
 		);
 	}
 
@@ -99,7 +99,7 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'userId' => 'User',
 			'username' => 'Username',
 			'password' => 'Password',
 		);
@@ -116,7 +116,7 @@ class User extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
+		$criteria->compare('userId',$this->userId,true);
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
 

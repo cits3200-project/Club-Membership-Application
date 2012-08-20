@@ -1,12 +1,6 @@
 <?php
 /* @var $this SiteController */
-
 $this->pageTitle=Yii::app()->name;
-
-if (!Yii::app()->user->isGuest) {
-	print_r(Yii::app()->user->hasRoles(array('derp')) ? "YESYESYEYSY" : "NONONONO");
-}
-
 ?>
 
 <h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>

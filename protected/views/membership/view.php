@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Memberships'=>array('index'),
-	$model->membershipId,
+	$model->name,
 );
 
 $this->menu=array(
@@ -18,38 +18,19 @@ $this->menu=array(
 
 <h1>View Membership #<?php echo $model->membershipId; ?></h1>
 
-<?php 
-$this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'membershipId',
+		'name',
+		'familyName',
+		'phoneNumber',
+		'alternatePhone',
 		'emailAddress',
 		'alternateEmail',
-		'familyName',
-		'membershipName',
-		'address',
-		'suburb',
-		'postcode',
-		'state',
-		'phoneNumber',
-		'membershipStatus',
+		'type',
+		'expiryDate',
+		'payMethod',
+		'status',
 	),
-)); 
-
-if (count($model->members) > 0) 
-{ ?>
-	<h4>Members</h4>
-<?php 
-	foreach($model->members as $member) {
-	?><span>Member:</span><?php
-		$this->widget('zii.widgets.CDetailView', array(
-			'data'=>$member,
-			'attributes'=>array(
-				'name',
-				'type',
-				'dateOfBirth'
-			)
-		));
-	}
-}
-?>
+)); ?>

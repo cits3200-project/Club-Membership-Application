@@ -40,6 +40,7 @@ return array(
 		// uncomment the following to enable URLs in path-format
 
 		'urlManager'=>array(
+			'showScriptName'=>false,
 			'urlFormat'=>'path',
 			'rules'=>array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
@@ -54,6 +55,7 @@ return array(
 			'username' => 'cits3200_front',
 			'password' => 'Oi{HfzZ)MEGw',
 			'charset' => 'utf8',
+			'tablePrefix'=>'tbl_'
 		),
 
 		'errorHandler'=>array(
@@ -68,7 +70,6 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-				
 				array(
 					'class'=>'CWebLogRoute'
 				),
@@ -80,7 +81,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'debugEmail'=>'dardyole@hotmail.com',
-		'adminEmail'=>'webmaster@example.com',
+		'debugEmail'=>'20924425@student.uwa.edu.au'
 	),
 );

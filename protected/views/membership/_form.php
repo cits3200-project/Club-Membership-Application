@@ -17,56 +17,20 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'membershipId'); ?>
-		<?php echo $form->textField($model,'membershipId',array('size'=>60,'maxlength'=>64)); ?>
+		<?php echo $form->textField($model,'membershipId',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'membershipId'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'emailAddress'); ?>
-		<?php echo $form->textField($model,'emailAddress',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'emailAddress'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'alternateEmail'); ?>
-		<?php echo $form->textField($model,'alternateEmail',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'alternateEmail'); ?>
+		<?php echo $form->labelEx($model,'name'); ?>
+		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'familyName'); ?>
-		<?php echo $form->textField($model,'familyName',array('size'=>30,'maxlength'=>30)); ?>
+		<?php echo $form->textField($model,'familyName',array('size'=>50,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'familyName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'membershipName'); ?>
-		<?php echo $form->textField($model,'membershipName',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'membershipName'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'address'); ?>
-		<?php echo $form->textField($model,'address',array('size'=>60,'maxlength'=>200)); ?>
-		<?php echo $form->error($model,'address'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'suburb'); ?>
-		<?php echo $form->textField($model,'suburb',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'suburb'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'postcode'); ?>
-		<?php echo $form->textField($model,'postcode'); ?>
-		<?php echo $form->error($model,'postcode'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'state'); ?>
-		<?php echo $form->textField($model,'state',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'state'); ?>
 	</div>
 
 	<div class="row">
@@ -76,9 +40,45 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'membershipStatus'); ?>
-		<?php echo $form->textField($model,'membershipStatus',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'membershipStatus'); ?>
+		<?php echo $form->labelEx($model,'alternatePhone'); ?>
+		<?php echo $form->textField($model,'alternatePhone',array('size'=>20,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'alternatePhone'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'emailAddress'); ?>
+		<?php echo $form->textField($model,'emailAddress',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'emailAddress'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'alternateEmail'); ?>
+		<?php echo $form->textField($model,'alternateEmail',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'alternateEmail'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'type'); ?>
+		<?php echo $form->textField($model,'type',array('size'=>2,'maxlength'=>2)); ?>
+		<?php echo $form->error($model,'type'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'expiryDate'); ?>
+		<?php echo $form->textField($model,'expiryDate'); ?>
+		<?php echo $form->error($model,'expiryDate'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'payMethod'); ?>
+		<?php echo $form->textField($model,'payMethod',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->error($model,'payMethod'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->textField($model,'status',array('size'=>15,'maxlength'=>15)); ?>
+		<?php echo $form->error($model,'status'); ?>
 	</div>
 
 	<div class="row buttons">

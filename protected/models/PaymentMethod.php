@@ -1,21 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "{{user_role}}".
+ * This is the model class for table "{{payment_method}}".
  *
- * The followings are the available columns in table '{{user_role}}':
- * @property string $roleId
- * @property string $role
+ * The followings are the available columns in table '{{payment_method}}':
+ * @property string $code
+ * @property string $display
  *
  * The followings are the available model relations:
- * @property User[] $users
+ * @property Membership[] $memberships
  */
-class UserRole extends CActiveRecord
+class PaymentMethod extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return UserRole the static model class
+	 * @return PaymentMethod the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +27,7 @@ class UserRole extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{user_role}}';
+		return '{{payment_method}}';
 	}
 
 	/**
@@ -38,11 +38,12 @@ class UserRole extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('role', 'required'),
-			array('role', 'length', 'max'=>10),
+			array('code, display', 'required'),
+			array('code', 'length', 'max'=>15),
+			array('display', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('roleId, role', 'safe', 'on'=>'search'),
+			array('code, display', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +55,7 @@ class UserRole extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'users' => array(self::MANY_MANY, 'User', '{{user_to_roles}}(roleId, userId)'),
+			'memberships' => array(self::HAS_MANY, 'Membership', 'payMethod'),
 		);
 	}
 
@@ -64,8 +65,8 @@ class UserRole extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'roleId' => 'Role',
-			'role' => 'Role',
+			'code' => 'Code',
+			'display' => 'Display',
 		);
 	}
 
@@ -80,8 +81,8 @@ class UserRole extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('roleId',$this->roleId,true);
-		$criteria->compare('role',$this->role,true);
+		$criteria->compare('code',$this->code,true);
+		$criteria->compare('display',$this->display,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
