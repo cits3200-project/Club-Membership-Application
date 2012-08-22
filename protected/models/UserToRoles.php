@@ -1,33 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "{{membership_status}}".
+ * This is the model class for table "{{user_to_roles}}".
  *
- * The followings are the available columns in table '{{membership_status}}':
- * @property string $code
- * @property string $display
- *
- * The followings are the available model relations:
- * @property Membership[] $memberships
+ * The followings are the available columns in table '{{user_to_roles}}':
+ * @property string $userId
+ * @property string $roleId
  */
-class MembershipStatus extends CActiveRecord
+class UserToRoles extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return MembershipStatus the static model class
+	 * @return UserToRoles the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-	
-	public static function getMembershipStatuses()
-	{
-		$methods = array();
-		foreach(MembershipStatus::model()->findAll() as $record)
-			$methods[$record->code] = $record->display;
-		return $methods;
 	}
 	
 	/**
@@ -35,7 +24,7 @@ class MembershipStatus extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{membership_status}}';
+		return '{{user_to_roles}}';
 	}
 
 	/**
@@ -46,12 +35,11 @@ class MembershipStatus extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('code, display', 'required'),
-			array('code', 'length', 'max'=>15),
-			array('display', 'length', 'max'=>20),
+			array('userId, roleId', 'required'),
+			array('userId, roleId', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('code, display', 'safe', 'on'=>'search'),
+			array('userId, roleId', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,7 +51,6 @@ class MembershipStatus extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'memberships' => array(self::HAS_MANY, 'Membership', 'status'),
 		);
 	}
 
@@ -73,8 +60,8 @@ class MembershipStatus extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'code' => 'Code',
-			'display' => 'Display',
+			'userId' => 'User',
+			'roleId' => 'Role',
 		);
 	}
 
@@ -89,8 +76,8 @@ class MembershipStatus extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('code',$this->code,true);
-		$criteria->compare('display',$this->display,true);
+		$criteria->compare('userId',$this->userId,true);
+		$criteria->compare('roleId',$this->roleId,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

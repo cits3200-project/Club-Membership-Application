@@ -43,7 +43,7 @@ class User extends CActiveRecord
 	 */
 	public function validatePassword($password)
     {
-        return strtoupper($this->hashPassword($password)) === strtoupper($this->password);
+        return strtoupper(User::hashPassword($password)) === strtoupper($this->password);
     }
 	
 	/**
@@ -52,7 +52,7 @@ class User extends CActiveRecord
 	 * @param string $password plain-text password to hash
 	 * @return string the hashed password
 	 */
-    private function hashPassword($password)
+    public static function hashPassword($password)
     {
         return hash("sha512", $password);
     }

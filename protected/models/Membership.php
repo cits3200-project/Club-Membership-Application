@@ -24,6 +24,8 @@
  */
 class Membership extends CActiveRecord
 {
+	const MEMBERSHIP_FORMAT = "XXXXXX-XXXX-XXXX-XXXX";
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -32,6 +34,48 @@ class Membership extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+	
+	/**
+	 * Generates a UUID for a new membership.
+	 * @return string UUID which can be safely used as a PK into the membership table
+	 */
+	public static function generateUUID()
+	{
+		$uuid = Membership::createUUID(self::MEMBERSHIP_FORMAT);
+		while (Membership::model()->find("UPPER(membershipId)=?", array($uuid)) !== NULL)
+			$uuid = Membership::createUUID(self::MEMBERSHIP_FORMAT);
+		return $uuid;
+	}
+	
+	public static function getMembershipTypes()
+	{
+		return array(
+			'PC' => 'Pensioner Couple',
+			'F' => 'Family',
+			'S' => 'Single'
+		);
+	}
+
+	/**
+	 * Creates an identifier based on the input format
+	 * @param $format string identifying the format of the identifier (i.e XXXX-XXXX-XXXX-XXXX)
+	 * @return a UUID in the given format
+	 */
+	private static function createUUID($format)
+	{
+		$raw = strtoupper(hash("sha512", uniqid(rand(), true)));
+		$rawlen = strlen($raw);
+		$uuid = "";
+		
+		for($i = 0; $i < strlen($format); $i++)
+			$uuid .= ($format[$i] == 'x' 
+						? strtolower($raw[rand(0, $rawlen - 1)]) 
+						: ($format[$i] == '-' 
+							? '-' 
+							: $raw[rand(0, $rawlen - 1)]));
+
+		return $uuid;	
 	}
 	
 	/**

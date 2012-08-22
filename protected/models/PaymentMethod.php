@@ -22,6 +22,14 @@ class PaymentMethod extends CActiveRecord
 		return parent::model($className);
 	}
 	
+	public static function getPaymentMethods()
+	{
+		$methods = array();
+		foreach(PaymentMethod::model()->findAll() as $record)
+			$methods[$record->code] = $record->display;
+		return $methods;
+	}
+	
 	/**
 	 * @return string the associated database table name
 	 */

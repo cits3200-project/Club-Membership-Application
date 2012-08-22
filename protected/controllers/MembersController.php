@@ -1,6 +1,6 @@
 <?php
 
-class MembershipController extends Controller
+class MembersController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -28,21 +28,23 @@ class MembershipController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'actions'=>array('usercp'),
+				'expression'=>'$user->hasRoles(array("member"))'
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
+	}
+	
+	/** 
+	 * usercp/index action
+	 */
+	public function actionUsercp()
+	{
+		$this->render('update', array(
+			'model'=>$this->loadModel(Yii::app()->user->name)
+		));
 	}
 
 	/**
@@ -63,13 +65,32 @@ class MembershipController extends Controller
 	public function actionCreate()
 	{
 		$model=new Membership;
-
+		$user = new User;
+		$role = new UserToRoles;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Membership']))
 		{
 			$model->attributes=$_POST['Membership'];
+			$model->membershipId = Membership::generateUUID();
+
+			$user->attributes = array (
+									'username' => $model->membershipId,
+									'password' => User::hashPassword('')
+								);
+			$user->save();
+
+			$memberRole = UserRole::model()->find("LOWER(role)=?", array("member"));
+			if ($memberRole !== NULL) 
+			{
+				$role->attributes = array (
+										'userId' => $user->userId,
+										'roleId' => $memberRole->roleId
+									);
+				$role->save();
+			}
+			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->membershipId));
 		}
