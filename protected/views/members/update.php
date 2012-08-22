@@ -18,4 +18,4 @@ $this->menu=array(
 
 <h1>Edit your details</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model, 'action'=>'update')); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

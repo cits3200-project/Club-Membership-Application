@@ -53,9 +53,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $action != "edit"
-					? $form->dropDownList($model,'type', Membership::getMembershipTypes())
-					: $form->; ?>
+		<?php echo $form->dropDownList($model,'type', Membership::getMembershipTypes()); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 

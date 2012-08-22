@@ -13,3 +13,7 @@ RewriteRule (^|/)\..* index.php [R=403,L]
 # No direct access to directories
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule . index.php [R=403,L]
+
+#hide all ckeditor pages from access outside of the server
+RewriteCond %{REMOTE_ADDR} !::1
+RewriteRule ^ckeditor/.* index.php [R=403,L]
