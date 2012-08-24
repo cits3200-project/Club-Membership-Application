@@ -1,4 +1,8 @@
 $(document).ready(function() {
-	depends("csvOption", 'mailout\\[type\\]', false, "csv", "fast");
-	depends("emailOption", 'mailout\\[type\\]', false, "email", "fast");
+	// set default selection if there isn't already one
+	if ($("input[type=radio]:checked").size() == 0)
+		$("input[name=MailoutForm\\[type\\]]").trigger('click');
+		
+	depends("csvOption", 'MailoutForm\\[type\\]', false, "csv", "slow");
+	depends("emailOption", 'MailoutForm\\[type\\]', false, "email", "slow");
 });

@@ -952,6 +952,7 @@ EOD;
 		$items=array();
 		$baseID=self::getIdByName($name);
 		$id=0;
+		
 		foreach($data as $value=>$label)
 		{
 			$checked=!strcmp($value,$select);
@@ -961,6 +962,7 @@ EOD;
 			$label=self::label($label,$htmlOptions['id'],$labelOptions);
 			$items[]=strtr($template,array('{input}'=>$option,'{label}'=>$label));
 		}
+		
 		if(empty($container))
 			return implode($separator,$items);
 		else

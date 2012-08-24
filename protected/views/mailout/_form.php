@@ -1,17 +1,18 @@
 <?php
 /* @var $this MembershipController */
-/* @var $form CActiveForm */
-$model = MembershipProperties::model();
+/* @var $model MailoutForm
+/* @var $form ExtendedForm */
 
 $baseUrl = Yii::app()->baseUrl; 
 Yii::app()->clientScript->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
 Yii::app()->clientScript->registerCssFile($baseUrl.'/css/mailout.css');
 Yii::app()->clientScript->registerScriptFile($baseUrl.'/scripts/mailout.js');
+
 ?>
 
 <div class="form" id="properties">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('ExtendedForm', array(
 	'id'=>'mailout-form',
 	'enableAjaxValidation'=>false,
 )); ?>
@@ -27,35 +28,35 @@ Yii::app()->clientScript->registerScriptFile($baseUrl.'/scripts/mailout.js');
 		</thead>
 		<tbody>
 	<?php
-		foreach($model->attributeNames() as $attr) 
-		{
-			if ($attr !== $model->tableSchema->primaryKey)
-			{?>
+		foreach($model->getFilters() as $code=>$data)
+		{?>
 			<tr>
-				<td class="smallproperty"><input type="checkbox" name="mailout[<?php echo $attr; ?>]" value="Y" /></td>
-				<td class="smallproperty"><input type="checkbox" name="mailout[<?php echo $attr; ?>]" value="N" /></td>
-				<td class="smallproperty"><input type="checkbox" name="mailout[<?php echo $attr; ?>]" value="" /></td>
-				<td><span class="mailout-filter"><?php echo $model->getAttributeLabel($attr); ?></span></td>
+				<td class="smallproperty"><?php echo $form->explicitRadioButton($model,$code,'Y'); ?></td>
+				<td class="smallproperty"><?php echo $form->explicitRadioButton($model,$code,'N'); ?></td>
+				<td class="smallproperty"><?php echo $form->explicitRadioButton($model,$code,'I'); ?></td>
+				<td><span class="mailout-filter"><?php echo $model->getAttributeLabel($code); ?></span></td>
 			</tr>
 		<?php
-			}
 		}
 	?>
 		</tbody>
 	</table>
 	<div class="toggle-options">
-		<label for="mailout[type]">
-			<input type="radio" name="mailout[type]" value="csv" id="mailouttype" />Generate CSV of the emails
-		</label>
-		<label for="mailout[type]">
-			<input type="radio" name="mailout[type]" value="email" id="mailouttype" />Compose and send batch email
-		</label>
+		<?php echo $form->radioButtonList($model, 'type', array(
+							'csv' => 'Generate CSV of the emails',
+							'email' => 'Compose and send batch email'
+						),
+						array ('uncheckValue' => NULL)
+					); 
+		?>
 	</div>
 	<div id="csvOption">
 		<div class="row buttons"><?php echo CHtml::submitButton("Generate CSV"); ?></div>
 	</div>
 	<div id="emailOption">
-		<textarea name="mailout[email]" class="ckeditor"></textarea>
+		<?php echo $form->labelEx($model, "emailSubject"); ?>
+		<?php echo $form->textField($model, "emailSubject", array("size" => 60)); ?>
+		<?php echo $form->textArea($model, 'emailContent', array("class" => "ckeditor")); ?>
 		<div class="row buttons"><?php echo CHtml::submitButton("Send emails"); ?></div>
 	</div>
 <?php $this->endWidget(); ?>

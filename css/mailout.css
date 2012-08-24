@@ -13,9 +13,14 @@
 }
 
 #properties .toggle-options label {
-	display: block;
+	display: inline;
 }
 
 #properties .toggle-options input {
 	width: 20px;
+	display: inline;
+}
+
+#emailOption {
+	padding-top: 10px;
 }

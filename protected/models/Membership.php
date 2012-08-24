@@ -128,7 +128,7 @@ class Membership extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'membershipId' => 'Membership',
+			'membershipId' => 'Membership Id',
 			'name' => 'Name',
 			'familyName' => 'Family Name',
 			'phoneNumber' => 'Phone Number',

@@ -5,6 +5,7 @@
  * @param depends - The id or name of the element of whose value oId's visibility depends on.
  * @param dependsIsId - true if the string given for 'depends' is an element id, false if the string is an element name.
  * @param val - The value that the element represented by oId depends on.
+ * @param speed - The speed of the  transition. "slow"/"fast" are valid values, as is any numeric value > 0 and < int.max
  */
 function depends(oId,depends,dependsIsId,val,speed) {
 	if (oId != null && depends != null && $("#" + oId).length > 0) {
