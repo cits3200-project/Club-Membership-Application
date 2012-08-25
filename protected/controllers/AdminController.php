@@ -9,6 +9,26 @@
  */
 class AdminController extends Controller
 {
+
+	public function filters()
+	{
+		// return the filter configuration for this controller, e.g.:
+		return array(
+			'accessControl'
+		);
+	}
+	
+	public function accessRules()
+	{
+		// deny access to every action if the user is not an admin
+		return array(
+			array(
+				'deny',
+				'expression' => '!$user->hasRoles(array("admin"))'
+			),
+		);
+	}
+	
 	public function actionIndex()
 	{
 		$this->render('index', array(
@@ -31,11 +51,7 @@ class AdminController extends Controller
 	{
 		// return the filter configuration for this controller, e.g.:
 		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
+			'accessControl'
 		);
 	}
 

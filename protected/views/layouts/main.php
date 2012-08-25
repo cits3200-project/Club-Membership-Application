@@ -32,7 +32,8 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 				<?php $this->widget('zii.widgets.CMenu',array(
 					'items'=>array(
 						array('label'=>'Home', 			'url'=>array('/site/index')),
-						array('label'=>'Login', 		'url'=>array('/site/login'), 		'visible'=>Yii::app()->user->isGuest),
+						array('label'=>'Login', 		'url'=>array('/members/login'), 	'visible'=>Yii::app()->user->isGuest),
+						array('label'=>'Register',		'url'=>array('/members/register/'),	'visible'=>Yii::app()->user->isGuest),
 						array('label'=>'Edit Details', 	'url'=>array('/members/usercp/'), 	'visible'=>Yii::app()->user->hasRoles(array("member"))),
 						array('label'=>'Admin Panel',	'url'=>array('/admin/'),			'visible'=>Yii::app()->user->hasRoles(array("admin"))),
 						array('label'=>'Mail Members',	'url'=>array('/mailout/'),			'visible'=>Yii::app()->user->hasAnyRoles(array("admin", "mailout"))),

@@ -13,6 +13,8 @@
 */
 class AppUser extends CWebUser
 {
+	public $loginUrl = array('/members/login');
+
 	/**
 	 * void addRoles(array $roles)
 	 * Adds roles to the current instance of the application user.

@@ -51,9 +51,10 @@ class Membership extends CActiveRecord
 	public static function getMembershipTypes()
 	{
 		return array(
-			'PC' => 'Pensioner Couple',
 			'F' => 'Family',
-			'S' => 'Single'
+			'C' => 'Couple',
+			'S' => 'Single',
+			'PC' => 'Pensioner Couple'
 		);
 	}
 

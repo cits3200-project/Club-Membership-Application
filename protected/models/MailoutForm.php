@@ -4,12 +4,15 @@
  * MailoutForm is the class for filtering and searching 
  * the database for users who satisfy set conditions and retrieving their emails.
  * Also handles the task of sending batch emails to the found users' emails.
+ * 
+ * @author Jason Larke
+ * @date 24/08/2012
  */
 class MailoutForm extends CFormModel
 {
 	public $emailSubject;
 	public $emailContent;
-	public $type;
+	public $type = "email";
 	
 	/**
 	 * $filters is the core component of this class.
@@ -23,22 +26,31 @@ class MailoutForm extends CFormModel
 	 * {properties} = Membership properties table.
 	 */
 	private $filters = array(
-		'expiring' => array(
+		'expiringMembers' => array(
 			'label' => 'Members who are close to expiring',
+			'value' => 'I',
 			'condition' => '{membership}.expiryDate < DATE_ADD(SYSDATE(), INTERVAL 10 DAY) AND {membership}.expiryDate > SYSDATE()' // get non-expired members who will expire in the next 10 days.
 		),
 		'generalNews' => array(
 			'label' => 'Member wants to receive general news',
+			'value' => 'I',
 			'condition' => '{properties}.receiveGeneralNews = \'Y\'' 
 		),
 		'eventInvite' => array(
 			'label' => 'Member wishes to receive event invites',
+			'value' => 'I',
 			'condition' => '{properties}.receiveEventInvites = \'Y\''
 		),
 		'expiryNotice' => array(
 			'label' => 'Member wants to receive an expiry notice if appropriate',
+			'value' => 'I',
 			'condition' => '{properties}.receiveExpiryNotice = \'Y\''
-		)	
+		),
+		'expiredMembers' => array(
+			'label' => 'Members who have already expired',
+			'value' => 'I',
+			'condition' => '{membership}.expiryDate < SYSDATE()'
+		),
 	);
 	
 	/** 
@@ -90,6 +102,10 @@ class MailoutForm extends CFormModel
 			array(
 				'emailContent', 
 				'length', 'max' => 25000 // max length of an email (may need to extend this limit if the client is sending larger emails)
+			),
+			array(
+				'emailSubject',
+				'length', 'max' => 200
 			),
 			array(
 				$allFilters, //validate the filters contain only appropriate filter values
@@ -205,12 +221,35 @@ class MailoutForm extends CFormModel
 		
 		foreach($emailList as $record)
 		{
-			if (!empty($record->emailAddress) && mail($ar->emailAddress, $this->emailSubject, $this->emailContent, $headers))
+			if (!empty($record->emailAddress) && mail($record->emailAddress, $this->emailSubject, $this->emailContent, $headers))
 				$success++;
-			else if (!empty($record->alternateEmail) && mail($ar->alternateEmail, $this->emailSubject, $this->emailContent, $headers))
+			else if (!empty($record->alternateEmail) && mail($record->alternateEmail, $this->emailSubject, $this->emailContent, $headers))
 				$success++;
 			$total++;
 		}
+	}
+	
+	private function generateCsv()
+	{
+		$emailList = $this->getEmailList();
+		$doc = new CsvDocument(array("Member Name","Email Address","Alternate Email"));
+		foreach($emailList as $record)
+		{
+			$doc->addRow(array(
+				$record->name,
+				$record->emailAddress,  //(!empty($record->emailAddress) ? "=HYPERLINK(\"mailto:{$record->emailAddress}\")" : ""),
+				$record->alternateEmail //(!empty($record->alternateEmail) ? "=HYPERLINK(\"mailto:{$record->alternateEmail}\")" : ""),
+			));
+		}
+		
+		$filename = "svenskaklubben_maillist_" . date("d-m-Y_G-i");
+		header("Content-type: application/csv");
+		header("Content-Disposition: attachment; filename={$filename}.csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+
+		echo $doc->getDocument();
+		exit;//Yii::app()->end(); //premature exit so the templates aren't appended to the document
 	}
 	
 	/**
@@ -219,12 +258,17 @@ class MailoutForm extends CFormModel
 	 */
 	public function process()
 	{
+		if ($this->type == "email")
+			$this->batchEmail();
+		else
+			$this->generateCsv();
+	/*
 		foreach($this->getEmailList() as $result)
 		{?>
 			<div style="border: 1px solid black; display: block; padding: 5px">
 				<span style="display:block;"><?php echo "Email address: {$result->emailAddress}"; ?></span>
 			</div>
 		<?php
-		}
+		}*/
 	}
 }

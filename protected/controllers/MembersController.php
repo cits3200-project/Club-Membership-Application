@@ -27,13 +27,14 @@ class MembersController extends Controller
 	{
 		return array(
 			array(
-				'allow', 
-				'actions'=>array('usercp'),
-				'expression'=>'$user->hasRoles(array("member"))'
+				'allow',
+				'actions'=>array('login','register'),
+				'expression'=>'$user->isGuest'
 			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
+			array(
+				'deny',
+				'expression' => '!$user->hasRoles(array("member"))'
+			)
 		);
 	}
 	
@@ -48,30 +49,96 @@ class MembersController extends Controller
 	}
 
 	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
+	 * Displays the login page
 	 */
-	public function actionView($id)
+	public function actionLogin()
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		$model=new LoginForm;
+
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+
+		// collect user input data
+		if(isset($_POST['LoginForm']))
+		{
+			$model->attributes=$_POST['LoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->login())
+				$this->redirect(Yii::app()->user->returnUrl);
+		}
+		// display the login form
+		$this->render('login',array('model'=>$model));
 	}
 
 	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionRegister()
 	{
-		$model=new Membership;
-		$user = new User;
-		$role = new UserToRoles;
+		$register = new RegistrationForm();
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Membership']))
+		if(isset($_POST['RegistrationForm']))
 		{
+			var_dump($_POST);
+			$register->attributes = $_POST['RegistrationForm'];
+			if ($register->validate())
+			{
+				$member = new Membership();
+				$user = new User();
+				$role = new UserToRoles();
+				$properties = new MembershipProperties();
+				
+				$memberRole = UserRole::model()->find("LOWER(role)=?", array("member"));
+				
+				$member->attributes = array (
+					'membershipId' => Membership::generateUUID(),
+					'name' => $register->name,
+					'familyName' => $register->familyName,
+					'phoneNumber' => $register->phone,
+					'alternatePhone' => $register->alternatePhone,
+					'emailAddress' => $register->email,
+					'alternateEmail' => $register->alternateEmail,
+					'type' => $register->type,
+					'expiryDate' => '0000-00-00', // not yet registered.
+					'payMethod' => 'none',
+					'status' => 'pending'
+				);
+				
+				$properties->membershipId = $member->membershipId;
+				if (!empty($register->properties) && is_array($register->properties))
+				{
+					foreach($register->properties as $property)
+					{
+						$properties->$property = 'Y';
+					}
+				}
+				
+				$user->attributes = array (
+					'username' => $member->membershipId,
+					'password' => User::hashPassword($register->password)
+				);
+				
+				$user->save(); // need to get the user id after this.
+				
+				if ($memberRole !== NULL && !$user->isNewRecord)
+				{
+					$role->attributes = array (
+						'userId' => $user->userId,
+						'roleId' => $memberRole->roleId
+					);
+					$role->save();
+				}
+				$member->save();
+				$properties->save();
+			}
+		/*
 			$model->attributes=$_POST['Membership'];
 			$model->membershipId = Membership::generateUUID();
 
@@ -93,10 +160,11 @@ class MembersController extends Controller
 			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->membershipId));
+		*/
 		}
 
-		$this->render('create',array(
-			'model'=>$model,
+		$this->render('register',array(
+			'model'=>$register,
 		));
 	}
 
