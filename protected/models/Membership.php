@@ -20,7 +20,7 @@
  * @property Member[] $members
  * @property PaymentMethod $paymentMethod
  * @property MembershipStatus $membershipStatus
- * @property MembershipProperties $membershipProperties
+ * @property properties $membershipProperties
  */
 class Membership extends CActiveRecord
 {
@@ -119,7 +119,7 @@ class Membership extends CActiveRecord
 			'members' => array(self::HAS_MANY, 'Member', 'membershipId'),
 			'paymentMethod' => array(self::BELONGS_TO, 'PaymentMethod', 'payMethod'),
 			'membershipStatus' => array(self::BELONGS_TO, 'MembershipStatus', 'status'),
-			'membershipProperties' => array(self::HAS_ONE, 'MembershipProperties', 'membershipId'),
+			'properties' => array(self::HAS_ONE, 'MembershipProperties', 'membershipId'),
 		);
 	}
 

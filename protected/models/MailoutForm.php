@@ -17,9 +17,10 @@ class MailoutForm extends CFormModel
 	/**
 	 * $filters is the core component of this class.
 	 * each filter represents a queryable filter on the members list.
-	 * Filters can specify a 'label', which is their display text when presented in a view,
-	 * also a 'condition' which is the queryable SQL command that indicates the condition under which the filter is TRUE  <- important
-	 * finally, they can also specify a 'value', which is their default value.
+	 * Filters can specify a series of attributes:
+	 * 'label', display text when presented in a view,
+	 * 'condition', queryable SQL string that indicates the condition under which the filter is TRUE  <- important
+	 * 'value', default value of the filter (Y/N/I for Yes/No/Ignore respectively), or leave as an empty string to indicate no default value
 	 *
 	 * note: In the 'condition' you can use the following shortcuts for table aliases to avoid hardcoding:
 	 * {membership} = Membership table.
