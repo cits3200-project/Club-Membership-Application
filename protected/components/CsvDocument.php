@@ -46,10 +46,11 @@
 		 */
 		public function addRow($rowData=array())
 		{
+			
 			// validate the input.
-			if (!is_array($rowData) && !is_scalar($rowData))
+			if (!is_array($rowData) && !is_scalar($rowData) && $rowData === NULL)
 				throw new Exception('Invalid value specified for parameter \'$rowData\'');
-			else if (is_scalar($rowData))
+			else if (is_scalar($rowData) || $rowData === NULL)
 				$rowData = array($rowData);
 				
 			// Normalize the array size to match the number of columns in the document.
@@ -58,7 +59,7 @@
 			else
 				$rowData = array_slice($rowData, 0, count($this->columns), "");
 				
-				
+			
 			// Build the new, formatted array of data.
 			$cells = array();
 			
@@ -70,7 +71,7 @@
 				else
 					$cells[] = $this->encodeField($cell);
 			}
-				
+
 			if (!empty($this->document))
 				$this->document .= $this->lineEnding;
 				
@@ -99,7 +100,8 @@
 				return "";	
 			else if (strpos($cell, ",") !== false || strpos($cell, '"') !== false || strpos($cell, "\n") !== false)
 				return '"' . str_replace('"', '""', $cell) . '"';
-			
+			else
+				return $cell;			
 		}
 	}
 ?>
