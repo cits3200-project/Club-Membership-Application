@@ -28,12 +28,7 @@
 		public function __construct($columns, $includeHeaders=true,$lineEndings = "\n")
 		{
 			if (!is_array($columns))
-				throw new Exception("Invalid value specified for parameter '\$columns'");
-			foreach ($columns as $entry)
-			{
-				if (!is_scalar($entry))
-					throw new Exception("Non-scalar type specified in a column header");
-			}
+				throw new Exception('Invalid value specified for parameter \'$columns\'');
 			
 			$this->document = "";
 			$this->columns = $columns;
@@ -53,7 +48,7 @@
 		{
 			// validate the input.
 			if (!is_array($rowData) && !is_scalar($rowData))
-				throw new Exception("Invalid value specified for parameter '\$rowData'");
+				throw new Exception('Invalid value specified for parameter \'$rowData\'');
 			else if (is_scalar($rowData))
 				$rowData = array($rowData);
 				
@@ -63,13 +58,14 @@
 			else
 				$rowData = array_slice($rowData, 0, count($this->columns), "");
 				
+				
 			// Build the new, formatted array of data.
 			$cells = array();
 			
 			foreach($rowData as $cell)
 			{
 				// Also perform validation simultaneously
-				if (!is_scalar($cell))
+				if ($cell !== null && !is_scalar($cell))
 					throw new Exception("Non-scalar value found in a cell");
 				else
 					$cells[] = $this->encodeField($cell);
@@ -99,9 +95,11 @@
 		 */
 		private function encodeField($cell)
 		{
-			if (strpos($cell, ",") !== false || strpos($cell, '"') !== false || strpos($cell, "\n") !== false)
-				$cell = '"' . str_replace('"', '""', $cell) . '"';
-			return $cell;
+			if ($cell === null)
+				return "";	
+			else if (strpos($cell, ",") !== false || strpos($cell, '"') !== false || strpos($cell, "\n") !== false)
+				return '"' . str_replace('"', '""', $cell) . '"';
+			
 		}
 	}
 ?>
