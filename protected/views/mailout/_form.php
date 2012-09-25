@@ -28,13 +28,13 @@ Yii::app()->clientScript->registerScriptFile($baseUrl.'/scripts/mailout.js');
 		</thead>
 		<tbody>
 	<?php
-		foreach($model->getFilters() as $code=>$data)
+		foreach($model->getFilters() as $code)
 		{?>
 			<tr>
 				<td class="smallproperty"><?php echo $form->explicitRadioButton($model,$code,'Y'); ?></td>
 				<td class="smallproperty"><?php echo $form->explicitRadioButton($model,$code,'N'); ?></td>
 				<td class="smallproperty"><?php echo $form->explicitRadioButton($model,$code,'I'); ?></td>
-				<td><span class="mailout-filter"><?php echo empty($data['label']) ? $model->getAttributeLabel($code) : $data['label']; ?></span></td>
+				<td><span class="mailout-filter"><?php echo $model->getAttributeLabel($code); ?></span></td>
 			</tr>
 		<?php
 		}

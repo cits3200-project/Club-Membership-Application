@@ -14,45 +14,12 @@ class MailoutForm extends CFormModel
 	public $emailContent;
 	public $type = "email";
 	
-	/**
-	 * $filters is the core component of this class.
-	 * each filter represents a queryable filter on the members list.
-	 * Filters can specify a series of attributes:
-	 * 'label', display text when presented in a view,
-	 * 'condition', queryable SQL string that indicates the condition under which the filter is TRUE  <- important
-	 * 'value', default value of the filter (Y/N/I for Yes/No/Ignore respectively), or leave as an empty string to indicate no default value
-	 *
-	 * note: In the 'condition' you can use the following shortcuts for table aliases to avoid hardcoding:
-	 * {membership} = Membership table.
-	 * {properties} = Membership properties table.
-	 */
-	private $filters = array(
-		'expiringMembers' => array(
-			'label' => 'Members who are close to expiring',
-			'value' => 'I',
-			'condition' => '{membership}.expiryDate < DATE_ADD(SYSDATE(), INTERVAL 10 DAY) AND {membership}.expiryDate > SYSDATE()' // get non-expired members who will expire in the next 10 days.
-		),
-		'generalNews' => array(
-			'label' => 'Member wants to receive general news',
-			'value' => 'I',
-			'condition' => '{properties}.receiveGeneralNews = \'Y\'' 
-		),
-		'eventInvite' => array(
-			'label' => 'Member wishes to receive event invites',
-			'value' => 'I',
-			'condition' => '{properties}.receiveEventInvites = \'Y\''
-		),
-		'expiryNotice' => array(
-			'label' => 'Member wants to receive an expiry notice if appropriate',
-			'value' => 'I',
-			'condition' => '{properties}.receiveExpiryNotice = \'Y\''
-		),
-		'expiredMembers' => array(
-			'label' => 'Members who have already expired',
-			'value' => 'I',
-			'condition' => '{membership}.expiryDate < SYSDATE()'
-		),
-	);
+	private $filters;
+	
+	public function __construct()
+	{
+		$this->filters = new ActiveFilters();
+	}
 	
 	/** 
 	 * PHP's magic __get function. Do not explicitly call this method. Used to dynamically
@@ -65,10 +32,8 @@ class MailoutForm extends CFormModel
 	 */
 	public function __get($name)
 	{
-		if (isset($this->filters[$name]))
-			return isset($this->filters[$name]['value']) ? $this->filters[$name]['value'] : NULL;
-		else
-			return parent::__get($name);
+		$filter = $this->filters->$name;
+		return $filter !== NULL ? $filter : parent::__get($name);
 	}
 	
 	/**
@@ -81,10 +46,11 @@ class MailoutForm extends CFormModel
 	 */
 	public function __set($name,$value)
 	{
-		if (isset($this->filters[$name]))
-			$this->filters[$name]['value'] = $value;
+		$filter = $this->filters->$name;
+		if ($filter !== NULL)
+			$this->filters->$name = $value;
 		else
-			parent::__set($name,$value);	
+			parent::__set($name,$value);
 	}
 	
 	/**
@@ -94,7 +60,7 @@ class MailoutForm extends CFormModel
 	 */
 	public function rules()
 	{
-		$allFilters = implode(', ', array_keys($this->filters));
+		$allFilters = implode(', ', $this->filters->getFilters());
 		return array(
 			array( //validate required fields
 				$allFilters . ", type",
@@ -114,6 +80,7 @@ class MailoutForm extends CFormModel
 				'range' => array('Y','N','I'),
 				'message' => 'Invalid value specified for {attribute}'
 			),
+			$this->filters->getRules(),
 			array( //validate that the type matches the current acceptable types
 				'type', 'in', 'range'=>array('csv','email'), 'message' => 'Invalid value specified for desired action'
 			),
@@ -145,16 +112,27 @@ class MailoutForm extends CFormModel
 	 */
 	public function attributeLabels()
 	{
-		$labels = array();
-		foreach ($this->filters as $filter=>$data)
-			$labels[$filter] = self::getAttributeLabel($attribute);
+		$labels = array (
+			'emailSubject' => 'Email Subject',
+			'emailContent' => 'Email Message',
+			'type' => 'What would you like to do?'
+		);
+		
+		$filterList = $this->filters->getFilters();
+		foreach($filterList as $filter)
+		{
+			$labels[$filter] = $this->filters->getFilterLabel($filter);
+			if ($labels[$filter] === NULL)
+				$labels[$filter] = $this->getAttributeLabel($filter);
+		}
 		return $labels;
 	}
 	
 	public function getAttributeLabel($attribute)
 	{
-		return isset($this->filters[$attribute]) && isset($this->filters[$attribute]['label']) 
-				? $this->filters[$attribute]['label'] 
+		$labels = $this->attributeLabels();
+		return isset($labels[$attribute]) 
+				? $labels[$attribute]
 				: parent::generateAttributeLabel($attribute);
 	}
 	
@@ -163,42 +141,7 @@ class MailoutForm extends CFormModel
 	 */
 	public function getFilters()
 	{
-		return $this->filters;
-	}
-	
-	private function getEmailList()
-	{
-		$ma = 'membership'; //membershipAlias. Truncated for brevity.
-		$pa = MembershipProperties::model()->tableName(); //propertiesAlias. Truncated for brevity.
-		
-		$conditions = array();
-		
-		foreach($this->filters as $property=>$data)
-		{
-			if (isset($data['condition']))
-			{
-				$sql = '(' . str_replace(array('{membership}','{properties}'), array($ma,$pa), $data['condition']) . ')';
-				switch($this->$property)
-				{
-					case 'N': // 'N' will have the same sql as 'Y', but with a negation operator (allow fall-through deliberately)
-						$sql = "NOT {$sql}";
-					case 'Y':
-						$conditions[] = $sql; //append a new condition
-						break;
-					default: //ignore;
-						break;
-				}	
-			}
-		}
-		
-		// Build a Yii-compatible criteria list for the email query.
-		$criteria = new CDbCriteria();
-		$criteria->alias = $ma;
-		$criteria->join = "LEFT JOIN {$pa} ON {$pa}.membershipId = {$ma}.membershipId";
-		$criteria->select = "{$ma}.emailAddress,{$ma}.alternateEmail,{$ma}.name,{$ma}.membershipId";
-		$criteria->condition = implode(" AND ", $conditions);
-
-		return Membership::model()->findAll($criteria);
+		return $this->filters->getFilters();
 	}
 	
 	/**
@@ -206,7 +149,7 @@ class MailoutForm extends CFormModel
 	 */
 	private function batchEmail()
 	{
-		$emailList = $this->getEmailList();
+		$emailList = $this->filters->runFilters();
 		
 		$crlf = "\r\n";
 		$total = 0;
@@ -232,7 +175,8 @@ class MailoutForm extends CFormModel
 	
 	private function generateCsv()
 	{
-		$emailList = $this->getEmailList();
+		$emailList = $this->filters->runFilters();
+		
 		$doc = new CsvDocument(array("Member Name","Email Address","Alternate Email"));
 		foreach($emailList as $record)
 		{
@@ -242,7 +186,7 @@ class MailoutForm extends CFormModel
 				$record->alternateEmail //(!empty($record->alternateEmail) ? "=HYPERLINK(\"mailto:{$record->alternateEmail}\")" : ""),
 			));
 		}
-		
+	
 		$filename = "svenskaklubben_maillist_" . date("d-m-Y_G-i");
 		header("Content-type: application/csv");
 		header("Content-Disposition: attachment; filename={$filename}.csv");
@@ -250,7 +194,7 @@ class MailoutForm extends CFormModel
 		header("Expires: 0");
 
 		echo $doc->getDocument();
-		exit;//Yii::app()->end(); //premature exit so the templates aren't appended to the document
+		exit; //premature exit so the templates aren't appended to the document
 	}
 	
 	/**
