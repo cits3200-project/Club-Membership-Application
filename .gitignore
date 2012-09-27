@@ -1,3 +1,5 @@
 themes/classic/views/
+protected/runtime/
+assets/
 ~*
 *.tmp
