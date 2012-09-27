@@ -1,0 +1,22 @@
+#searchCriteria .toggle label{
+	display: inline;
+}
+
+#searchCriteria .toggle input {
+	display: inline;
+	width: 20px;
+}
+
+#searchCriteria .search-filters .smallproperty {
+	width: 30px;
+}
+
+#searchCriteria .search-filters {
+	border: 1px solid gray;
+}
+
+#searchCriteria .search-filters td, th {
+	padding: 7px 15px 5px 15px;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+}

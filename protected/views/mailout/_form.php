@@ -12,11 +12,12 @@ Yii::app()->clientScript->registerScriptFile($baseUrl.'/scripts/mailout.js');
 
 <div class="form" id="properties">
 
-<?php $form=$this->beginWidget('ExtendedForm', array(
+<?php $form = $this->beginWidget('ExtendedForm', array(
 	'id'=>'mailout-form',
 	'enableAjaxValidation'=>false,
 )); ?>
-	<?php echo $form->errorSummary($model); ?>
+
+	<?php $this->renderPartial('_searchform', array('model'=>$model,'form'=>$form)); /*echo $form->errorSummary($model); ?>
 	<table class="mailout-filters">
 		<thead>
 			<tr>
@@ -41,6 +42,7 @@ Yii::app()->clientScript->registerScriptFile($baseUrl.'/scripts/mailout.js');
 	?>
 		</tbody>
 	</table>
+	*/ ?>
 	<div class="toggle-options">
 		<?php echo $form->radioButtonList($model, 'type', array(
 							'csv' => 'Generate CSV of the emails',

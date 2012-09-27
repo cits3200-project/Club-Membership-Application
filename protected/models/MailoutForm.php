@@ -12,46 +12,8 @@ class MailoutForm extends CFormModel
 {
 	public $emailSubject;
 	public $emailContent;
+	public $emailList;
 	public $type = "email";
-	
-	private $filters;
-	
-	public function __construct()
-	{
-		$this->filters = new ActiveFilters();
-	}
-	
-	/** 
-	 * PHP's magic __get function. Do not explicitly call this method. Used to dynamically
-	 * grab 'properties' from the $filters variable. This allows for variable centralization. 
-	 * Each key in the $filters array corresponds to a form property and has an associative 
-	 * sub-array which can contain, amongst other things, a 'value'. This is the only
-	 * value that should be returned from the getter.
-	 * @param $name name of the property to access
-	 * @return current value of the named filter if found, otherwise returns parent::__get
-	 */
-	public function __get($name)
-	{
-		$filter = $this->filters->$name;
-		return $filter !== NULL ? $filter : parent::__get($name);
-	}
-	
-	/**
-	 * PHP's magic __set function. Do not explicitly call this method.
-	 * This is the opposite of the __get function above and will set a filter's current
-	 * value to the $value specified in the parameters. If $name does not refer to a current filter, 
-	 * parent::__set is called instead.
-	 * @param $name name of the property to set.
-	 * @param $value value to set the property to
-	 */
-	public function __set($name,$value)
-	{
-		$filter = $this->filters->$name;
-		if ($filter !== NULL)
-			$this->filters->$name = $value;
-		else
-			parent::__set($name,$value);
-	}
 	
 	/**
 	 * Declares the validation rules.
@@ -60,12 +22,7 @@ class MailoutForm extends CFormModel
 	 */
 	public function rules()
 	{
-		$allFilters = implode(', ', $this->filters->getFilters());
 		return array(
-			array( //validate required fields
-				$allFilters . ", type",
-				'required'
-			),
 			array(
 				'emailContent', 
 				'length', 'max' => 25000 // max length of an email (may need to extend this limit if the client is sending larger emails)
@@ -74,13 +31,6 @@ class MailoutForm extends CFormModel
 				'emailSubject',
 				'length', 'max' => 200
 			),
-			array(
-				$allFilters, //validate the filters contain only appropriate filter values
-				'in',
-				'range' => array('Y','N','I'),
-				'message' => 'Invalid value specified for {attribute}'
-			),
-			$this->filters->getRules(),
 			array( //validate that the type matches the current acceptable types
 				'type', 'in', 'range'=>array('csv','email'), 'message' => 'Invalid value specified for desired action'
 			),
@@ -106,42 +56,33 @@ class MailoutForm extends CFormModel
 				$this->addError('emailSubject', "A subject must be specified for the email");
 		}
 	}
+	
+	public function validate($attributes=NULL, $clearErrors=true)
+	{
+		$parentValid = parent::validate($attributes, $clearErrors);
+		if ($parentValid)
+		{
+			if ($this->emailList === NULL || !is_array($this->emailList) || count($this->emailList) === 0)
+			{
+				$this->addError('emailList', "The mailout list is empty; cannot process an empty list");
+				return false;
+			}
+		}
+		return $parentValid;
+	}
 
 	/**
 	 * Declares attribute labels.
 	 */
 	public function attributeLabels()
 	{
-		$labels = array (
-			'emailSubject' => 'Email Subject',
-			'emailContent' => 'Email Message',
-			'type' => 'What would you like to do?'
+		return array_merge(
+			array (
+				'emailSubject' => 'Email Subject',
+				'emailContent' => 'Email Message',
+				'type' => 'What would you like to do?'
+			)
 		);
-		
-		$filterList = $this->filters->getFilters();
-		foreach($filterList as $filter)
-		{
-			$labels[$filter] = $this->filters->getFilterLabel($filter);
-			if ($labels[$filter] === NULL)
-				$labels[$filter] = $this->getAttributeLabel($filter);
-		}
-		return $labels;
-	}
-	
-	public function getAttributeLabel($attribute)
-	{
-		$labels = $this->attributeLabels();
-		return isset($labels[$attribute]) 
-				? $labels[$attribute]
-				: parent::generateAttributeLabel($attribute);
-	}
-	
-	/**
-	 * Declares the filtering options for the mailout model
-	 */
-	public function getFilters()
-	{
-		return $this->filters->getFilters();
 	}
 	
 	/**
@@ -149,8 +90,6 @@ class MailoutForm extends CFormModel
 	 */
 	private function batchEmail()
 	{
-		$emailList = $this->filters->runFilters();
-		
 		$crlf = "\r\n";
 		$total = 0;
 		$success = 0;
@@ -163,7 +102,7 @@ class MailoutForm extends CFormModel
 		);
 		$headers = implode($crlf, $rawHeaders);
 		
-		foreach($emailList as $record)
+		foreach($this->emailList as $record)
 		{
 			if (!empty($record->emailAddress) && mail($record->emailAddress, $this->emailSubject, $this->emailContent, $headers))
 				$success++;
@@ -175,10 +114,8 @@ class MailoutForm extends CFormModel
 	
 	private function generateCsv()
 	{
-		$emailList = $this->filters->runFilters();
-		
 		$doc = new CsvDocument(array("Member Name","Email Address","Alternate Email"));
-		foreach($emailList as $record)
+		foreach($this->emailList as $record)
 		{
 			$doc->addRow(array(
 				$record->name,
@@ -203,17 +140,17 @@ class MailoutForm extends CFormModel
 	 */
 	public function process()
 	{
-		if ($this->type == "email")
-			$this->batchEmail();
-		else
-			$this->generateCsv();
-	/*
-		foreach($this->getEmailList() as $result)
+	//	if ($this->type == "email")
+	//		$this->batchEmail();
+	//	else
+	//		$this->generateCsv();
+	
+		foreach($this->emailList as $result)
 		{?>
 			<div style="border: 1px solid black; display: block; padding: 5px">
 				<span style="display:block;"><?php echo "Email address: {$result->emailAddress}"; ?></span>
 			</div>
 		<?php
-		}*/
+		}
 	}
 }

@@ -1,20 +1,13 @@
 <?php
-/* @var $this MembershipController */
-/* @var $dataProvider CActiveDataProvider */
+/* @var $this AdminController */
+/* @var $model SearchForm */
+
+$baseUrl = Yii::app()->baseUrl; 
+Yii::app()->clientScript->registerCssFile($baseUrl.'/css/search.css');
 
 $this->breadcrumbs=array(
-	'Memberships',
-);
-
-$this->menu=array(
-	array('label'=>'Create Membership', 'url'=>array('create')),
-	array('label'=>'Manage Membership', 'url'=>array('admin')),
+	'Mailout',
 );
 ?>
 
-<h1>Memberships</h1>
-
-<?php $this->widget('zii.widgets.CListView', array(
-	'dataProvider'=>$dataProvider,
-	'itemView'=>'_search',
-)); ?>
+<?php $this->renderPartial('_searchform', array('model' => $model)); ?>
