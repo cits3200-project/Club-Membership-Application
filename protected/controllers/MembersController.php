@@ -37,14 +37,90 @@ class MembersController extends Controller
 			)
 		);
 	}
-	
+
 	/** 
-	 * usercp/index action
+	 * Edit current user's details.
 	 */
-	public function actionUsercp()
+	public function actionEdit()
 	{
-		$this->render('update', array(
-			'model'=>$this->loadModel(Yii::app()->user->name)
+		$edit = new MemberEditForm();
+		$name = strtolower(Yii::app()->user->name);
+		$membership = Membership::model()->find("LOWER(membershipId)=?",array($name));
+		$user = User::model()->find("LOWER(username)=?",array($name));
+		$role = UserToRoles::model()->find("LOWER(roleID)=?",array($user->userId));
+		$properties = MembershipProperties::model()->find("LOWER(membershipID)=?",array($name));
+
+		if(isset($_POST['MemberEditForm']))
+		{
+			var_dump($_POST);
+			$edit->attributes = $_POST['MemberEditForm'];
+			if ($edit->validate())
+			{
+				$member = Membership::model()->find("LOWER(membershipId)=?",array($name));
+				//$properties = new MembershipProperties();
+				$memberRole = UserRole::model()->find("LOWER(role)=?", array("member"));
+
+				$member->attributes = array (
+					//'membershipId' => Membership::generateUUID(),
+					'name' => $edit->name,
+					'familyName' => $edit->familyName,
+					'phoneNumber' => $edit->phone,
+					'alternatePhone' => $edit->alternatePhone,
+					'emailAddress' => $edit->email,
+					'alternateEmail' => $edit->alternateEmail,
+					'type' => $edit->type,
+					//'expiryDate' => '0000-00-00', // not yet registered.
+					//'payMethod' => 'none',
+					//'status' => 'pending'
+				);
+
+				//$properties->membershipId = $member->membershipId;
+				if (!empty($edit->properties) && is_array($edit->properties))
+				{
+					foreach($edit->properties as $property)
+					{
+						$properties->$property = 'Y';
+					}
+				}
+
+				/*$user->attributes = array (
+					'username' => $member->membershipId,
+					'password' => User::hashPassword($edit->password)
+				);*/
+
+				$user->save(); // need to get the user id after this.
+
+				/*if ($memberRole !== NULL && !$user->isNewRecord)
+				{
+					$role->attributes = array (
+						'userId' => $user->userId,
+						'roleId' => $memberRole->roleId
+					);
+					$role->save();
+				}*/
+				$member->save();
+				$properties->save();
+			}
+
+		} else { //preload
+			$edit->attributes = array(
+				'name' => $membership->name,
+				'familyName' => $membership->familyName,
+				'phone' => $membership->phoneNumber,
+				'alternatePhone' => $membership->alternatePhone,
+				'email' => $membership->emailAddress,
+				'alternateEmail' => $membership->alternateEmail,
+				'type' => $membership->type,
+				//TODO:?properties not preloading
+				'recNews' => $properties->receiveGeneralNews,
+				'recExpire' => $properties->receiveEventInvites,
+				'recEvents' => $properties->receiveExpiryNotice,
+			);
+			//TODO:need null check
+		}
+
+		$this->render('edit', array(
+			'model'=>$edit,
 		));
 	}
 
@@ -94,9 +170,9 @@ class MembersController extends Controller
 				$user = new User();
 				$role = new UserToRoles();
 				$properties = new MembershipProperties();
-				
+
 				$memberRole = UserRole::model()->find("LOWER(role)=?", array("member"));
-				
+
 				$member->attributes = array (
 					'membershipId' => Membership::generateUUID(),
 					'name' => $register->name,
@@ -110,7 +186,7 @@ class MembersController extends Controller
 					'payMethod' => 'none',
 					'status' => 'pending'
 				);
-				
+
 				$properties->membershipId = $member->membershipId;
 				if (!empty($register->properties) && is_array($register->properties))
 				{
@@ -119,14 +195,14 @@ class MembersController extends Controller
 						$properties->$property = 'Y';
 					}
 				}
-				
+
 				$user->attributes = array (
 					'username' => $member->membershipId,
 					'password' => User::hashPassword($register->password)
 				);
-				
+
 				$user->save(); // need to get the user id after this.
-				
+
 				if ($memberRole !== NULL && !$user->isNewRecord)
 				{
 					$role->attributes = array (
