@@ -12,11 +12,12 @@ Yii::app()->clientScript->registerScriptFile($baseUrl.'/scripts/mailout.js');
 
 <div class="form" id="properties">
 
-<?php $form=$this->beginWidget('ExtendedForm', array(
+<?php $form = $this->beginWidget('ExtendedForm', array(
 	'id'=>'mailout-form',
 	'enableAjaxValidation'=>false,
 )); ?>
-	<?php echo $form->errorSummary($model); ?>
+
+	<?php $this->renderPartial('_searchform', array('model'=>$model,'form'=>$form)); /*echo $form->errorSummary($model); ?>
 	<table class="mailout-filters">
 		<thead>
 			<tr>
@@ -28,19 +29,20 @@ Yii::app()->clientScript->registerScriptFile($baseUrl.'/scripts/mailout.js');
 		</thead>
 		<tbody>
 	<?php
-		foreach($model->getFilters() as $code=>$data)
+		foreach($model->getFilters() as $code)
 		{?>
 			<tr>
 				<td class="smallproperty"><?php echo $form->explicitRadioButton($model,$code,'Y'); ?></td>
 				<td class="smallproperty"><?php echo $form->explicitRadioButton($model,$code,'N'); ?></td>
 				<td class="smallproperty"><?php echo $form->explicitRadioButton($model,$code,'I'); ?></td>
-				<td><span class="mailout-filter"><?php echo empty($data['label']) ? $model->getAttributeLabel($code) : $data['label']; ?></span></td>
+				<td><span class="mailout-filter"><?php echo $model->getAttributeLabel($code); ?></span></td>
 			</tr>
 		<?php
 		}
 	?>
 		</tbody>
 	</table>
+	*/ ?>
 	<div class="toggle-options">
 		<?php echo $form->radioButtonList($model, 'type', array(
 							'csv' => 'Generate CSV of the emails',

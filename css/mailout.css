@@ -1,23 +1,4 @@
-#properties table {
-	border: 1px solid gray;
-}
-
-#properties .smallproperty {
-	width: 60px;
-	text-align: center;
-	border-right: 1px solid gray;
-}
-
-#properties td, th {
-	border-bottom: 1px solid gray;
-}
-
 #properties .toggle-options label {
-	display: inline;
-}
-
-#properties .toggle-options input {
-	width: 20px;
 	display: inline;
 }
 

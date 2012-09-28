@@ -4572,3 +4572,1013 @@ in B:\webroot\cits3200\club-membership-application\index.php (13)
 2012/08/25 13:04:01 [warning] [application] Failed to set unsafe attribute "properties[receiveExpiryNotice" of "RegistrationForm".
 in B:\webroot\cits3200\club-membership-application\protected\controllers\MembersController.php (90)
 in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/24 15:27:13 [error] [exception.CException] exception 'CException' with message 'Property "MailoutForm.expiringMembers" is not defined.' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php(35): CComponent->__get('expiringMembers')
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\helpers\CHtml.php(2160): MailoutForm->__get('expiringMembers')
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\helpers\CHtml.php(1420): CHtml::resolveValue(Object(MailoutForm), 'expiringMembers')
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\widgets\CActiveForm.php(730): CHtml::activeRadioButton(Object(MailoutForm), 'expiringMembers', Array)
+#4 B:\webroot\cits3200\club-membership-application\protected\components\ExtendedForm.php(50): CActiveForm->radioButton(Object(MailoutForm), 'expiringMembers', Array)
+#5 B:\webroot\cits3200\club-membership-application\protected\views\mailout\_form.php(34): ExtendedForm->explicitRadioButton(Object(MailoutForm), 'expiringMembers', 'Y')
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#9 B:\webroot\cits3200\club-membership-application\protected\views\mailout\index.php(10): CController->renderPartial('_form', Array)
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('index', Array, true)
+#14 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(66): CController->render('index', Array)
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#19 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#20 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#21 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#22 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#23 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('')
+#25 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#26 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#27 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/search
+---
+2012/09/24 15:28:36 [error] [exception.CException] exception 'CException' with message 'Property "MailoutForm.expiringMembers" is not defined.' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php(35): CComponent->__get('expiringMembers')
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\helpers\CHtml.php(2160): MailoutForm->__get('expiringMembers')
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\helpers\CHtml.php(1420): CHtml::resolveValue(Object(MailoutForm), 'expiringMembers')
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\widgets\CActiveForm.php(730): CHtml::activeRadioButton(Object(MailoutForm), 'expiringMembers', Array)
+#4 B:\webroot\cits3200\club-membership-application\protected\components\ExtendedForm.php(50): CActiveForm->radioButton(Object(MailoutForm), 'expiringMembers', Array)
+#5 B:\webroot\cits3200\club-membership-application\protected\views\mailout\_form.php(34): ExtendedForm->explicitRadioButton(Object(MailoutForm), 'expiringMembers', 'Y')
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#9 B:\webroot\cits3200\club-membership-application\protected\views\mailout\index.php(10): CController->renderPartial('_form', Array)
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('index', Array, true)
+#14 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(66): CController->render('index', Array)
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#19 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#20 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#21 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#22 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#23 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('')
+#25 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#26 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#27 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/search
+---
+2012/09/24 15:29:02 [error] [exception.CException] exception 'CException' with message 'Property "MailoutForm.expiringMembers" is not defined.' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php(35): CComponent->__get('expiringMembers')
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\helpers\CHtml.php(2160): MailoutForm->__get('expiringMembers')
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\helpers\CHtml.php(1420): CHtml::resolveValue(Object(MailoutForm), 'expiringMembers')
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\widgets\CActiveForm.php(730): CHtml::activeRadioButton(Object(MailoutForm), 'expiringMembers', Array)
+#4 B:\webroot\cits3200\club-membership-application\protected\components\ExtendedForm.php(50): CActiveForm->radioButton(Object(MailoutForm), 'expiringMembers', Array)
+#5 B:\webroot\cits3200\club-membership-application\protected\views\mailout\_form.php(34): ExtendedForm->explicitRadioButton(Object(MailoutForm), 'expiringMembers', 'Y')
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#9 B:\webroot\cits3200\club-membership-application\protected\views\mailout\index.php(10): CController->renderPartial('_form', Array)
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('index', Array, true)
+#14 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(66): CController->render('index', Array)
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#19 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#20 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#21 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#22 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#23 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('')
+#25 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#26 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#27 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/search
+---
+2012/09/24 15:29:05 [error] [exception.CException] exception 'CException' with message 'Property "MailoutForm.expiringMembers" is not defined.' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php(35): CComponent->__get('expiringMembers')
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\helpers\CHtml.php(2160): MailoutForm->__get('expiringMembers')
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\helpers\CHtml.php(1420): CHtml::resolveValue(Object(MailoutForm), 'expiringMembers')
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\widgets\CActiveForm.php(730): CHtml::activeRadioButton(Object(MailoutForm), 'expiringMembers', Array)
+#4 B:\webroot\cits3200\club-membership-application\protected\components\ExtendedForm.php(50): CActiveForm->radioButton(Object(MailoutForm), 'expiringMembers', Array)
+#5 B:\webroot\cits3200\club-membership-application\protected\views\mailout\_form.php(34): ExtendedForm->explicitRadioButton(Object(MailoutForm), 'expiringMembers', 'Y')
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#9 B:\webroot\cits3200\club-membership-application\protected\views\mailout\index.php(10): CController->renderPartial('_form', Array)
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('index', Array, true)
+#14 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(66): CController->render('index', Array)
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#19 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#20 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#21 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#22 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#23 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('')
+#25 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#26 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#27 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#28 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/search
+---
+2012/09/24 15:33:07 [warning] [application] Failed to set unsafe attribute "expiringMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:07 [warning] [application] Failed to set unsafe attribute "generalNews" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:07 [warning] [application] Failed to set unsafe attribute "eventInvite" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:07 [warning] [application] Failed to set unsafe attribute "expiryNotice" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:07 [warning] [application] Failed to set unsafe attribute "expiredMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:07 [warning] [application] Failed to set unsafe attribute "type" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:07 [warning] [application] Failed to set unsafe attribute "emailSubject" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:07 [warning] [application] Failed to set unsafe attribute "emailContent" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:40 [warning] [application] Failed to set unsafe attribute "expiringMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:40 [warning] [application] Failed to set unsafe attribute "generalNews" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:40 [warning] [application] Failed to set unsafe attribute "eventInvite" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:40 [warning] [application] Failed to set unsafe attribute "expiryNotice" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:40 [warning] [application] Failed to set unsafe attribute "expiredMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:40 [warning] [application] Failed to set unsafe attribute "type" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:40 [warning] [application] Failed to set unsafe attribute "emailSubject" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:33:40 [warning] [application] Failed to set unsafe attribute "emailContent" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:34:38 [warning] [application] Failed to set unsafe attribute "expiringMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:34:38 [warning] [application] Failed to set unsafe attribute "generalNews" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:34:38 [warning] [application] Failed to set unsafe attribute "eventInvite" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:34:38 [warning] [application] Failed to set unsafe attribute "expiryNotice" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:34:38 [warning] [application] Failed to set unsafe attribute "expiredMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:34:38 [warning] [application] Failed to set unsafe attribute "type" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:34:38 [warning] [application] Failed to set unsafe attribute "emailSubject" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:34:38 [warning] [application] Failed to set unsafe attribute "emailContent" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:35:17 [warning] [application] Failed to set unsafe attribute "expiringMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:35:17 [warning] [application] Failed to set unsafe attribute "generalNews" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:35:17 [warning] [application] Failed to set unsafe attribute "eventInvite" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:35:17 [warning] [application] Failed to set unsafe attribute "expiryNotice" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:35:17 [warning] [application] Failed to set unsafe attribute "expiredMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:35:17 [warning] [application] Failed to set unsafe attribute "type" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:35:17 [warning] [application] Failed to set unsafe attribute "emailSubject" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:35:17 [warning] [application] Failed to set unsafe attribute "emailContent" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (51)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:36:41 [warning] [application] Failed to set unsafe attribute "expiringMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (52)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:36:41 [warning] [application] Failed to set unsafe attribute "generalNews" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (52)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:36:41 [warning] [application] Failed to set unsafe attribute "eventInvite" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (52)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:36:41 [warning] [application] Failed to set unsafe attribute "expiryNotice" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (52)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:36:41 [warning] [application] Failed to set unsafe attribute "expiredMembers" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (52)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:36:41 [warning] [application] Failed to set unsafe attribute "type" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (52)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:36:41 [warning] [application] Failed to set unsafe attribute "emailSubject" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (52)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:36:41 [warning] [application] Failed to set unsafe attribute "emailContent" of "ActiveFilters".
+in B:\webroot\cits3200\club-membership-application\protected\models\ActiveFilters.php (74)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (52)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/24 15:47:28 [error] [php] Cannot modify header information - headers already sent by (output started at B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php:183) (B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php:192)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(59): MailoutForm->process()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): MailoutController->runAction()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): MailoutController->filterAccessControl()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): MailoutController->runActionWithFilters()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): MailoutController->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/mailout
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (192)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (210)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (59)
+2012/09/25 16:54:01 [error] [exception.CException] exception 'CException' with message 'MailoutController cannot find the requested view "_searchform".' in B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php:879
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\views\mailout\_form.php(20): CController->renderPartial('_searchform', Array)
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#4 B:\webroot\cits3200\club-membership-application\protected\views\mailout\index.php(10): CController->renderPartial('_form', Array)
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('index', Array, true)
+#9 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(66): CController->render('index', Array)
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('')
+#20 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#21 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#22 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/members/login
+---
+2012/09/25 17:18:27 [error] [php] Undefined variable: allFilters (B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php:27)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php(544): MailoutForm->getValidators()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php(466): MailoutForm->getSafeAttributeNames()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php(153): MailoutForm->setAttributes()
+#3 B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php(127): MailoutForm->__set()
+#4 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(55): MailoutForm->__set()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): MailoutController->runAction()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): MailoutController->filterAccessControl()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): MailoutController->runActionWithFilters()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): MailoutController->run()
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#17 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/mailout
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (27)
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php (127)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+2012/09/25 17:19:04 [warning] [application] Failed to set unsafe attribute "expiringMembers" of "MailoutForm".
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php (127)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/25 17:19:04 [warning] [application] Failed to set unsafe attribute "generalNews" of "MailoutForm".
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php (127)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/25 17:19:04 [warning] [application] Failed to set unsafe attribute "eventInvite" of "MailoutForm".
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php (127)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/25 17:19:04 [warning] [application] Failed to set unsafe attribute "expiryNotice" of "MailoutForm".
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php (127)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/25 17:19:04 [warning] [application] Failed to set unsafe attribute "expiredMembers" of "MailoutForm".
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php (127)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/25 17:19:04 [warning] [application] Failed to set unsafe attribute "membershipId" of "MailoutForm".
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php (127)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (55)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/25 17:19:04 [error] [php] Use of undefined constant parent - assumed 'parent' (B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php:82)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): MailoutController->runAction()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): MailoutController->filterAccessControl()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): MailoutController->runActionWithFilters()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): MailoutController->run()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/mailout
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (82)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (138)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php (59)
+2012/09/25 17:22:38 [error] [exception.CException] exception 'CException' with message 'MailoutForm has an invalid validation rule. The rule must specify attributes to be validated and the validator name.' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php:287
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php(259): CModel->createValidators()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php(544): CModel->getValidators()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php(466): CModel->getSafeAttributeNames()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php(153): CModel->setAttributes(Array)
+#4 B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php(127): CComponent->__set('attributes', Array)
+#5 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(55): SearchFormBase->__set('attributes', Array)
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('')
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#18 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/mailout
+---
+2012/09/25 17:23:14 [error] [exception.CException] exception 'CException' with message 'MailoutForm has an invalid validation rule. The rule must specify attributes to be validated and the validator name.' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php:287
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php(259): CModel->createValidators()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php(544): CModel->getValidators()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\base\CModel.php(466): CModel->getSafeAttributeNames()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php(153): CModel->setAttributes(Array)
+#4 B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php(127): CComponent->__set('attributes', Array)
+#5 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(55): SearchFormBase->__set('attributes', Array)
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('')
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#18 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/mailout
+---
+2012/09/25 17:26:56 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT membership.emailAddress,membership.alternateEmail,membership.name,membership.membershipId FROM `tbl_membership` `membership` LEFT JOIN tbl_membership_properties AS properties ON properties.membershipId = membership.membershipId WHERE (membership.expiryDate < DATE_ADD(SYSDATE(), INTERVAL 10 DAY) AND membership.expiryDate > SYSDATE()) AND (properties.receiveGeneralNews = 'Y') AND (LOWER(membership.membershipId LIKE LOWER(?)).
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php (203)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (82)
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (137)
+2012/09/25 17:26:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1. The SQL statement executed was: SELECT membership.emailAddress,membership.alternateEmail,membership.name,membership.membershipId FROM `tbl_membership` `membership` LEFT JOIN tbl_membership_properties AS properties ON properties.membershipId = membership.membershipId WHERE (membership.expiryDate < DATE_ADD(SYSDATE(), INTERVAL 10 DAY) AND membership.expiryDate > SYSDATE()) AND (properties.receiveGeneralNews = 'Y') AND (LOWER(membership.membershipId LIKE LOWER(?))' in B:\webroot\cits3200\club-membership-application\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(1286): CDbCommand->queryAll()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(1405): CActiveRecord->query(Object(CDbCriteria), true)
+#3 B:\webroot\cits3200\club-membership-application\protected\models\SearchFormBase.php(203): CActiveRecord->findAll(Object(CDbCriteria))
+#4 B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php(82): SearchFormBase->runSearch()
+#5 B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php(137): MailoutForm->batchEmail()
+#6 B:\webroot\cits3200\club-membership-application\protected\controllers\MailoutController.php(59): MailoutForm->process()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): MailoutController->actionIndex()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('')
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#19 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/mailout
+---
+2012/09/27 14:46:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mailout".' in B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/members/login
+---
+2012/09/27 14:46:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mailout".' in B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('mailout')
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/cits3200/club-membership-application/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/search
+---
+2012/09/27 14:47:03 [error] [exception.CException] exception 'CException' with message 'AdminController cannot find the requested view "_form".' in B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php:879
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php(10): CController->renderPartial('_form', Array)
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('mailout', Array, true)
+#5 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(71): CController->render('mailout', Array)
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('mailout')
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/mailout')
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#18 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#19 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 15:11:27 [error] [php] Undefined variable: search (B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php:45)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): AdminController->renderFile()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): AdminController->renderPartial()
+#2 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(71): AdminController->render()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php (45)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (71)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/27 15:40:38 [error] [php] Undefined variable: data (B:\webroot\cits3200\club-membership-application\protected\views\admin\_search.php:8)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): AdminController->renderFile()
+#1 B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php(13): AdminController->renderPartial()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): AdminController->renderInternal()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): AdminController->renderFile()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): AdminController->renderPartial()
+#6 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(79): AdminController->render()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#19 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\_search.php (8)
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php (13)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (79)
+2012/09/27 15:41:49 [error] [php] Undefined variable: form (B:\webroot\cits3200\club-membership-application\protected\views\admin\_searchform.php:15)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): AdminController->renderFile()
+#1 B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php(13): AdminController->renderPartial()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): AdminController->renderInternal()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): AdminController->renderFile()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): AdminController->renderPartial()
+#6 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(79): AdminController->render()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#19 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\_searchform.php (15)
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php (13)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (79)
+2012/09/27 15:42:41 [error] [exception.CException] exception 'CException' with message 'AdminController contains improperly nested widget tags in its view "B:\webroot\cits3200\club-membership-application\protected\views\admin\_searchform.php". A CActiveForm widget does not have an endWidget() call.' in B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php:102
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#1 B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php(13): CController->renderPartial('_searchform', Array)
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('search', Array, true)
+#6 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(79): CController->render('search', Array)
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('mailout')
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/mailout')
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#19 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 15:46:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "css/search.css".' in B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('css/search.css')
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/cits3200/club-membership-application/css/search.css
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 15:52:46 [error] [php] Undefined variable: model (B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php:25)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): AdminController->renderFile()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): AdminController->renderPartial()
+#2 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(72): AdminController->render()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php (25)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (72)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/27 16:02:59 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'membership.membership.Id' in 'where clause'. The SQL statement executed was: SELECT membership.*, properties.*, (SELECT COUNT(*) AS members FROM tbl_member members WHERE members.membershipId = membership.membership.Id) FROM `tbl_membership` `membership` LEFT JOIN tbl_membership_properties AS properties ON properties.membershipId = membership.membershipId.
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchForm.php (214)
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php (46)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (72)
+2012/09/27 16:02:59 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'membership.membership.Id' in 'where clause'. The SQL statement executed was: SELECT membership.*, properties.*, (SELECT COUNT(*) AS members FROM tbl_member members WHERE members.membershipId = membership.membership.Id) FROM `tbl_membership` `membership` LEFT JOIN tbl_membership_properties AS properties ON properties.membershipId = membership.membershipId' in B:\webroot\cits3200\club-membership-application\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(1286): CDbCommand->queryAll()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(1405): CActiveRecord->query(Object(CDbCriteria), true)
+#3 B:\webroot\cits3200\club-membership-application\protected\models\SearchForm.php(214): CActiveRecord->findAll(Object(CDbCriteria))
+#4 B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php(46): SearchForm->runSearch()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('mailout', Array, true)
+#9 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(72): CController->render('mailout', Array)
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('mailout')
+#20 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/mailout')
+#21 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#22 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 16:18:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT me.membershipId FROM tbl_member me WHERE me.membershipId = membership.mem' at line 1. The SQL statement executed was: SELECT COUNT(SELECT me.membershipId FROM tbl_member me WHERE me.membershipId = membership.membershipId) numberOfMembers FROM `tbl_membership` `membership` LEFT JOIN tbl_membership_properties AS properties ON properties.membershipId = membership.membershipId.
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchForm.php (215)
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php (46)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (72)
+2012/09/27 16:18:51 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT me.membershipId FROM tbl_member me WHERE me.membershipId = membership.mem' at line 1. The SQL statement executed was: SELECT COUNT(SELECT me.membershipId FROM tbl_member me WHERE me.membershipId = membership.membershipId) numberOfMembers FROM `tbl_membership` `membership` LEFT JOIN tbl_membership_properties AS properties ON properties.membershipId = membership.membershipId' in B:\webroot\cits3200\club-membership-application\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(1286): CDbCommand->queryAll()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(1405): CActiveRecord->query(Object(CDbCriteria), true)
+#3 B:\webroot\cits3200\club-membership-application\protected\models\SearchForm.php(215): CActiveRecord->findAll(Object(CDbCriteria))
+#4 B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php(46): SearchForm->runSearch()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('mailout', Array, true)
+#9 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(72): CController->render('mailout', Array)
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('mailout')
+#20 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/mailout')
+#21 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#22 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 16:34:46 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY membership.membershipId' at line 2. The SQL statement executed was: SELECT membership.*, properties.* FROM `tbl_membership` `membership` 	LEFT JOIN tbl_membership_properties AS properties ON properties.membershipId = membership.membershipId
+							LEFT JOIN tbl_member AS member ON member.membershipId = membership.membershipId GROUP BY GROUP BY membership.membershipId.
+in B:\webroot\cits3200\club-membership-application\protected\models\SearchForm.php (218)
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php (46)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (72)
+2012/09/27 16:34:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'GROUP BY membership.membershipId' at line 2. The SQL statement executed was: SELECT membership.*, properties.* FROM `tbl_membership` `membership` 	LEFT JOIN tbl_membership_properties AS properties ON properties.membershipId = membership.membershipId
+							LEFT JOIN tbl_member AS member ON member.membershipId = membership.membershipId GROUP BY GROUP BY membership.membershipId' in B:\webroot\cits3200\club-membership-application\yii\framework\db\CDbCommand.php:528
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\db\CDbCommand.php(390): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(1286): CDbCommand->queryAll()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(1405): CActiveRecord->query(Object(CDbCriteria), true)
+#3 B:\webroot\cits3200\club-membership-application\protected\models\SearchForm.php(218): CActiveRecord->findAll(Object(CDbCriteria))
+#4 B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php(46): SearchForm->runSearch()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('mailout', Array, true)
+#9 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(72): CController->render('mailout', Array)
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('mailout')
+#20 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/mailout')
+#21 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#22 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 16:44:10 [error] [exception.CException] exception 'CException' with message 'Property "Membership.numberOfMembers" is not defined.' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(144): CComponent->__get('numberOfMembers')
+#1 B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php(61): CActiveRecord->__get('numberOfMembers')
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('mailout', Array, true)
+#6 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(72): CController->render('mailout', Array)
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('mailout')
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/mailout')
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#19 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 16:44:14 [error] [exception.CException] exception 'CException' with message 'Property "Membership.numberOfMembers" is not defined.' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php:131
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\db\ar\CActiveRecord.php(144): CComponent->__get('numberOfMembers')
+#1 B:\webroot\cits3200\club-membership-application\protected\views\admin\mailout.php(61): CActiveRecord->__get('numberOfMembers')
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('mailout', Array, true)
+#6 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(72): CController->render('mailout', Array)
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('mailout')
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/mailout')
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#19 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 16:48:33 [error] [php] Creating default object from empty value (B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php:54)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (54)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/27 16:49:17 [error] [exception.CException] exception 'CException' with message 'MailoutForm and its behaviors do not have a method or closure named "runSearch".' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php(137): CComponent->__call('runSearch', Array)
+#1 B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php(137): MailoutForm->runSearch()
+#2 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(57): MailoutForm->process()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('mailout')
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/mailout')
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 16:56:37 [error] [php] Declaration of MailoutForm::validate() should be compatible with that of CModel::validate() (B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php:12)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(49): spl_autoload_call()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#13 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (12)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (49)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/27 16:57:43 [error] [php] Undefined variable: emailList (B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php:65)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+in B:\webroot\cits3200\club-membership-application\protected\models\MailoutForm.php (65)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (57)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/27 17:09:30 [error] [exception.CException] exception 'CException' with message 'CActiveForm and its behaviors do not have a method or closure named "explicitRadioButton".' in B:\webroot\cits3200\club-membership-application\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\protected\views\admin\_searchform.php(44): CComponent->__call('explicitRadioBu...', Array)
+#1 B:\webroot\cits3200\club-membership-application\protected\views\admin\_searchform.php(44): CActiveForm->explicitRadioButton(Object(SearchForm), 'expiringMembers', 'Y')
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#5 B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php(13): CController->renderPartial('_searchform', Array)
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(127): require('B:\webroot\cits...')
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('B:\webroot\cits...', Array, true)
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): CBaseController->renderFile('B:\webroot\cits...', Array, true)
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('search', Array, true)
+#10 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(81): CController->render('search', Array)
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMailout()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#15 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#16 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#17 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#18 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#19 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('mailout')
+#21 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/mailout')
+#22 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#23 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/mailout
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/mailout
+---
+2012/09/27 17:33:48 [error] [php] Undefined variable: model (B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php:13)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): AdminController->renderFile()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): AdminController->renderPartial()
+#2 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(44): AdminController->render()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionSearch()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/search
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php (13)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (44)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/27 17:35:40 [error] [php] Undefined variable: model (B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php:13)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): AdminController->renderFile()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): AdminController->renderPartial()
+#2 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(44): AdminController->render()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionSearch()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/search
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php (13)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (44)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/27 17:35:41 [error] [php] Undefined variable: model (B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php:13)
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(870): AdminController->renderFile()
+#1 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): AdminController->renderPartial()
+#2 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(44): AdminController->render()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionSearch()
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): AdminController->runAction()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): AdminController->filterAccessControl()
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): AdminController->runActionWithFilters()
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): AdminController->run()
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#14 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 B:\webroot\cits3200\club-membership-application\index.php(13): CWebApplication->run()
+REQUEST_URI=/cits3200/club-membership-application/admin/search
+in B:\webroot\cits3200\club-membership-application\protected\views\admin\search.php (13)
+in B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php (44)
+in B:\webroot\cits3200\club-membership-application\index.php (13)
+2012/09/27 17:35:49 [error] [exception.CException] exception 'CException' with message 'AdminController cannot find the requested view "memberlist".' in B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php:879
+Stack trace:
+#0 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(783): CController->renderPartial('memberlist', Array, true)
+#1 B:\webroot\cits3200\club-membership-application\protected\controllers\AdminController.php(96): CController->render('memberlist', Array)
+#2 B:\webroot\cits3200\club-membership-application\yii\framework\web\actions\CInlineAction.php(50): AdminController->actionMemberlist()
+#3 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#5 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#6 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#7 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#8 B:\webroot\cits3200\club-membership-application\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#9 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(292): CFilterChain->run()
+#10 B:\webroot\cits3200\club-membership-application\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(283): CController->run('memberlist')
+#12 B:\webroot\cits3200\club-membership-application\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('admin/memberlis...')
+#13 B:\webroot\cits3200\club-membership-application\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#14 B:\webroot\cits3200\club-membership-application\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/cits3200/club-membership-application/admin/memberlist
+HTTP_REFERER=http://localhost/cits3200/club-membership-application/admin/memberlist
+---

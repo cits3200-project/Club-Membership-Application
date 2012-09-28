@@ -117,6 +117,7 @@ class Membership extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'members' => array(self::HAS_MANY, 'Member', 'membershipId'),
+			'memberCount' => array(self::STAT, 'Member', 'membershipId'),
 			'paymentMethod' => array(self::BELONGS_TO, 'PaymentMethod', 'payMethod'),
 			'membershipStatus' => array(self::BELONGS_TO, 'MembershipStatus', 'status'),
 			'properties' => array(self::HAS_ONE, 'MembershipProperties', 'membershipId'),

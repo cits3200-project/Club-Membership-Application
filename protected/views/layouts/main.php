@@ -34,10 +34,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 						array('label'=>'Home', 			'url'=>array('/site/index')),
 						array('label'=>'Login', 		'url'=>array('/members/login'), 	'visible'=>Yii::app()->user->isGuest),
 						array('label'=>'Register',		'url'=>array('/members/register/'),	'visible'=>Yii::app()->user->isGuest),
-						array('label'=>'Edit Details', 	'url'=>array('/members/edit/'), 	'visible'=>Yii::app()->user->hasRoles(array("member"))),
-						array('label'=>'Admin Panel',	'url'=>array('/admin/'),			'visible'=>Yii::app()->user->hasRoles(array("admin"))),
-						array('label'=>'Mail Members',	'url'=>array('/mailout/'),			'visible'=>Yii::app()->user->hasAnyRoles(array("admin", "mailout"))),
 						array('label'=>'View Members',	'url'=>array('/admin/search'),		'visible'=>Yii::app()->user->hasRoles(array("admin"))),
+						array('label'=>'Edit Details', 	'url'=>array('/members/edit/'), 	'visible'=>Yii::app()->user->hasRoles(array("member"))),
+						array('label'=>'Mail Members',	'url'=>array('/admin/mailout/'),	'visible'=>Yii::app()->user->hasAnyRoles(array("admin", "mailout"))),
+						array('label'=>'Search Members','url'=>array('/admin/memberlist'),	'visible'=>Yii::app()->user->hasRoles(array("admin"))),
 						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 					),
 				)); ?>
