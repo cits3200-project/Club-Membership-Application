@@ -3,3 +3,5 @@ protected/runtime/
 assets/
 ~*
 *.tmp
+protected/config/
+.htaccess
