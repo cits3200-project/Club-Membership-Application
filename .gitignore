@@ -3,5 +3,6 @@ protected/runtime/
 assets/
 ~*
 *.tmp
+*.swp
 protected/config/
 .htaccess

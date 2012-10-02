@@ -4,13 +4,14 @@
 /* @var $form CActiveForm */
 
 $baseUrl = Yii::app()->baseUrl; 
+//same css?
 Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 ?>
 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'registration-form',
+	'id'=>'edit-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -65,7 +66,7 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Register'); ?>
+		<?php echo CHtml::submitButton('Update'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

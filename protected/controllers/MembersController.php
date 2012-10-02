@@ -124,6 +124,27 @@ class MembersController extends Controller
 		));
 	}
 
+	public function actionChangePassword()
+	{
+		$form = new MemberChangePasswordForm;
+		$name = strtolower(Yii::app()->user->name);
+		$user = User::model()->find("LOWER(username)=?",array($name));
+
+		if(isset($_POST['MemberChangePasswordForm']))
+		{
+			var_dump($_POST);
+			$form->attributes = $_POST['MemberChangePasswordForm'];
+			if ($form->validate())
+			{
+				$user->password = User::hashPassword($form->newPassword);
+				$user->save();
+			}
+		}
+
+		$this->render('changepassword',array('model'=>$form));
+
+	}
+
 	/**
 	 * Displays the login page
 	 */
