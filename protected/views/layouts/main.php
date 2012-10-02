@@ -74,7 +74,10 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 				)); ?>
 				<br style="clear: left" />
 			</div> <!-- END of menu -->
-			
+			<div id="templatemo_slider">
+				<div id="lofslidecontent45" class="lof-slidecontent" style="width:940px; height:340px;">
+					<div class="preload"></div>
+				</div>			
 			<div id="templatemo_main">
 				<?php echo $content; ?>
 			</div>
