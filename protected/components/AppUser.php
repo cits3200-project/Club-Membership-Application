@@ -39,8 +39,11 @@ class AppUser extends CWebUser
 	 */
 	public function hasRoles($roles=array())
 	{
-		if ($roles !== null && $this->hasState('roles') && is_array($roles))
+		if ($roles !== null && $this->hasState('roles'))
 		{
+			if (!is_array($roles))
+				$roles = array($roles);
+				
 			foreach($roles as $role)
 				if (!isset($this->roles[strtolower($role)]) || !$this->roles[strtolower($role)])
 					return false;
@@ -61,8 +64,11 @@ class AppUser extends CWebUser
 	 */
 	public function hasAnyRoles($roles=array())
 	{
-		if ($roles !== null && $this->hasState('roles') && is_array($roles))
+		if ($roles !== null && $this->hasState('roles'))
 		{
+			if (!is_array($roles))
+				$roles = array($roles);
+				
 			foreach($roles as $role)
 				if (isset($this->roles[strtolower($role)]) && $this->roles[strtolower($role)])
 					return true;

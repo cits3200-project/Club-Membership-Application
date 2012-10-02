@@ -17,6 +17,7 @@ class SiteController extends Controller
 			// They can be accessed via: index.php?r=site/page&view=FileName
 			'page'=>array(
 				'class'=>'CViewAction',
+				'basePath'=>'/site/static'
 			),
 		);
 	}
@@ -27,7 +28,10 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->render('index');
+		if (empty($_GET['view']))
+			$this->render('index');
+		else
+			$this->render("static/{$_GET['view']}");
 	}
 
 	/**
