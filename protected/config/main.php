@@ -36,6 +36,8 @@ return array(
 			'class'=>'application.components.AppUser',
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+			// set the login page
+			'loginUrl'=>array('site/login')
 		),
 		// uncomment the following to enable URLs in path-format
 
