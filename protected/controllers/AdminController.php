@@ -35,15 +35,7 @@ class AdminController extends Controller
 			//'model' => $model
 		));
 	}
-	
-	public function actionSearch()
-	{
-		$dataProvider=new CActiveDataProvider('Membership');
-		$this->render('search', array(
-			'dataProvider' => $dataProvider
-		));
-	}
-	
+
 	public function actionMailout()
 	{
 		$mailout = new MailoutForm();
@@ -81,6 +73,11 @@ class AdminController extends Controller
 		));
 	}
 	
+	public function actionSearch()
+	{
+		$this->actionMemberlist();
+	}
+	
 	public function actionMemberlist()
 	{
 		$search = new SearchForm();
@@ -111,27 +108,18 @@ class AdminController extends Controller
 		));
 	}
 	
-
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
+	public function actionEdit()
 	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'accessControl'
-		);
+		if (!isset($_GET['id']))
+		{
+			$this->redirect('memberlist');
+		}
+		else
+		{
+			$member = Membership::model()->find("LOWER(membershipId)=?", array($_GET['id']));
+			$this->render('edit', array(
+				'model' => $member
+			));
+		}
 	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }

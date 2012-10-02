@@ -1,5 +1,29 @@
 $(document).ready(function() {
 	SwedishCore.init();
+	
+	ddsmoothmenu.init({
+		mainmenuid: "templatemo_menu", //menu DIV id
+		orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+		classname: 'ddsmoothmenu', //class added to menu's outer DIV
+		contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+	});
+	
+	var buttons = { previous:$('#lofslidecontent45 .lof-previous') ,
+					next:$('#lofslidecontent45 .lof-next') };
+					
+	$obj = $('#lofslidecontent45').lofJSidernews( { 
+		interval 		: 4000,
+		direction		: 'opacitys',	
+		easing			: 'easeInOutExpo',
+		duration		: 1200,
+		auto		 	: false,
+		maxItemDisplay  : 4,
+		navPosition     : 'horizontal', // horizontal
+		navigatorHeight : 32,
+		navigatorWidth  : 80,
+		mainWidth		: 940,
+		buttons			: buttons
+	});
 });
 
 var SwedishCore = {
@@ -48,5 +72,12 @@ var SwedishCore = {
 		else {
 			targets.hide(speed);	
 		}	
-    }
+    },
+	
+	defaultText : function(field) {
+		if (field.defaultValue == field.value) 
+			field.value = '';
+		else if (field.value == '') 
+			field.value = field.defaultValue;
+	}
 };

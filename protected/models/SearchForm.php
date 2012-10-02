@@ -89,6 +89,10 @@ class SearchForm extends CFormModel
 		'emailAddress' => array(
 			'label' => 'Email address',
 			'condition' => 'LOWER({membership}.emailAddress) LIKE LOWER({value}) OR LOWER({membership}.alternateEmail) LIKE LOWER({value})'
+		),
+		'phoneNumber' => array(
+			'label' => 'Phone number',
+			'condition' => 'LOWER({membership}.phoneNumber) LIKE LOWER({value})'
 		)
 	);	
 
@@ -181,6 +185,19 @@ class SearchForm extends CFormModel
 	{
 		$labels = $this->attributeLabels();
 		return isset($labels[$field]) ? $labels[$field] : parent::getAttributeLabel($field);
+	}
+	
+	// Get valid field values for some of the "combobox" options (paymentMethod and membershipStatus)
+	public function getPaymentTypes()
+	{
+		$types = array('' => 'Any');
+		return array_merge($types, PaymentMethod::getPaymentMethods());
+	}
+	
+	public function getMembershipStatusTypes()
+	{
+		$types = array('' => 'Any');
+		return array_merge($types, MembershipStatus::getMembershipStatuses());
 	}
 	
 	public function runSearch()
