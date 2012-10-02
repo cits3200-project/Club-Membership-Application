@@ -1,3 +1,8 @@
+<?php
+$this->breadcrumbs=array(
+	'Coming Events'
+);
+?>
 <div id="templatemo_main">
 	<div id="content">
 		<h2>Coming Events</h2>

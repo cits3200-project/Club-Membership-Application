@@ -20,3 +20,12 @@
 	border-right: 1px solid gray;
 	border-bottom: 1px solid gray;
 }
+
+#searchCriteria {
+	padding: 10px;
+	border: 1px solid #DC600D;
+}
+
+#searchCriteria legend {
+	color: #DC600D;
+}

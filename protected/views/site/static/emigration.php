@@ -1,3 +1,8 @@
+<?php
+$this->breadcrumbs=array(
+	'Emigration'
+);
+?>
 <div id="templatemo_main">
 	<div id="content">		
 		<h3 id="Visas">Visas</h3>		

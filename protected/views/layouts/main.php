@@ -5,7 +5,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/jquer
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/ddsmoothmenu.js');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/lofslidernews.js');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.js');
-Yii::app()->clientScript->registerScriptFile((!empty($_SERVER['HTTPS']) ? 'https://ssl.microsofttranslator.com' : 'http://www.microsofttranslator.com') . '/ajax/v2/widget.aspx?mode=manual&from=en&layout=ts');
+//Yii::app()->clientScript->registerScriptFile((!empty($_SERVER['HTTPS']) ? 'https://ssl.microsofttranslator.com' : 'http://www.microsofttranslator.com') . '/ajax/v2/widget.aspx?mode=manual&from=en&layout=ts');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -78,6 +78,13 @@ Yii::app()->clientScript->registerScriptFile((!empty($_SERVER['HTTPS']) ? 'https
 				)); ?>
 				<br style="clear: left" />
 			</div> <!-- END of menu -->
+			<?php 
+			if(isset($this->breadcrumbs)) 
+			{ 
+				$this->widget('zii.widgets.CBreadcrumbs', array(
+					'links'=>$this->breadcrumbs,
+				)); 
+			}?><!-- breadcrumbs -->
 			<?php echo $content; ?>
 		</div>
 		<div id="templatemo_footer_wrapper">
@@ -91,6 +98,7 @@ Yii::app()->clientScript->registerScriptFile((!empty($_SERVER['HTTPS']) ? 'https
 							Powered by <a href="http://www.bing.com/translator">Microsoft® Translator</a>
 						</noscript>
 					</div> 
+					<script type="text/javascript" language="javascript" src="<?php echo (!empty($_SERVER['HTTPS']) ? 'https://ssl.microsofttranslator.com' : 'http://www.microsofttranslator.com') . '/ajax/v2/widget.aspx?mode=manual&from=en&layout=ts'; ?>"></script> 
 				</div>
 				
 				<div class="col one_third">

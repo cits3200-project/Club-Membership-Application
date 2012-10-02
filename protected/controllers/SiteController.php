@@ -15,25 +15,13 @@ class SiteController extends Controller
 			),
 			// page action renders "static" pages stored under 'protected/views/site/pages'
 			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
+			'index'=>array(
 				'class'=>'CViewAction',
 				'basePath'=>'/site/static'
 			),
 		);
 	}
 
-	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
-	 */
-	public function actionIndex()
-	{
-		if (empty($_GET['view']) || !is_file("{$this->viewPath}/static/{$_GET['view']}.php"))
-			$this->render('index');
-		else
-			$this->render("static/{$_GET['view']}");
-	}
-	
 	/**
 	 * Displays the login page
 	 */

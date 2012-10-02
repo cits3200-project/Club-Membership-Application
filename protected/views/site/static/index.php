@@ -1,6 +1,7 @@
-﻿<?php
-/* @var $this SiteController */
-$this->pageTitle=Yii::app()->name;
+<?php
+$this->breadcrumbs=array(
+	'Home'
+);
 ?>
 <div id="templatemo_slider">
 	<div id="lofslidecontent45" class="lof-slidecontent" style="width:940px; height:340px;">

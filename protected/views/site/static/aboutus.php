@@ -1,3 +1,8 @@
+<?php 
+	$this->breadcrumbs = array(
+		'About Us'
+	);
+?>
 <div id="templatemo_main">
 	<div id="content">
 		<h2>History</h2>

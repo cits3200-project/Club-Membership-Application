@@ -1,3 +1,8 @@
+<?php
+$this->breadcrumbs=array(
+	'Childrens\' Classes'
+);
+?>
 <div id="templatemo_main">
 	<div class="half float_l">
 		<h3>Childrens Classes</h2>
