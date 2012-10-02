@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 /* @var $this Controller */ 
 Yii::app()->clientScript->registerCoreScript('jquery');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.js');
@@ -39,6 +39,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 						array('label'=>'Change Password',	'url'=>array('/members/changepassword/'), 'visible'=>Yii::app()->user->hasRoles(array("member"))),
 						array('label'=>'Mail Members',	'url'=>array('/admin/mailout/'),	'visible'=>Yii::app()->user->hasAnyRoles(array("admin", "mailout"))),
 						array('label'=>'Search Members','url'=>array('/admin/memberlist'),	'visible'=>Yii::app()->user->hasRoles(array("admin"))),
+						array('label'=>'Change Password (Member)',	'url'=>array('/admin/memberpassword'),		'visible'=>Yii::app()->user->hasRoles(array("admin"))),
 						array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 					),
 				)); ?>
