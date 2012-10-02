@@ -58,16 +58,17 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 							)
 						),
 						array('label'=>'Coming Events',		'url'=>array('/site/?view=comingevents')),
-						array('label'=>'Members', 			'url'=>array('/members/'), 	'visible'=>Yii::app()->user->isGuest || Yii::app()->user->hasRoles('members'), 
+						array('label'=>'['.Yii::app()->user->name.']', 'url'=>array('/members/'), 'visible'=> !Yii::app()->user->isGuest,
+							'items' => array(
+								array('label'=>'Search Members', 'url'=>array('/admin/search'), 'visible'=>Yii::app()->user->hasRoles('admin')),
+								array('label'=>'Email Members', 'url'=>array('/admin/mailout'), 'visible'=>Yii::app()->user->hasRoles('admin')),
+								array('label'=>'Edit Details', 'url'=>array('/members/edit'), 'visible'=>Yii::app()->user->hasRoles('member'))
+							)
+						),
+						array('label'=>'Members', 			'url'=>array('/members/login'), 	'visible'=>Yii::app()->user->isGuest, 
 							'items' => array(
 								array('label'=>'Login', 'url'=>array('/members/login'), 'visible'=>Yii::app()->user->isGuest),
 								array('label'=>'Register', 'url'=>array('/members/register'), 'visible'=>Yii::app()->user->isGuest)
-							)
-						),
-						array('label'=>'Administrator',		'url'=>array('/admin/'),	'visible'=>Yii::app()->user->hasRoles('admin'),
-							'items' => array(
-								array('label'=>'Search Members', 'url'=>array('/admin/search')),
-								array('label'=>'Email Members', 'url'=>array('/admin/mailout'))
 							)
 						)
 					),

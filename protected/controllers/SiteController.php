@@ -28,7 +28,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (empty($_GET['view']))
+		if (empty($_GET['view']) || !is_file("static/{$_GET['view']}"))
 			$this->render('index');
 		else
 			$this->render("static/{$_GET['view']}");
