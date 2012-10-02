@@ -28,12 +28,31 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if (empty($_GET['view']) || !is_file("static/{$_GET['view']}"))
+		if (empty($_GET['view']) || !is_file("{$this->viewPath}/static/{$_GET['view']}.php"))
 			$this->render('index');
 		else
 			$this->render("static/{$_GET['view']}");
 	}
+	
+	/**
+	 * Displays the login page
+	 */
+	public function actionLogin()
+	{
+		$model=new LoginForm;
 
+		// collect user input data
+		if(isset($_POST['LoginForm']))
+		{
+			$model->attributes=$_POST['LoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->login())
+				$this->redirect(Yii::app()->user->returnUrl);
+		}
+		// display the login form
+		$this->render('login',array('model'=>$model));
+	}
+	
 	/**
 	 * This is the action to handle external exceptions.
 	 */
