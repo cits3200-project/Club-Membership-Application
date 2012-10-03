@@ -8,8 +8,8 @@ $(document).ready(function() {
 		contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
 	});
 	
-	var buttons = { previous:$('#lofslidecontent45 .lof-previous') ,
-					next:$('#lofslidecontent45 .lof-next') };
+	var buttons = { previous:$('#lofslidecontent45 .lof-next') ,
+					next:$('#lofslidecontent45 .lof-previous') };
 					
 	$obj = $('#lofslidecontent45').lofJSidernews( { 
 		interval 		: 4000,

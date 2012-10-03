@@ -15,7 +15,7 @@ class SiteController extends Controller
 			),
 			// page action renders "static" pages stored under 'protected/views/site/pages'
 			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
+			'index'=>array(
 				'class'=>'CViewAction',
 				'basePath'=>'/site/static'
 			),
@@ -23,17 +23,24 @@ class SiteController extends Controller
 	}
 
 	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
+	 * Displays the login page
 	 */
-	public function actionIndex()
+	public function actionLogin()
 	{
-		if (empty($_GET['view']))
-			$this->render('index');
-		else
-			$this->render("static/{$_GET['view']}");
-	}
+		$model=new LoginForm;
 
+		// collect user input data
+		if(isset($_POST['LoginForm']))
+		{
+			$model->attributes=$_POST['LoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->login())
+				$this->redirect(Yii::app()->user->returnUrl);
+		}
+		// display the login form
+		$this->render('login',array('model'=>$model));
+	}
+	
 	/**
 	 * This is the action to handle external exceptions.
 	 */

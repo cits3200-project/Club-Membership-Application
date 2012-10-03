@@ -1,15 +1,16 @@
 	<?php 
 /* @var $this Controller */ 
 Yii::app()->clientScript->registerCoreScript('jquery');
+Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/jquery.easing.js');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/ddsmoothmenu.js');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/lofslidernews.js');
 Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.js');
-
+//Yii::app()->clientScript->registerScriptFile((!empty($_SERVER['HTTPS']) ? 'https://ssl.microsofttranslator.com' : 'http://www.microsofttranslator.com') . '/ajax/v2/widget.aspx?mode=manual&from=en&layout=ts');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
 		<meta name="language" content="en" />
 
 		<!-- blueprint CSS framework -->
@@ -23,6 +24,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/form.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/templatemo_style.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/ddsmoothmenu.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/style1.css" />
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	</head>
 
@@ -58,35 +60,45 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 							)
 						),
 						array('label'=>'Coming Events',		'url'=>array('/site/?view=comingevents')),
-						array('label'=>'Members', 			'url'=>array('/members/'), 	'visible'=>Yii::app()->user->isGuest || Yii::app()->user->hasRoles('members'), 
+						array('label'=>'['.Yii::app()->user->name.']', 'url'=>array(Yii::app()->user->hasRoles('admin') ? '/admin/' : '/members/'), 'visible'=> !Yii::app()->user->isGuest,
 							'items' => array(
-								array('label'=>'Login', 'url'=>array('/members/login'), 'visible'=>Yii::app()->user->isGuest),
-								array('label'=>'Register', 'url'=>array('/members/register'), 'visible'=>Yii::app()->user->isGuest)
+								array('label'=>'Search Members', 'url'=>array('/admin/search'), 'visible'=>Yii::app()->user->hasRoles('admin')),
+								array('label'=>'Email Members', 'url'=>array('/admin/mailout'), 'visible'=>Yii::app()->user->hasRoles('admin')),
+								array('label'=>'Edit Details', 'url'=>array('/members/edit'), 'visible'=>Yii::app()->user->hasRoles('member')),
+								array('label'=>'Logout', 'url'=>array('/site/logout'))
 							)
 						),
-						array('label'=>'Administrator',		'url'=>array('/admin/'),	'visible'=>Yii::app()->user->hasRoles('admin'),
+						array('label'=>'Members', 			'url'=>array('/site/login'), 	'visible'=>Yii::app()->user->isGuest, 
 							'items' => array(
-								array('label'=>'Search Members', 'url'=>array('/admin/search')),
-								array('label'=>'Email Members', 'url'=>array('/admin/mailout'))
+								array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+								array('label'=>'Register', 'url'=>array('/members/register'), 'visible'=>Yii::app()->user->isGuest)
 							)
 						)
 					),
 				)); ?>
 				<br style="clear: left" />
 			</div> <!-- END of menu -->
-			<div id="templatemo_slider">
-				<div id="lofslidecontent45" class="lof-slidecontent" style="width:940px; height:340px;">
-					<div class="preload"></div>
-				</div>			
-			<div id="templatemo_main">
-				<?php echo $content; ?>
-			</div>
+			<?php 
+			if(isset($this->breadcrumbs)) 
+			{ 
+				$this->widget('zii.widgets.CBreadcrumbs', array(
+					'links'=>$this->breadcrumbs,
+				)); 
+			}?><!-- breadcrumbs -->
+			<?php echo $content; ?>
 		</div>
 		<div id="templatemo_footer_wrapper">
 			<div id="templatemo_footer">
 				<div class="col one_third" style="height: 56px">
 					<h4>Website Translation</h4>
-					<div id="MicrosoftTranslatorWidget" style="width: 200px; min-height: 83px; border-color: #3A5770; background-color: #78ADD0;"><noscript><a href="http://www.microsofttranslator.com/bv.aspx?a=http%3a%2f%2fwww.svenskaklubben.org.au%2f">Translate this page</a><br />Powered by <a href="http://www.bing.com/translator">Microsoft® Translator</a></noscript></div> <script type="text/javascript"> /* <![CDATA[ */ setTimeout(function() { var s = document.createElement("script"); s.type = "text/javascript"; s.charset = "UTF-8"; s.src = ((location && location.href && location.href.indexOf('https') == 0) ? "https://ssl.microsofttranslator.com" : "http://www.microsofttranslator.com" ) + "/ajax/v2/widget.aspx?mode=manual&from=en&layout=ts"; var p = document.getElementsByTagName('head')[0] || document.documentElement; p.insertBefore(s, p.firstChild); }, 0); /* ]]> */ </script> 
+					<div id="MicrosoftTranslatorWidget" style="width: 200px; min-height: 83px; border-color: #3A5770; background-color: #78ADD0;">
+						<noscript>
+							<a href="http://www.microsofttranslator.com/bv.aspx?a=http%3a%2f%2fwww.svenskaklubben.org.au%2f">Translate this page</a>
+							<br />
+							Powered by <a href="http://www.bing.com/translator">MicrosoftÂ® Translator</a>
+						</noscript>
+					</div> 
+					<script type="text/javascript" language="javascript" src="<?php echo (!empty($_SERVER['HTTPS']) ? 'https://ssl.microsofttranslator.com' : 'http://www.microsofttranslator.com') . '/ajax/v2/widget.aspx?mode=manual&from=en&layout=ts'; ?>"></script> 
 				</div>
 				
 				<div class="col one_third">
@@ -102,12 +114,11 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 						<a href="http://www.facebook.com/groups/169714974189/" title="Swedish Club of WA on Facebook" target="_blank"><img src="<?php echo Yii::app()->baseUrl; ?>/images/facebook.png" title="Facebook" alt="Facebook" /></a>
 						<a href="http://users3.smartgb.com/g/g.php?a=s&i=g34-04058-76" title="Swedish Club of WA on Klotterplank" target="_blank"><img src="<?php echo Yii::app()->baseUrl; ?>/images/klotterplank.jpg" title="Klotterplank" alt="Klotterplank" /></a>
 					</div>
-					
 				</div>
-					<div class="cleaner"></div>
+				<div class="cleaner"></div>
 				
 				<div class="copyright" align="center">
-				Copyright © 2012 <a href="#">The Swedish Club of WA</a> Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+				Copyright Â© 2012 <a href="#">The Swedish Club of WA</a> Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
 				</div>
 				
 				<div class="cleaner"></div>

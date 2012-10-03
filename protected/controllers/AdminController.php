@@ -69,7 +69,8 @@ class AdminController extends Controller
 		}
 
 		$this->render('search', array(
-			'model' => $search
+			'model' => $search,
+			'method' => 'POST'
 		));
 	}
 	
@@ -104,7 +105,8 @@ class AdminController extends Controller
 			}
 		}
 		$this->render('search', array(
-			'model' => $search
+			'model' => $search,
+			'action' => 'GET'
 		));
 	}
 
