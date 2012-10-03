@@ -35,6 +35,11 @@ class User extends CActiveRecord
 
 		return $roleNames;
 	}
+
+	public function hasRole($role)
+	{
+		return in_array($role, $this->getRoleNames());
+	}
 	
 	/**
 	 * Validates a given password against the user's password, using the stored salt.

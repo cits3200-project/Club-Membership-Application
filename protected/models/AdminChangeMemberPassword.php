@@ -26,6 +26,8 @@ class AdminChangeMemberPassword extends CFormModel
 	public $newPassword;
 	public $repeatNewPassword;
 
+	public $succeeded = false;
+
 	public function rules()
 	{
 		return array (
@@ -45,9 +47,9 @@ class AdminChangeMemberPassword extends CFormModel
 		{
 			$this->addError('username','User does not exist.');
 		}
-		else if (!$user->getRoles())
+		else if (!$user->hasRole('member'))
 		{
-			$this.addError('username',"Only member's passwords may be changed by this form.");
+			$this->addError('username',"Only member's passwords may be changed by this form.");
 		}
 	}
 

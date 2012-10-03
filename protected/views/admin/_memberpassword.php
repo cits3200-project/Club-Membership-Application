@@ -18,6 +18,9 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+	<?php if ($model->succeeded) { ?>
+		<div>Successfully updated.</div>
+	<?php } ?>
 	
 	<div class="row">
 		<?php echo $form->labelEx($model, 'username'); ?>

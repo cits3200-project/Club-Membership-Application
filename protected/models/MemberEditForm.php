@@ -30,6 +30,8 @@ class MemberEditForm extends CFormModel
 
 	public $properties;
 
+	public $succeeded;
+
 	public function rules()
 	{
 		return array (

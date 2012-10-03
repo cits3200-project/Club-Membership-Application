@@ -74,9 +74,6 @@ class MembersController extends Controller
 					'emailAddress' => $edit->email,
 					'alternateEmail' => $edit->alternateEmail,
 					'type' => $edit->type,
-					//'expiryDate' => '0000-00-00', // not yet registered.
-					//'payMethod' => 'none',
-					//'status' => 'pending'
 				);
 
 				//$properties->membershipId = $member->membershipId;
@@ -88,12 +85,7 @@ class MembersController extends Controller
 					}
 				}
 
-				/*$user->attributes = array (
-					'username' => $member->membershipId,
-					'password' => User::hashPassword($edit->password)
-				);*/
-
-				$user->save(); // need to get the user id after this.
+				$user->save();
 
 				/*if ($memberRole !== NULL && !$user->isNewRecord)
 				{
@@ -105,6 +97,8 @@ class MembersController extends Controller
 				}*/
 				$member->save();
 				$properties->save();
+
+				$edit->succeeded = true;
 			}
 
 		} else { //preload

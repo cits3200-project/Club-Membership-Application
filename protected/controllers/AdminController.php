@@ -127,6 +127,7 @@ class AdminController extends Controller
 				$user = User::model()->find("LOWER(username)=?",array($username));
 				$user->password = User::hashPassword($form->newPassword);
 				$user->save();
+				$form->succeeded = true;
 			}
 		}
 
