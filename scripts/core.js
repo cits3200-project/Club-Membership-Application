@@ -32,12 +32,26 @@ var SwedishCore = {
 	
     },
 
-	// simple dependency function
-    depends : function(objectSelector, dependsOnSelector, dependsValue, speed) {
-        var targets = $(objectSelector);
+	/**
+	 * depends(jQuery,string,string,any)
+	 *
+	 * Simple dependecy function to show/hide HTML sections depending
+	 * on the current value of a particular object. Most useful for
+	 * branching forms where varying radio/checkbox selections determine
+	 * the path a user will take through the form.
+	 *
+	 * @param targets a jQuery object containing the HTML nodes to hide/show depending on the value
+	 * @dependsOnSelector a valid jQuery selector that is used to obtain the independent object
+	 * @dependsValue the value of the object upon which the 'targets' will be shown. 
+	 * @speed speed at which to show/hide the targets. This parameter can be any value valid within the jQuery $.show/hide functions (defaults to 0)
+	 */
+    depends : function(targets, dependsOnSelector, dependsValue, speed) {
+		if (typeof(speed) === "undefined")
+			speed = 0;
+			
         var dependent = $(dependsOnSelector);
 		
-		if (dependent.length > 0) {
+		if (dependent.length > 0 && targets.length > 0) {
 			var eventName = 'change';
 			var eventSelector = dependsOnSelector;
 			
@@ -50,13 +64,16 @@ var SwedishCore = {
 			}
 			
 			dependent.bind(eventName, function(e) {
-				SwedishCore.toggleDependency(targets, $(eventSelector), dependsValue, speed);
+				ContactForm.toggleDependency(targets, $(eventSelector), dependsValue, speed);
 			});
 			
-			SwedishCore.toggleDependency(targets, $(eventSelector), dependsValue, speed);
+			ContactForm.toggleDependency(targets, $(eventSelector), dependsValue, speed);
 		}
     },
 	
+	/**
+	 * Toggle a dependency based on the current value of the dependent object
+	 */
     toggleDependency : function(targets, dependent, value, speed) {
 		if (dependent.length > 0) {
 			dependent.each(function(i,e) {
@@ -79,5 +96,23 @@ var SwedishCore = {
 			field.value = '';
 		else if (field.value == '') 
 			field.value = field.defaultValue;
-	}
+	},
+	
+	/** 
+	 * Adds a new field to the HTML document by performing an ajax call to a 
+	 * specific page and then inserting the obtained HTML into the document
+	 * before a particular HTML element. An 'id' GET parameter will be supplied
+	 * to the page to describe the current index of the field.
+	 *
+	 * @param ajaxPath the URI to the remote document which returns valid HTML for the field.
+	 * @param beforeElement jQuery object. The html received from ajaxPath will be inserted directly BEFORE this element
+	 * @param index the index of the current field (usually an appropriate array index). This will be passed as a GET parameter to the ajax page
+	 */
+	addMoreFields : function(ajaxPath, beforeElement, index)  {
+		if (beforeElement.length > 0 && ajaxPath !== null) {
+			$.get(ajaxPath, { id : index }, function(data, textStatus, xhr) {
+				beforeElement.before(data);
+			});		
+		}			
+	},
 };
