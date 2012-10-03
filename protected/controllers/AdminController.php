@@ -106,7 +106,7 @@ class AdminController extends Controller
 		}
 		$this->render('search', array(
 			'model' => $search,
-			'action' => 'GET'
+			'method' => 'GET'
 		));
 	}
 
