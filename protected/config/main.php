@@ -39,8 +39,6 @@ return array(
 			// set the login page
 			'loginUrl'=>array('site/login')
 		),
-		// uncomment the following to enable URLs in path-format
-
 		'urlManager'=>array(
 			'showScriptName'=>false,
 			'urlFormat'=>'path',
@@ -50,7 +48,6 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=cits3200_application',
 			'emulatePrepare' => true,
@@ -59,7 +56,6 @@ return array(
 			'charset' => 'utf8',
 			'tablePrefix'=>'tbl_'
 		),
-
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -77,6 +73,11 @@ return array(
 				//),
 			),
 		),
+		'error'=>array(
+			'class'=>'ErrorComponent',
+			'errorEmail'=>'20924425@student.uwa.edu.au',
+			'stackTrace'=>true
+		)
 	),
 
 	// application-level parameters that can be accessed

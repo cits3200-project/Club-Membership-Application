@@ -158,3 +158,26 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 	clear: left;
 	padding-left: 110px;
 }
+
+div.success_message {
+	display: block;
+	border: 2px solid green;
+	background-color: #FAEFB1;
+	padding: 10px;
+	color: green;
+}
+
+div.success_message h3 { 
+	color: green;
+}
+
+div.failure_message {
+	display: block;
+	border: 2px solid red;
+	background-color: #FAEFB1;
+	padding: 10px;
+}
+
+div.failure_message h3 {
+	color: red;
+}

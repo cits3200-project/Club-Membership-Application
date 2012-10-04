@@ -13,6 +13,7 @@ $this->breadcrumbs=array(
 	'Mailout',
 );
 ?>
+<div id="templatemo_main">
 <div class="form" id="properties">
 
 <?php $form = $this->beginWidget('ExtendedForm', array(
@@ -73,4 +74,5 @@ else
 	<p>Your search criteria yielded no results</p> <?php
 } ?>
 <?php $this->endWidget(); ?>
+</div>
 </div>

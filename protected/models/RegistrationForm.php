@@ -14,9 +14,9 @@ class RegistrationForm extends CFormModel
 	// Membership Properties
 	public $name;
 	public $familyName;
-	public $phone;
+	public $phoneNumber;
 	public $alternatePhone;
-	public $email;
+	public $emailAddress;
 	public $alternateEmail;
 	public $type;
 	
@@ -25,39 +25,23 @@ class RegistrationForm extends CFormModel
 	public $repeatPassword;
 	
 	// Membership_Properties Properties
-	//public $recEvents;
-	//public $recExpire;
-	//public $recNews;
-	
-	public $properties;
+	public $receiveGeneralNews;
+	public $receiveAdminEmail;	
+	public $receiveExpiryNotice;	
+	public $receiveEventInvites;
 	
 	public function rules()
 	{
 		return array (
-			array ('name, familyName, phone, email, type, properties, password, repeatPassword', 'required'),
-			array ('name, email, alternateEmail', 'length', 'max' => 100),
+			array ('name, familyName, phoneNumber, emailAddress, type, password, repeatPassword', 'required'),
+			array ('name, emailAddress, alternateEmail', 'length', 'max' => 100),
 			array ('password, repeatPassword', 'length', 'max' => 40),
-			array ('phone, alternatePhone', 'length', 'max' => 20),
+			array ('phoneNumber, alternatePhone', 'length', 'max' => 20),
 			array ('password', 'compare', 'compareAttribute' => 'repeatPassword'),
-			array ('email, alternateEmail', 'email'),
-			array ('type', 'in', 'range' => array('F','PC','C','S')),
-			array ('properties', 'safe'),
-			array ('properties', 'validateProperties'),
-			
-			//array ('recEvents, recExpire, recNews', 'in', 'range' => array('Y','N'))
+			array ('emailAddress, alternateEmail', 'email'),
+			array ('type', 'in', 'range' => array_keys(Membership::getMembershipTypes())),
+			array (implode(', ', $this->getToggleProperties()), 'in', 'range' => array('Y','N')),
 		);
-	}
-	
-	public function validateProperties($attr,$params)
-	{
-		// Sanitization masquerading as validation.
-		if (is_array($this->$attr))
-		{
-			$accept = $this->getPropertyList();
-			foreach($this->$attr as $prop)
-				if (!isset($accept[$prop]))
-					unset($this->$attr[$prop]);
-		}
 	}
 	
 	public function attributeLabels()
@@ -65,27 +49,26 @@ class RegistrationForm extends CFormModel
 		return array (
 			'name' => 'Membership name',
 			'familyName' => 'Family name',
-			'phone' => 'Phone number',
+			'phoneNumber' => 'Phone number',
 			'alternatePhone' => 'Alternate phone number',
-			'email' => 'Email address',
+			'emailAddress' => 'Email address',
 			'alternateEmail' => 'Alternate email address',
 			'type' => 'Membership type',
-			'recNews' => 'Receive general news emails',
-			'recExpire' => 'Receive expiry notice',
-			'recEvents' => 'Receive event invites'
+			'receiveGeneralNews' => 'Receive General News',
+			'receiveAdminEmail' => 'Receive Email from Administrators',
+			'receiveExpiryNotice' => 'Receive Expiry Notices',
+			'receiveEventInvites' => 'Receive Event Invites'
 		);
 	}
 	
-	public function getPropertyList()
+	public function getToggleProperties()
 	{
-		$model = MembershipProperties::model();
-		$properties = array();
-		foreach($model->attributeNames() as $attr)
-		{
-			if ($attr !== $model->tableSchema->primaryKey)
-				$properties[$attr] = $model->getAttributeLabel($attr);
-		}
-		return $properties;
+		return array(
+			'receiveGeneralNews',
+			'receiveAdminEmail',
+			'receiveExpiryNotice',
+			'receiveEventInvites',			
+		);
 	}
 }
 ?>

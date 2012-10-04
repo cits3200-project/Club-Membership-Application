@@ -177,90 +177,71 @@ class MembersController extends Controller
 	public function actionRegister()
 	{
 		$register = new RegistrationForm();
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$result = array(
+			'complete' => false,
+			'success' => false,
+			'message' => '',
+			'heading' => ''
+		);
 
 		if(isset($_POST['RegistrationForm']))
 		{
-			var_dump($_POST);
 			$register->attributes = $_POST['RegistrationForm'];
 			if ($register->validate())
 			{
-				$member = new Membership();
+				$result['complete'] = true; // successfully validated, but errors may still occur.
+			
+				$membership = new Membership();
 				$user = new User();
 				$role = new UserToRoles();
-				$properties = new MembershipProperties();
-
-				$memberRole = UserRole::model()->find("LOWER(role)=?", array("member"));
-
-				$member->attributes = array (
+				
+				$membership->attributes = array_merge(array(
 					'membershipId' => Membership::generateUUID(),
-					'name' => $register->name,
-					'familyName' => $register->familyName,
-					'phoneNumber' => $register->phone,
-					'alternatePhone' => $register->alternatePhone,
-					'emailAddress' => $register->email,
-					'alternateEmail' => $register->alternateEmail,
-					'type' => $register->type,
-					'expiryDate' => '0000-00-00', // not yet registered.
+					'expiryDate' => '1920-01-01', // not yet registered. 
 					'payMethod' => 'none',
-					'status' => 'pending'
-				);
-
-				$properties->membershipId = $member->membershipId;
-				if (!empty($register->properties) && is_array($register->properties))
-				{
-					foreach($register->properties as $property)
-					{
-						$properties->$property = 'Y';
-					}
-				}
+					'status' => 'pending',
+				), $register->attributes);
 
 				$user->attributes = array (
-					'username' => $member->membershipId,
+					'username' => $membership->membershipId,
 					'password' => User::hashPassword($register->password)
 				);
 
-				$user->save(); // need to get the user id after this.
-
-				if ($memberRole !== NULL && !$user->isNewRecord)
+				if ($membership->save() && $user->save())
 				{
-					$role->attributes = array (
-						'userId' => $user->userId,
-						'roleId' => $memberRole->roleId
-					);
-					$role->save();
+					$memberRole = UserRole::model()->find('LOWER(role)=?', array('member'));
+					if ($memberRole !== NULL && !$user->isNewRecord)
+					{
+						$role->attributes = array (
+							'userId' => $user->userId,
+							'roleId' => $memberRole->roleId
+						);
+						$role->save();
+					}
+					
+					$result['message'] = "You have successfully registered with the Swedish Club of WA. Your may now login with the username <strong>{$membership->membershipId}</strong> and the password you chose.";
+					$result['success'] = true;
+					$result['heading'] = "Success!";
 				}
-				$member->save();
-				$properties->save();
+				else
+				{
+					$msg = '';
+					if (!empty($membership->errors))
+						$msg .= print_r($membership->errors, true) . "\n";
+					if (!empty($user->errors))
+						$msg .= print_r($user->errors, true) . "\n";
+						
+					$result['message'] = 'An unforseen error occurred with the application. Please try again. If the problem persists, please contact support at <a href="mailto:support@svenskaklubben.org.au">support@svenskaklubben.org.au</a>';
+					$result['heading'] = "Unsuccessful!";
+					// let the developers know about the error
+					Yii::app()->error->report($msg, __FILE__);
+				}
 			}
-		/*
-			$model->attributes=$_POST['Membership'];
-			$model->membershipId = Membership::generateUUID();
-
-			$user->attributes = array (
-									'username' => $model->membershipId,
-									'password' => User::hashPassword('')
-								);
-			$user->save();
-
-			$memberRole = UserRole::model()->find("LOWER(role)=?", array("member"));
-			if ($memberRole !== NULL) 
-			{
-				$role->attributes = array (
-										'userId' => $user->userId,
-										'roleId' => $memberRole->roleId
-									);
-				$role->save();
-			}
-			
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->membershipId));
-		*/
 		}
 
 		$this->render('register',array(
 			'model'=>$register,
+			'result'=>$result
 		));
 	}
 

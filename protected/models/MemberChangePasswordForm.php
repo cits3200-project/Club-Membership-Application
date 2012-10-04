@@ -31,7 +31,7 @@ class MemberChangePasswordForm extends CFormModel
 		return array (
 			array('password, newPassword, repeatNewPassword', 'required'),
 			array('password', 'authenticate'),
-			array('password, newPassword, repeatNewPassword', 'length', 'max' => 40),
+			array('password, newPassword, repeatNewPassword', 'length', 'max' => 100),
 			array('repeatNewPassword', 'compare', 'compareAttribute' => 'newPassword'),
 		);
 	}

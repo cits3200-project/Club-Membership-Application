@@ -31,7 +31,6 @@ class SearchForm extends CFormModel
 	 *
 	 * Condition Variable Aliases:
 	 * {membership} -> Alias of the Membership table
-	 * {properties} -> Alias of the Properties table
 	 * {value} -> Alias of the fields current value
 	 * {
 	 */
@@ -46,19 +45,19 @@ class SearchForm extends CFormModel
 			'label' => 'Member wants to receive general news',
 			'type' => 'toggle',
 			'value' => 'I',
-			'condition' => '{properties}.receiveGeneralNews = \'Y\'' 
+			'condition' => '{membership}.receiveGeneralNews = \'Y\'' 
 		),
 		'eventInvite' => array(
 			'label' => 'Member wishes to receive event invites',
 			'type' => 'toggle',
 			'value' => 'I',
-			'condition' => '{properties}.receiveEventInvites = \'Y\''
+			'condition' => '{membership}.receiveEventInvites = \'Y\''
 		),
 		'expiryNotice' => array(
 			'label' => 'Member wants to receive an expiry notice if appropriate',
 			'type' => 'toggle',
 			'value' => 'I',
-			'condition' => '{properties}.receiveExpiryNotice = \'Y\''
+			'condition' => '{membership}.receiveExpiryNotice = \'Y\''
 		),
 		'expiredMembers' => array(
 			'label' => 'Members who have already expired',
@@ -208,10 +207,7 @@ class SearchForm extends CFormModel
 	public function getSearchCriteria()
 	{
 		$ma = 'membership'; //membershipAlias. Truncated for brevity.
-		$pa = 'properties'; //propertiesAlias. Truncated for brevity.
-		$me = 'member';
-		$propertiesTable = MembershipProperties::model()->tableName(); 
-		$membersTable = Member::model()->tableName();
+
 		$conditions = array();
 		$parameters = array();
 		
@@ -223,14 +219,13 @@ class SearchForm extends CFormModel
 				if (!empty($sql['parameters']))
 					$parameters = array_merge($parameters, $sql['parameters']);
 				
-				$conditions[] = str_replace(array('{membership}','{properties}'), array($ma,$pa), $sql['sql']);
+				$conditions[] = str_replace(array('{membership}'), array($ma), $sql['sql']);
 			}
 		}
 		
 		$criteria = new CDbCriteria();
 		$criteria->alias = $ma;
 		$criteria->params = $parameters;
-		$criteria->join = "	LEFT JOIN {$propertiesTable} AS {$pa} ON {$pa}.membershipId = {$ma}.membershipId";	
 		$criteria->select = "{$ma}.*";
 		$criteria->condition = implode(" AND ", $conditions);
 
