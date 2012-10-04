@@ -64,10 +64,10 @@ var SwedishCore = {
 			}
 			
 			dependent.bind(eventName, function(e) {
-				ContactForm.toggleDependency(targets, $(eventSelector), dependsValue, speed);
+				SwedishCore.toggleDependency(targets, $(eventSelector), dependsValue, speed);
 			});
 			
-			ContactForm.toggleDependency(targets, $(eventSelector), dependsValue, speed);
+			SwedishCore.toggleDependency(targets, $(eventSelector), dependsValue, speed);
 		}
     },
 	

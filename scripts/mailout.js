@@ -5,6 +5,6 @@ $(document).ready(function() {
 		$("input[name=MailoutForm\\[type\\]]").trigger('click');
 		
 	
-	core.depends("#csvOption", 'input[name=MailoutForm\\[type\\]]', "csv", "slow");
-	core.depends("#emailOption", 'input[name=MailoutForm\\[type\\]]',  "email", "slow");
+	core.depends($("#csvOption"), 'input[name=MailoutForm\\[type\\]]', "csv", "slow");
+	core.depends($("#emailOption"), 'input[name=MailoutForm\\[type\\]]',  "email", "slow");
 });

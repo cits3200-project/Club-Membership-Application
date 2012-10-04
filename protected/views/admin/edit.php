@@ -6,7 +6,7 @@
  *@var $result array containing result info
 **/
 $this->breadcrumbs=array(
-	'Admin'=>array('/admin/'),
+	'Admin'=>array('.'),
 	'Edit Membership',
 );?>
 <div id="templatemo_main"><?php

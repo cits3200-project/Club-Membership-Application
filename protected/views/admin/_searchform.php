@@ -11,13 +11,14 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/search.css');
 <div id="templatemo_main">
 <fieldset id="searchCriteria">
 	<legend>Search Criteria</legend>
+	
 	<div class="form">
 	<?php $form=$this->beginWidget('ExtendedForm', array(
 		'id'=>'search-form',
 		'enableAjaxValidation'=>false,
 		'method'=>$method
 	)); ?>
-
+	<?php echo $form->errorSummary($model); ?>
 	<?php
 	$fields = $model->getSearchFields();
 	// smash out the toggle options
@@ -88,16 +89,22 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/search.css');
 		</div>
 		
 		<div class="row">
-			<?php echo $form->labelEx($model,'membershipStatus'); ?>
-			<?php echo $form->dropDownList($model,'membershipStatus',$model->getMembershipStatusTypes()); ?>
-			<?php echo $form->error($model,'membershipStatus'); ?>
-		</div>
+			<?php echo $form->labelEx($model,'membershipType'); ?>
+			<?php echo $form->dropDownList($model,'membershipType', $model->getMembershipTypes()); ?>
+			<?php echo $form->error($model,'membershipType'); ?>
+		</div>		
 
 		<div class="row">
 			<?php echo $form->labelEx($model,'paymentMethod'); ?>
 			<?php echo $form->dropDownList($model,'paymentMethod',$model->getPaymentTypes()); ?>
 			<?php echo $form->error($model,'paymentMethod'); ?>
 		</div>
+		
+		<div class="row">
+			<?php echo $form->labelEx($model,'membershipStatus'); ?>
+			<?php echo $form->dropDownList($model,'membershipStatus',$model->getMembershipStatusTypes()); ?>
+			<?php echo $form->error($model,'membershipStatus'); ?>
+		</div>	
 		
 		<div class="row buttons">
 			<?php echo CHtml::submitButton('Proceed'); ?>

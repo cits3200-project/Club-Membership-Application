@@ -3,6 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
+	'Search' => 'search',
 	'Member List',
 );
 ?>

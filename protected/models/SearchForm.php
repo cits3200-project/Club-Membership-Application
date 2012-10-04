@@ -22,7 +22,7 @@ class SearchForm extends CFormModel
 	 * type -> Field type. Valid types include 'standard', 'toggle' and 'required'. More information about these types is below(optional, defaults to 'standard')
 	 * condition -> Queryable SQL string. The type modifier will determine how this string is interpreted. Variable aliases can also be used and are detailed below (required)
 	 * value -> Value of the search field. Set this property to specify a default value (optional, defaults to an empty string)
-	 * rule -> Custom validation rule for the field. Validation rule must be an array and match Yii's validation rule conventions. This field is optional and defaults to NULL
+	 * rule -> Custom validation rule for the field. Validation rule must be an array and match Yii's validation rule conventions. This field is optional and defaults to NULL. Complex values for 'rule' should be set in the constructor.
 	 *
 	 * Search Field Types:
 	 * standard -> A standard input field. Length is restricted to 200 characters. If the field's value is empty, its condition is not used as part of the criteria (see 'required' for alternatives).
@@ -67,11 +67,15 @@ class SearchForm extends CFormModel
 		),
 		'membershipStatus' => array(
 			'label' => 'Membership status',
-			'condition' => 'LOWER({membership}.status) LIKE LOWER({value})'
+			'condition' => 'LOWER({membership}.status) = LOWER({value})'
+		),
+		'membershipType' => array(
+			'label' => 'Membership type',
+			'condition' => 'LOWER({membership}.type) = LOWER({value})'
 		),
 		'paymentMethod' => array(
 			'label' => 'Payment method',
-			'condition' => 'LOWER({membership}.payMethod) LIKE LOWER({value})'
+			'condition' => 'LOWER({membership}.payMethod) = LOWER({value})'
 		),
 		'membershipId' => array(
 			'label' => 'Membership id',
@@ -130,6 +134,14 @@ class SearchForm extends CFormModel
 			parent::__set($name,$value);
 	}
 	
+	public function __construct()
+	{
+		// configure rules
+		$this->searchFields['paymentMethod']['rule'] = array('paymentMethod', 'in', 'range' => array_keys(SearchForm::getPaymentTypes()));
+		$this->searchFields['membershipType']['rule'] = array('membershipType', 'in', 'range' => array_keys(SearchForm::getMembershipTypes()));
+		$this->searchFields['membershipStatus']['rule'] = array('membershipStatus', 'in', 'range' => array_keys(SearchForm::getMembershipStatusTypes()));
+	}	
+	
 	public function getSearchFields()
 	{
 		$fields = array();
@@ -143,7 +155,7 @@ class SearchForm extends CFormModel
 	{
 		return isset($this->searchFields[$fieldName])
 					? isset($this->searchFields[$fieldName]['type'])
-						? $this->searchFields[$fieldName]['type']
+						? strtolower($this->searchFields[$fieldName]['type'])
 						: 'standard'
 					: NULL;
 	}
@@ -166,10 +178,30 @@ class SearchForm extends CFormModel
 
 	public function rules()
 	{
-		$safe = implode(', ', $this->getSearchFields());
-		return array (
-			array ($safe,'safe')
-		);
+		$defaults = array();
+		$toggles = array();
+		$custom = array();
+		$required = array();
+		
+		foreach($this->searchFields as $field=>$data)
+		{
+			$type = $this->getSearchFieldType($field);
+			if ($type == 'toggle')
+				$toggles[] = $field;
+			elseif ($type == 'required')
+				$required[] = $field;
+			elseif (empty($data['rule']) || !is_array($data['rule']))
+				$defaults[] = $field;
+				
+			if (isset($data['rule']) && is_array($data['rule']))
+				$custom[] = $data['rule'];
+		}
+		
+		return array_merge(array(
+			array(implode(', ', $required), 'required'),
+			array(implode(', ', $toggles), 'in', 'range' => array('Y','N','I')),
+			array(implode(', ', $defaults), 'length', 'max'=>200)
+		), $custom);
 	}
 	
 	public function attributeLabels()
@@ -186,17 +218,23 @@ class SearchForm extends CFormModel
 		return isset($labels[$field]) ? $labels[$field] : parent::getAttributeLabel($field);
 	}
 	
-	// Get valid field values for some of the "combobox" options (paymentMethod and membershipStatus)
-	public function getPaymentTypes()
+	// Get valid field values for some of the "combobox" options (paymentMethod, membershipStatus and membershipType)
+	public static function getPaymentTypes()
 	{
 		$types = array('' => 'Any');
 		return array_merge($types, PaymentMethod::getPaymentMethods());
 	}
 	
-	public function getMembershipStatusTypes()
+	public static function getMembershipStatusTypes()
 	{
 		$types = array('' => 'Any');
 		return array_merge($types, MembershipStatus::getMembershipStatuses());
+	}
+	
+	public static function getMembershipTypes()
+	{
+		$types = array('' => 'Any');
+		return array_merge($types, Membership::getMembershipTypes());
 	}
 	
 	public function runSearch()
@@ -228,7 +266,7 @@ class SearchForm extends CFormModel
 		$criteria->params = $parameters;
 		$criteria->select = "{$ma}.*";
 		$criteria->condition = implode(" AND ", $conditions);
-
+		var_dump($criteria);
 		return $criteria;
 	}
 	
@@ -248,7 +286,7 @@ class SearchForm extends CFormModel
 			
 		$sqlData['sql'] = '(' . str_replace('{value}','?',$fieldData['condition']) . ')';
 		
-		if ($type === 'required' || $type === 'standard')
+		if (($type === 'required' || $type === 'standard') && preg_match('/\bLIKE\b/i', $sqlData['sql']) == 1)
 			$fieldValue = "%{$fieldValue}%";
 		elseif ($fieldValue === 'N') // $type must logically be 'toggle', and the 'N' value requires a negation
 			$sqlData['sql'] = 'NOT ' . $sqlData['sql'];
