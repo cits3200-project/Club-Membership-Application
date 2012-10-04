@@ -28,6 +28,11 @@ class MembersController extends Controller
 		return array(
 			array(
 				'allow',
+				'actions'=>array('changePassword'),
+				'expression' => '$user->hasRoles(array("admin"))',
+			),
+			array(
+				'allow',
 				'actions'=>array('login','register'),
 				'expression'=>'$user->isGuest'
 			),
@@ -57,7 +62,7 @@ class MembersController extends Controller
 
 		if(isset($_POST['MemberEditForm']))
 		{
-			var_dump($_POST);
+			//var_dump($_POST);
 			$edit->attributes = $_POST['MemberEditForm'];
 			if ($edit->validate())
 			{
@@ -123,6 +128,9 @@ class MembersController extends Controller
 		));
 	}
 
+	/**
+	 * Change current user's password.
+	 */
 	public function actionChangePassword()
 	{
 		$form = new MemberChangePasswordForm;
@@ -131,7 +139,7 @@ class MembersController extends Controller
 
 		if(isset($_POST['MemberChangePasswordForm']))
 		{
-			var_dump($_POST);
+			//var_dump($_POST);
 			$form->attributes = $_POST['MemberChangePasswordForm'];
 			if ($form->validate())
 			{

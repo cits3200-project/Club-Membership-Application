@@ -110,30 +110,6 @@ class AdminController extends Controller
 		));
 	}
 
-	/**
-	 * Change member's password by username
-	 */
-	public function actionMemberPassword()
-	{
-		$form = new AdminChangeMemberPassword;
-
-		if(isset($_POST['AdminChangeMemberPassword']))
-		{
-			var_dump($_POST);
-			$form->attributes = $_POST['AdminChangeMemberPassword'];
-			if ($form->validate())
-			{
-				$username = $form->username;
-				$user = User::model()->find("LOWER(username)=?",array($username));
-				$user->password = User::hashPassword($form->newPassword);
-				$user->save();
-				$form->succeeded = true;
-			}
-		}
-
-		$this->render('memberpassword',array('model'=>$form));
-	}
-
 	public function actionEdit()
 	{
 		if (!isset($_GET['id']))
