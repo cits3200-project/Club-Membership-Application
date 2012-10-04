@@ -4,5 +4,3 @@ assets/
 ~*
 *.tmp
 *.swp
-protected/config/
-.htaccess

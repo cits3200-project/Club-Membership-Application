@@ -7,6 +7,7 @@ $baseUrl = Yii::app()->baseUrl;
 Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 ?>
 
+<div id="templatemo_main">
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -83,3 +84,4 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+</div>

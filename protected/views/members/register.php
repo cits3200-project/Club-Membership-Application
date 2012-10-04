@@ -8,6 +8,6 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Register for the Swedish Club of WA</h1>
+<h3>Register for the Swedish Club of WA</h3>
 
 <?php echo $this->renderPartial('_registrationform', array('model'=>$model)); ?>
