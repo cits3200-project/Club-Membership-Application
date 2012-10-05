@@ -4,4 +4,5 @@ div.row.properties input {
 
 div.row.properties label {
 	display: inline;
+	padding-left: 10px;
 }

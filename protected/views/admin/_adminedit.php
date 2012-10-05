@@ -1,18 +1,14 @@
 <?php
-/* @var $this MembershipController */
-/* @var $model RegistrationForm */
+/* @var $this AdminController */
+/* @var $model AdminEditForm */
+/* @var $membershipId membership id */
 /* @var $form CActiveForm */
-
-$baseUrl = Yii::app()->baseUrl; 
-Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 ?>
-
-
-	<h3>Register for the Swedish Club of WA</h3>
-	<div class="form">
+<h4>Editing membership <?php echo $membershipId; ?></h4>
+<div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'registration-form',
+	'id'=>'admin-edit-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -30,18 +26,6 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 		<?php echo $form->labelEx($model,'familyName'); ?>
 		<?php echo $form->textField($model,'familyName',array('size'=>30,'maxlength'=>50)); ?>
 		<?php echo $form->error($model,'familyName'); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model, 'password'); ?>
-		<?php echo $form->passwordField($model, 'password', array('size'=>30,'maxlength'=>40)); ?>
-		<?php echo $form->error($model, 'password'); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model, 'repeatPassword'); ?>
-		<?php echo $form->passwordField($model, 'repeatPassword', array('size'=>30,'maxlength'=>40)); ?>
-		<?php echo $form->error($model, 'repeatPassword'); ?>		
 	</div>
 
 	<div class="row">
@@ -69,26 +53,31 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'expiryDate'); ?>
+		<?php echo $form->dateField($model,'expiryDate'); ?>
+		<?php echo $form->error($model,'expiryDate'); ?>
+	</div>	
+	
+	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
 		<?php echo $form->dropDownList($model,'type', Membership::getMembershipTypes()); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 	
-<?php
-	foreach($model->getToggleProperties() as $property) 
-	{ ?>
-	<div class="row properties"><?php
-		echo $form->checkbox($model,$property,array(
-			'value' => 'Y', 'uncheckValue' => 'N'
-		));
-		echo $form->label($model,$property);
-		echo $form->error($model,$property);?>
-	</div><?php
-	} 
-?>	
+	<div class="row">
+		<?php echo $form->labelEx($model,'payMethod'); ?>
+		<?php echo $form->dropDownList($model,'payMethod', PaymentMethod::getPaymentMethods()); ?>
+		<?php echo $form->error($model,'payMethod'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->dropDownList($model,'status', MembershipStatus::getMembershipStatuses()); ?>
+		<?php echo $form->error($model,'status'); ?>		
+	</div>
 	
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Register'); ?>
+		<?php echo CHtml::submitButton('Update'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

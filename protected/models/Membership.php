@@ -15,12 +15,14 @@
  * @property string $expiryDate
  * @property string $payMethod
  * @property string $status
+ * @property string $receiveGeneralNews
+ * @property string $receiveAdminEmail
+ * @property string $receiveExpiryNotice
  *
  * The followings are the available model relations:
  * @property Member[] $members
  * @property PaymentMethod $paymentMethod
  * @property MembershipStatus $membershipStatus
- * @property properties $membershipProperties
  */
 class Membership extends CActiveRecord
 {
@@ -87,24 +89,33 @@ class Membership extends CActiveRecord
 		return '{{membership}}';
 	}
 
+	/** 
+	 * convenience function to generate
+	 * an associative array of the available
+	 * toggle options
+	 */
+	public static function getToggleProperties()
+	{
+		$properties = array('receiveGeneralNews','receiveAdminEmail','receiveExpiryNotice');
+		return $properties;
+	}
+	
 	/**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			array('membershipId, name, familyName, emailAddress, type, expiryDate', 'required'),
+			array('membershipId, name, familyName, emailAddress, phoneNumber, type, expiryDate, payMethod, status', 'required'),
+			array('expiryDate','date','format' => 'yyyy-MM-dd'),
 			array('membershipId', 'length', 'max'=>128),
 			array('name, emailAddress, alternateEmail', 'length', 'max'=>100),
 			array('familyName', 'length', 'max'=>50),
 			array('phoneNumber, alternatePhone', 'length', 'max'=>20),
-			array('type', 'length', 'max'=>2),
+			array('type', 'in', 'range'=>array_keys(Membership::getMembershipTypes())),
 			array('payMethod, status', 'length', 'max'=>15),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('membershipId, name, familyName, phoneNumber, alternatePhone, emailAddress, alternateEmail, type, expiryDate, payMethod, status', 'safe', 'on'=>'search'),
+			array('emailAddress, alternateEmail', 'email'),
+			array('receiveGeneralNews, receiveAdminEmail, receiveExpiryNotice, receiveEventInvites', 'in', 'range' => array('Y','N')),
 		);
 	}
 
@@ -119,8 +130,7 @@ class Membership extends CActiveRecord
 			'members' => array(self::HAS_MANY, 'Member', 'membershipId'),
 			'memberCount' => array(self::STAT, 'Member', 'membershipId'),
 			'paymentMethod' => array(self::BELONGS_TO, 'PaymentMethod', 'payMethod'),
-			'membershipStatus' => array(self::BELONGS_TO, 'MembershipStatus', 'status'),
-			'properties' => array(self::HAS_ONE, 'MembershipProperties', 'membershipId'),
+			'membershipStatus' => array(self::BELONGS_TO, 'MembershipStatus', 'status')
 		);
 	}
 
@@ -141,6 +151,10 @@ class Membership extends CActiveRecord
 			'expiryDate' => 'Expiry Date',
 			'payMethod' => 'Pay Method',
 			'status' => 'Status',
+			'receiveGeneralNews' => 'Receive General News',
+			'receiveAdminEmail' => 'Receive Email from Administrators',
+			'receiveExpiryNotice' => 'Receive Expiry Notices',
+			'receiveEventInvites' => 'Receive Event Invites'
 		);
 	}
 

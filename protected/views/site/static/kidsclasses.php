@@ -1,11 +1,12 @@
 <?php
+$this->pageTitle = Yii::app()->name . ' - Children\'s Classes';
 $this->breadcrumbs=array(
-	'Childrens\' Classes'
+	'Children\'s Classes'
 );
 ?>
 <div id="templatemo_main">
 	<div class="half float_l">
-		<h3>Childrens Classes</h2>
+		<h3>Children's Classes</h2>
 		<p>The Swedish School was established in 2003 as an independent subsidiary of The Swedish Club of WA. The School offers an opportunity for children to learn and maintain their Swedish language and cultural heritage, making it easier for children to travel to Sweden for study and  work when they get older.</p>
 		<p>The School:</p>
 		<ul>

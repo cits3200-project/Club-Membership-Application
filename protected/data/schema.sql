@@ -29,8 +29,12 @@ CREATE TABLE IF NOT EXISTS tbl_membership
 	expiryDate			DATE NOT NULL,
 	payMethod			varchar(15), -- fk into the payment_method table
 	status				varchar(15), -- fk into the membership_status table (may not be required)
+	receiveGeneralNews 	enum('Y','N') NOT NULL DEFAULT 'N',
+	receiveExpiryNotice enum('Y','N') NOT NULL DEFAULT 'N',
+	receiveAdminEmail 	enum('Y','N') NOT NULL DEFAULT 'N',
+	receiveEventInvites enum('Y','N') NOT NULL DEFAULT 'N',
 	FOREIGN KEY (payMethod) REFERENCES tbl_payment_method(code) ON DELETE SET NULL,
-	FOREIGN KEY (status) REFERENCES tbl_membership_status(code) ON DELETE SET NULL
+	FOREIGN KEY (status) 	REFERENCES tbl_membership_status(code) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS tbl_member
@@ -41,20 +45,6 @@ CREATE TABLE IF NOT EXISTS tbl_member
 	type 			ENUM('AM','AF','C'), -- 'Adult Male','Adult Female','Child' respectively 
 	membershipId	varchar(128) NOT NULL,
 	FOREIGN KEY (membershipId) REFERENCES tbl_membership(membershipId) ON DELETE CASCADE -- cascade the deletion because if a membership is removed, it stands to reason all the members are removed also.
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- This table seems slightly counter-intuitive given that the relationship between membership and this table
--- is One-to-one. However, I think it will make it easier to automate some of the application if it is structured
--- this way (properties are going to be an admin-searchable feature for the mailout)
-CREATE TABLE IF NOT EXISTS tbl_membership_properties
-(
-	membershipId		varchar(128) NOT NULL,
-	receiveGeneralNews	ENUM('Y','N') NOT NULL DEFAULT 'Y',
-	receiveEventInvites	ENUM('Y','N') NOT NULL DEFAULT 'Y',
-	receiveExpiryNotice	ENUM('Y','N') NOT NULL DEFAULT 'Y',
-	
-	FOREIGN KEY (membershipId) REFERENCES tbl_membership(membershipId) ON DELETE CASCADE, 
-	CONSTRAINT tbl_membership_properties_pk PRIMARY KEY(membershipId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Login/Authentication supporting tables

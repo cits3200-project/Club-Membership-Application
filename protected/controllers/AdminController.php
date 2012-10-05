@@ -113,15 +113,51 @@ class AdminController extends Controller
 	public function actionEdit()
 	{
 		if (!isset($_GET['id']))
-		{
 			$this->redirect('memberlist');
-		}
-		else
+
+		$membership = Membership::model()->find("LOWER(membershipId)=LOWER(?)", array($_GET['id']));
+		$edit = new AdminEditForm();
+		
+		if ($membership !== NULL)
+			$edit->attributes = $membership->attributes;
+		
+		$result = array(
+			'complete' => false,
+			'success' => false,
+			'message' => '',
+			'heading' => ''
+		);
+		
+		if (isset($_POST['AdminEditForm']))
 		{
-			$member = Membership::model()->find("LOWER(membershipId)=?", array($_GET['id']));
-			$this->render('edit', array(
-				'model' => $member
-			));
+			$edit->attributes = $_POST['AdminEditForm'];
+			if ($edit->validate())
+			{
+				$result['complete'] = true;
+				
+				$membership->attributes = $edit->attributes;
+				if ($membership->save())
+				{
+					$result['success'] = true;
+					$result['heading'] = 'Success!';
+					$result['message'] = "Membership '<strong>{$membership->membershipId}</strong>' has successfully had its details updated.";
+				}
+				else
+				{
+					$msg = print_r($membership->errors, true);
+					Yii::app()->error->report($msg, __FILE__);
+					
+					$result['message'] = 'An unforseen error occurred with the application. Please try again. If the problem persists, please contact support at <a href="mailto:support@svenskaklubben.org.au">support@svenskaklubben.org.au</a>';
+					$result['heading'] = "Unsuccessful!";
+				}
+			}
 		}
+		
+		$this->render('edit', array(
+			'model' => $edit,
+			'membershipId' => $membership !== NULL ? $membership->membershipId : NULL,
+			'result' => $result
+		));
+		
 	}
 }

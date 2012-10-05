@@ -1,7 +1,8 @@
 <?php 
-	$this->breadcrumbs = array(
-		'About Us'
-	);
+$this->pageTitle = Yii::app()->name . ' - About Us';
+$this->breadcrumbs = array(
+	'About Us'
+);
 ?>
 <div id="templatemo_main">
 	<div id="content">
