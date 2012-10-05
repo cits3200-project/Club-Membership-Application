@@ -4,11 +4,12 @@
 /* @var $form CActiveForm */
 
 $baseUrl = Yii::app()->baseUrl; 
-//same css?
 Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 ?>
 
-<div class="form">
+
+	<h3>Edit your details</h3>
+	<div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'edit-form',
@@ -18,9 +19,6 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-	<?php if ($model->succeeded) { ?>
-		<div>Successfully updated.</div>
-	<?php } ?>
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
@@ -35,9 +33,9 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 	</div>
 	
 	<div class="row">
-		<?php echo $form->labelEx($model,'phone'); ?>
-		<?php echo $form->textField($model,'phone',array('size'=>30,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'phone'); ?>
+		<?php echo $form->labelEx($model,'phoneNumber'); ?>
+		<?php echo $form->textField($model,'phoneNumber',array('size'=>30,'maxlength'=>20)); ?>
+		<?php echo $form->error($model,'phoneNumber'); ?>
 	</div>
 
 	<div class="row">
@@ -47,9 +45,9 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->emailField($model,'email',array('size'=>30,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'email'); ?>
+		<?php echo $form->labelEx($model,'emailAddress'); ?>
+		<?php echo $form->emailField($model,'emailAddress',array('size'=>30,'maxlength'=>100)); ?>
+		<?php echo $form->error($model,'emailAddress'); ?>
 	</div>
 
 	<div class="row">
@@ -63,10 +61,19 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 		<?php echo $form->dropDownList($model,'type', Membership::getMembershipTypes()); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
-	
-	<div class="row properties">
-		<?php echo $form->checkBoxList($model, 'properties', $model->getPropertyList(), array('uncheckValue' => NULL)); ?>
-	</div>
+
+<?php
+	foreach($model->getToggleProperties() as $property) 
+	{ ?>
+	<div class="row properties"><?php
+		echo $form->checkbox($model,$property,array(
+			'value' => 'Y', 'uncheckValue' => 'N'
+		));
+		echo $form->label($model,$property);
+		echo $form->error($model,$property);?>
+	</div><?php
+	} 
+?>	
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Update'); ?>

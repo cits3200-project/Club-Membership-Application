@@ -1,6 +1,6 @@
 RewriteEngine On
 # Change the following to suit your local folder hierarchy.
-RewriteBase /cits3200/Club-Membership-Application/
+RewriteBase /Club-Membership-Application/
 
 # Turn SEO-friendly links into Yii-compatible links behind the scenes.
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -15,5 +15,5 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule . index.php [R=403,L]
 
 #hide all ckeditor pages from access outside of the server
-RewriteCond %{REMOTE_ADDR} !::1
-RewriteRule ^ckeditor/.* index.php [R=403,L]
+#RewriteCond %{REMOTE_ADDR} !::1
+#RewriteRule ^ckeditor/.* index.php [R=403,L]

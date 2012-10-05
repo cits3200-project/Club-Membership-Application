@@ -47,7 +47,7 @@ class MembersController extends Controller
 	{
 		$this->actionEdit();
 	}
-	
+
 	/** 
 	 * Edit current user's details.
 	 */
@@ -58,73 +58,47 @@ class MembersController extends Controller
 		$membership = Membership::model()->find("LOWER(membershipId)=?",array($name));
 		$user = User::model()->find("LOWER(username)=?",array($name));
 		$role = UserToRoles::model()->find("LOWER(roleID)=?",array($user->userId));
-		$properties = MembershipProperties::model()->find("LOWER(membershipID)=?",array($name));
+
+		$result = array(
+			'complete' => false,
+			'success' => false,
+			'message' => '',
+			'heading' => ''
+		);
 
 		if(isset($_POST['MemberEditForm']))
 		{
-			//var_dump($_POST);
 			$edit->attributes = $_POST['MemberEditForm'];
 			if ($edit->validate())
 			{
+				$result['completed'] = true;
 				$member = Membership::model()->find("LOWER(membershipId)=?",array($name));
-				//$properties = new MembershipProperties();
-				$memberRole = UserRole::model()->find("LOWER(role)=?", array("member"));
-
-				$member->attributes = array (
-					//'membershipId' => Membership::generateUUID(),
-					'name' => $edit->name,
-					'familyName' => $edit->familyName,
-					'phoneNumber' => $edit->phone,
-					'alternatePhone' => $edit->alternatePhone,
-					'emailAddress' => $edit->email,
-					'alternateEmail' => $edit->alternateEmail,
-					'type' => $edit->type,
-				);
-
-				//$properties->membershipId = $member->membershipId;
-				if (!empty($edit->properties) && is_array($edit->properties))
-				{
-					foreach($edit->properties as $property)
-					{
-						$properties->$property = 'Y';
-					}
-				}
-
-				$user->save();
-
-				/*if ($memberRole !== NULL && !$user->isNewRecord)
-				{
-					$role->attributes = array (
-						'userId' => $user->userId,
-						'roleId' => $memberRole->roleId
-					);
-					$role->save();
-				}*/
-				$member->save();
-				$properties->save();
-
+				$member->attributes = $edit->attributes;
 				$edit->succeeded = true;
+				if ($member->save())
+				{
+					$result['success'] = true;
+					$result['heading'] = 'Success!';
+					$result['message'] = "Your details have successfully been updated.";
+				}
+				else
+				{
+					$msg = print_r($membership->errors, true);
+					Yii::app()->error->report($msg, __FILE__);
+					
+					$result['message'] = 'An unforseen error occurred with the application. Please try again. If the problem persists, please contact support at <a href="mailto:support@svenskaklubben.org.au">support@svenskaklubben.org.au</a>';
+					$result['heading'] = "Unsuccessful!";
+				}
 			}
 
 		} else { //preload
-			$edit->attributes = array(
-				'name' => $membership->name,
-				'familyName' => $membership->familyName,
-				'phone' => $membership->phoneNumber,
-				'alternatePhone' => $membership->alternatePhone,
-				'email' => $membership->emailAddress,
-				'alternateEmail' => $membership->alternateEmail,
-				'type' => $membership->type,
-				//TODO:?properties not preloading
-				'recNews' => $properties->receiveGeneralNews,
-				'recExpire' => $properties->receiveEventInvites,
-				'recEvents' => $properties->receiveExpiryNotice,
-			);
+			$edit->attributes = $membership->attributes;
 			//TODO:need null check
 		}
 
 		$this->render('edit', array(
 			'model'=>$edit,
+			'result' => $result,
 		));
 	}
 

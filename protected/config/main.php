@@ -39,6 +39,8 @@ return array(
 			// set the login page
 			'loginUrl'=>array('site/login')
 		),
+		// uncomment the following to enable URLs in path-format
+
 		'urlManager'=>array(
 			'showScriptName'=>false,
 			'urlFormat'=>'path',
@@ -48,14 +50,16 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
+		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=cits3200_application',
+			'connectionString' => 'mysql:host=localhost;dbname=swedish_membership',
 			'emulatePrepare' => true,
-			'username' => 'cits3200_front',
-			'password' => 'Oi{HfzZ)MEGw',
+			'username' => 'pma',
+			'password' => 'ohoo0Lee',
 			'charset' => 'utf8',
 			'tablePrefix'=>'tbl_'
 		),
+
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -75,9 +79,9 @@ return array(
 		),
 		'error'=>array(
 			'class'=>'ErrorComponent',
-			'errorEmail'=>'20924425@student.uwa.edu.au',
+			'errorEmail'=>'...',
 			'stackTrace'=>true
-		)
+		),
 	),
 
 	// application-level parameters that can be accessed
