@@ -1,21 +1,27 @@
 -- Create an admin user
 INSERT INTO tbl_user_role(role)
-VALUES 	('member'),
-	('admin');
+VALUES 	('member');
 
-SET @roleId = LAST_INSERT_ID(); -- store the role id.
+SET @memberRoleId = LAST_INSERT_ID(); -- store the role id.
+
+INSERT INTO tbl_user_role(role)
+VALUES ('admin');
+
+SET @adminRoleId = LAST_INSERT_ID(); 
+
 SET @membershipId = 'admin'; -- username
 
 INSERT INTO tbl_user(username,password)
 VALUES	(
 		@membershipId,
 		'B2236BED4DC535DD8A194CFA8369AB0D0E194C1652A316D90EF014974BE151F9C654233DC4A689D69159401A160D919505DE4420466E89B9DAAD2B9BE60766CC' -- password is admin1209
-		);
+	);
 		
 SET @userId = LAST_INSERT_ID(); -- store the admin's user id.
 
 INSERT INTO tbl_user_to_roles(userId,roleId)
-VALUES 	(@userId,@roleId);
+VALUES 	(@userId,@memberRoleId),
+	(@userId,@adminRoleId);
 
 -- build some membership data
 INSERT INTO tbl_membership_status(code,display)
