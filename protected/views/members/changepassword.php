@@ -10,6 +10,6 @@ $this->breadcrumbs=array(
 if (!$result['complete'])
 	echo $this->renderPartial('_changepasswordform',array('model'=>$model));
 else
-	echo $this->renderPartial('_completedmessage',array('result'=>$result));
+	echo $this->renderPartial('/shared/_completedmessage',array('result'=>$result));
 ?>
 </div>
