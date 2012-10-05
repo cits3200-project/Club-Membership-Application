@@ -8,7 +8,9 @@ $baseUrl = Yii::app()->baseUrl;
 Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 ?>
 
-<div class="form">
+
+	<h3>Change your password</h3>
+	<div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'changePassword-form',

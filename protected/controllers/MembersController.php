@@ -58,7 +58,6 @@ class MembersController extends Controller
 		$membership = Membership::model()->find("LOWER(membershipId)=?",array($name));
 		$user = User::model()->find("LOWER(username)=?",array($name));
 		$role = UserToRoles::model()->find("LOWER(roleID)=?",array($user->userId));
-
 		$result = array(
 			'complete' => false,
 			'success' => false,
@@ -71,10 +70,9 @@ class MembersController extends Controller
 			$edit->attributes = $_POST['MemberEditForm'];
 			if ($edit->validate())
 			{
-				$result['completed'] = true;
+				$result['complete'] = true;
 				$member = Membership::model()->find("LOWER(membershipId)=?",array($name));
 				$member->attributes = $edit->attributes;
-				$edit->succeeded = true;
 				if ($member->save())
 				{
 					$result['success'] = true;
@@ -93,7 +91,6 @@ class MembersController extends Controller
 
 		} else { //preload
 			$edit->attributes = $membership->attributes;
-			//TODO:need null check
 		}
 
 		$this->render('edit', array(
@@ -110,19 +107,41 @@ class MembersController extends Controller
 		$form = new MemberChangePasswordForm;
 		$name = strtolower(Yii::app()->user->name);
 		$user = User::model()->find("LOWER(username)=?",array($name));
+		$result = array(
+			'complete' => false,
+			'success' => false,
+			'message' => '',
+			'heading' => ''
+		);
 
 		if(isset($_POST['MemberChangePasswordForm']))
 		{
-			//var_dump($_POST);
 			$form->attributes = $_POST['MemberChangePasswordForm'];
 			if ($form->validate())
 			{
+				$result['complete'] = true;
 				$user->password = User::hashPassword($form->newPassword);
-				$user->save();
+				if ($user->save())
+				{
+					$result['success'] = true;
+					$result['heading'] = 'Success!';
+					$result['message'] = "Your password has successfully been updated.";
+				}
+				else
+				{
+					$msg = print_r($membership->errors, true);
+					Yii::app()->error->report($msg, __FILE__);
+					
+					$result['message'] = 'An unforseen error occurred with the application. Please try again. If the problem persists, please contact support at <a href="mailto:support@svenskaklubben.org.au">support@svenskaklubben.org.au</a>';
+					$result['heading'] = "Unsuccessful!";
+				}
 			}
 		}
 
-		$this->render('changepassword',array('model'=>$form));
+		$this->render('changepassword',array(
+			'model'=>$form,
+			'result'=>$result,
+		));
 
 	}
 
