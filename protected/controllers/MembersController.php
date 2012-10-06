@@ -48,6 +48,8 @@ class MembersController extends Controller
 	 */
 	public function actionEdit()
 	{
+		$this->layout = '//layouts/column2';
+
 		$edit = new MembershipEditForm();
 		$membership = Membership::model()->find("LOWER(membershipId)=LOWER(?)",array(Yii::app()->user->name));
 

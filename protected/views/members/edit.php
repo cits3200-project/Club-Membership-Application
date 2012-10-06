@@ -5,11 +5,28 @@
 $this->breadcrumbs=array(
 	'Members'=>array('.'),
 	'Edit Details',
-);?>
-<div id="templatemo_main"><?php
+);
+
+$this->layout = '//layouts/column2';
+$this->menu = array(
+	array(
+		'label' => 'Edit details',
+		'url' => array('members/edit')
+	),
+	array(
+		'label' => 'Change password',
+		'url' => array('members/changepassword')
+	),
+	array(
+		'label' => 'Edit members',
+		'url' => array('members/editmembers')
+	)
+);
+
+?>
+<?php
 if (!$result['complete'])
 	echo $this->renderPartial('_editform',array('model'=>$model));
 else
 	echo $this->renderPartial('/shared/_completedmessage',array('result'=>$result));
 ?>
-</div>

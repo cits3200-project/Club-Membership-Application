@@ -4,6 +4,27 @@
  * @var $this MembersController
  * @var $members array of MemberEdit models
  */
+ $this->breadcrumbs=array(
+	'Members'=>array('.'),
+	'Edit Members',
+);
+
+$this->layout = '//layouts/column2';
+ 
+$this->menu = array(
+	array(
+		'label' => 'Edit details',
+		'url' => array('members/edit')
+	),
+	array(
+		'label' => 'Change password',
+		'url' => array('members/changepassword')
+	),
+	array(
+		'label' => 'Edit members',
+		'url' => array('members/editmembers')
+	)
+);
 ?>
 <script type="text/javascript" language="Javascript">
 	$(document).ready(function() {
