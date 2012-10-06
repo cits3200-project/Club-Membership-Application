@@ -25,6 +25,15 @@ class Member extends CActiveRecord
 		return parent::model($className);
 	}
 	
+	public static function getMemberTypes()
+	{
+		return array (
+			'AM' => 'Adult Male',
+			'AF' => 'Adult Female',
+			'C' => 'Child'
+		);
+	}
+	
 	/**
 	 * @return string the associated database table name
 	 */

@@ -1,17 +1,19 @@
 <?php
 /** 
- * Basic error component, sends an email to the define error email
+ * Basic error component, sends an email to the defined error email
+ * optionally a stack trace can be included to a specified level.
  * @author Jason Larke
  */
 class ErrorComponent extends CApplicationComponent
 {
 	public $errorEmail;
 	public $stackTrace;
+	public $traceLevel;
 	
 	public function report($msg, $title="")
 	{
 		// most of this code is stolen from Yii's "log" function.	
-		if (YII_TRACE_LEVEL > 0 && $this->stackTrace)
+		if ($this->traceLevel > 0 && $this->stackTrace)
 		{
 			$backtrace = debug_backtrace();
 			$level = 0;
@@ -20,13 +22,12 @@ class ErrorComponent extends CApplicationComponent
 				if(isset($trace['file'],$trace['line']) && strpos($trace['file'],YII_PATH)!==0)
 				{
 					$msg .= "\nin {$trace['file']} ({$trace['line']})";
-					if(++$level>=YII_TRACE_LEVEL)
+					if(++$level >= $this->traceLevel)
 						break;
 				} 
 			}
 		}
-		
-		var_dump($msg);
+
 		@mail($this->errorEmail, "Application Error: {$title}", $msg);
 	}
 }

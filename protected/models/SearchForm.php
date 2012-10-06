@@ -266,7 +266,7 @@ class SearchForm extends CFormModel
 		$criteria->params = $parameters;
 		$criteria->select = "{$ma}.*";
 		$criteria->condition = implode(" AND ", $conditions);
-		var_dump($criteria);
+
 		return $criteria;
 	}
 	

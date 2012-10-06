@@ -52,10 +52,10 @@ return array(
 		),
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=swedish_membership',
+			'connectionString' => 'mysql:host=localhost;dbname=cits3200_application',
 			'emulatePrepare' => true,
-			'username' => 'pma',
-			'password' => 'ohoo0Lee',
+			'username' => 'cits3200_front',
+			'password' => 'Oi{HfzZ)MEGw',
 			'charset' => 'utf8',
 			'tablePrefix'=>'tbl_'
 		),
@@ -80,7 +80,8 @@ return array(
 		'error'=>array(
 			'class'=>'ErrorComponent',
 			'errorEmail'=>'...',
-			'stackTrace'=>true
+			'stackTrace'=>true,
+			'traceLevel'=>YII_TRACE_LEVEL
 		),
 	),
 

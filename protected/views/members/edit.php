@@ -3,8 +3,8 @@
 /* @var $model Membership */
 /* @var $result array containing information about the form result */
 $this->breadcrumbs=array(
-	'Members'=>array('index'),
-	'Register',
+	'Members'=>array('.'),
+	'Edit Details',
 );?>
 <div id="templatemo_main"><?php
 if (!$result['complete'])

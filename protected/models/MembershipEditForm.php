@@ -1,14 +1,13 @@
 <?php
 
 /**
- * MemberEditForm
+ * MembershipEditForm
  * Model that manages the membership editing
- * form. This encapsulates both the User and Membership
- * models.
+ * form. This encapsulates the Membership model.
  *
  * @author Gregory Collin
  */
-class MemberEditForm extends CFormModel
+class MembershipEditForm extends CFormModel
 {
 	// Membership Properties
 	public $name;
@@ -22,13 +21,6 @@ class MemberEditForm extends CFormModel
 	public $receiveAdminEmail;
 	public $receiveExpiryNotice;
 	public $receiveEventInvites;
-
-	// Membership_Properties Properties
-	//public $recEvents;
-	//public $recExpire;
-	//public $recNews;
-
-	public $succeeded;
 
 	public function rules()
 	{

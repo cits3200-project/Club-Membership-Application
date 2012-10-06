@@ -7,6 +7,7 @@
 **/
 $this->breadcrumbs=array(
 	'Admin'=>array('.'),
+	'Search'=>array('search'),
 	'Edit Membership',
 );?>
 <div id="templatemo_main"><?php
@@ -18,7 +19,9 @@ if ($membershipId !== NULL)
 			'membershipId'=>$membershipId
 		));
 	else
-		echo $this->renderPartial('/shared/_completedmessage',array('result'=>$result));
+		echo $this->renderPartial('/shared/_completedmessage',array(
+			'result'=>$result
+		));
 }
 else
 {?>

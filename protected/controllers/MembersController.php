@@ -28,12 +28,7 @@ class MembersController extends Controller
 		return array(
 			array(
 				'allow',
-				'actions'=>array('changePassword'),
-				'expression' => '$user->hasRoles(array("admin"))',
-			),
-			array(
-				'allow',
-				'actions'=>array('login','register'),
+				'actions'=>array('register'),
 				'expression'=>'$user->isGuest'
 			),
 			array(
@@ -53,11 +48,9 @@ class MembersController extends Controller
 	 */
 	public function actionEdit()
 	{
-		$edit = new MemberEditForm();
-		$name = strtolower(Yii::app()->user->name);
-		$membership = Membership::model()->find("LOWER(membershipId)=?",array($name));
-		$user = User::model()->find("LOWER(username)=?",array($name));
-		$role = UserToRoles::model()->find("LOWER(roleID)=?",array($user->userId));
+		$edit = new MembershipEditForm();
+		$membership = Membership::model()->find("LOWER(membershipId)=LOWER(?)",array(Yii::app()->user->name));
+
 		$result = array(
 			'complete' => false,
 			'success' => false,
@@ -65,15 +58,15 @@ class MembersController extends Controller
 			'heading' => ''
 		);
 
-		if(isset($_POST['MemberEditForm']))
+		if(isset($_POST['MembershipEditForm']))
 		{
-			$edit->attributes = $_POST['MemberEditForm'];
+			$edit->attributes = $_POST['MembershipEditForm'];
 			if ($edit->validate())
 			{
 				$result['complete'] = true;
-				$member = Membership::model()->find("LOWER(membershipId)=?",array($name));
-				$member->attributes = $edit->attributes;
-				if ($member->save())
+				$membership->attributes = $edit->attributes;
+				
+				if ($membership->save())
 				{
 					$result['success'] = true;
 					$result['heading'] = 'Success!';
@@ -88,8 +81,9 @@ class MembersController extends Controller
 					$result['heading'] = "Unsuccessful!";
 				}
 			}
-
-		} else { //preload
+		} 
+		else //preload data
+		{ 
 			$edit->attributes = $membership->attributes;
 		}
 
@@ -98,15 +92,96 @@ class MembersController extends Controller
 			'result' => $result,
 		));
 	}
+	
+	/** 
+	 * Edit the current membership's members
+	 */
+	public function actionEditmembers()
+	{
+		$membership = Membership::model()->find('LOWER(membershipId)=LOWER(?)', array(Yii::app()->user->name));
+		$members = array();
+		
+		$result = array (
+			'complete' => false,
+			'success' => false,
+			'message' => '',
+			'heading' => ''
+		);
+		
+		// Get the existing members from the database:
+		$existing = Member::model()->findAll('LOWER(membershipId)=LOWER(?)', array($membership->membershipId));
+
+		foreach($existing as $i=>$record)
+		{
+			$members[$i] = new MemberEdit();
+			$members[$i]->attributes = array (
+				'memberName' => $record->firstName,
+				'birthDate' => date('d/m/Y', strtotime($record->dateOfBirth)),
+				'memberType' => $record->type
+			);
+		}
+		
+		// Assimilate all the AJAX-entered fields into the main model array.
+		if (isset($_POST['members']))
+		{
+			if (!isset($_POST['MemberEdit']))
+				$_POST['MemberEdit'] = array();
+			
+			$_POST['MemberEdit'] = array_merge($_POST['MemberEdit'], $_POST['members']);
+		}
+		
+		// process the user input
+		if (isset($_POST['MemberEdit']))
+		{
+			$result['complete'] = true;
+			$result['success'] = true;
+			
+			foreach($_POST['MemberEdit'] as $i=>$data)
+			{
+				$members[$i] = new MemberEdit();
+				$members[$i]->attributes = $_POST['MemberEdit'][$i];
+				$result['success'] = $members[$i]->validate() && $result['success'];
+			}
+
+			if ($result['success'] === true) // all members are valid, can save.
+			{
+				Member::model()->deleteAll('LOWER(membershipId)=LOWER(?)', array($membership->membershipId));
+				foreach($members as $member)
+				{
+					$record = new Member();
+					$record->attributes = array (
+						'membershipId' => $membership->membershipId,
+						'firstName' => $member->memberName,
+						'dateOfBirth' => $member->birthDate,
+						'type' => $member->memberType,
+					);
+					$record->save();
+				}
+				
+				$result['heading'] = 'Success!';
+				$result['message'] = 'Members have been updated successfully.';
+			}
+			else
+			{
+				$result['heading'] = 'Errors in form';
+				$result['message'] = 'There were errors found with some of the submitted members. Please rectify the errors below and try again';
+			}
+		}
+		
+		$this->render('editmembers', array(
+			'members' => $members,
+			'result' => $result
+		));
+	}
 
 	/**
 	 * Change current user's password.
 	 */
 	public function actionChangePassword()
 	{
-		$form = new MemberChangePasswordForm;
-		$name = strtolower(Yii::app()->user->name);
-		$user = User::model()->find("LOWER(username)=?",array($name));
+		$form = new MemberChangePasswordForm();
+		$user = User::model()->find("LOWER(username)=LOWER(?)",array(Yii::app()->user->name));
+		
 		$result = array(
 			'complete' => false,
 			'success' => false,
@@ -129,7 +204,7 @@ class MembersController extends Controller
 				}
 				else
 				{
-					$msg = print_r($membership->errors, true);
+					$msg = print_r($user->errors, true);
 					Yii::app()->error->report($msg, __FILE__);
 					
 					$result['message'] = 'An unforseen error occurred with the application. Please try again. If the problem persists, please contact support at <a href="mailto:support@svenskaklubben.org.au">support@svenskaklubben.org.au</a>';
@@ -143,32 +218,6 @@ class MembersController extends Controller
 			'result'=>$result,
 		));
 
-	}
-
-	/**
-	 * Displays the login page
-	 */
-	public function actionLogin()
-	{
-		$model=new LoginForm;
-
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
 	}
 
 	/**
@@ -220,7 +269,10 @@ class MembersController extends Controller
 						$role->save();
 					}
 					
-					$result['message'] = "You have successfully registered with the Swedish Club of WA. Your may now login with the username <strong>{$membership->membershipId}</strong> and the password you chose.";
+					$result['message'] = "You have successfully registered with the Swedish Club of WA.<br/>
+										  Your unique username is: <strong>{$membership->membershipId}</strong><br/>
+										  Please save this username somewhere as you will need it to login. You may now login to the site using the above username and the password you chose.";
+										  
 					$result['success'] = true;
 					$result['heading'] = "Success!";
 				}
@@ -247,61 +299,6 @@ class MembersController extends Controller
 	}
 
 	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	
-	public function actionUpdate($id)
-	{
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Membership']))
-		{
-			$model->attributes=$_POST['Membership'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->membershipId));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
-	*/
-	
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 
-	public function actionDelete($id)
-	{
-		$this->loadModel($id)->delete();
-
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-	}
-	*/
-	
-	/**
-	 * Manages all models.
-	 
-	public function actionAdmin()
-	{
-		$model=new Membership('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Membership']))
-			$model->attributes=$_GET['Membership'];
-
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}
-	*/
-	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the ID of the model to be loaded
@@ -312,18 +309,5 @@ class MembersController extends Controller
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
-	}
-
-	/**
-	 * Performs the AJAX validation.
-	 * @param CModel the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='membership-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
 	}
 }
