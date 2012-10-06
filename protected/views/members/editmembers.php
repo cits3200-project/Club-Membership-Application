@@ -10,6 +10,16 @@
 		var counter = 0;
 		$("#addMoreButton").click(function() {
 			SwedishCore.addMoreFields('<?php echo Yii::app()->baseUrl; ?>/ajax/html?f=member', $(this).parent(), counter++);
+			setTimeout(function() {
+				$('.removeButton').click(function() {
+					$(this).closest(".membertile").remove();
+				});			
+			}, 1000); // wait for the ajax request to complete before re-applying the handlers.
+		});
+		
+		// init removal buttons
+		$('.removeButton').click(function() {
+			$(this).closest(".membertile").remove();
 		});
 	});
 </script>
@@ -29,8 +39,10 @@ $form=$this->beginWidget('CActiveForm', array(
 foreach($members as $i=>$member)
 { ?>
 	<div class="membertile view">
+		<div class="right">
+			<?php echo CHtml::button('Remove member', array('class'=>'removeButton')); ?>
+		</div>
 		<div class="row">
-			
 			<?php echo $form->labelEx($member, "[$i]memberName"); ?>
 			<?php echo $form->textField($member, "[$i]memberName"); ?>
 			<?php echo $form->error($member, "[$i]memberName"); ?>

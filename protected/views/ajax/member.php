@@ -6,6 +6,9 @@
 // html format ?>
 
 <div class="membertile view" id="members_<?php echo $i; ?>">
+	<div class="right">
+		<?php echo CHtml::button('Remove member', array( 'class' => 'removeButton' )); ?>
+	</div>
 	<div class="row">
 		<?php echo CHtml::label('First name', "members[{$i}][memberName]"); ?>
 		<?php echo CHtml::textField("members[{$i}][memberName]"); ?>

@@ -134,6 +134,14 @@ div.form .errorSummary p
 	padding: 5px;
 }
 
+.right {
+	float: right;
+}	
+
+.left {
+	float: left;
+}
+
 div.form .errorSummary ul
 {
 	margin: 0;

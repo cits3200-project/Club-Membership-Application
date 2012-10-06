@@ -108,19 +108,6 @@ class MembersController extends Controller
 			'heading' => ''
 		);
 		
-		// Get the existing members from the database:
-		$existing = Member::model()->findAll('LOWER(membershipId)=LOWER(?)', array($membership->membershipId));
-
-		foreach($existing as $i=>$record)
-		{
-			$members[$i] = new MemberEdit();
-			$members[$i]->attributes = array (
-				'memberName' => $record->firstName,
-				'birthDate' => date('d/m/Y', strtotime($record->dateOfBirth)),
-				'memberType' => $record->type
-			);
-		}
-		
 		// Assimilate all the AJAX-entered fields into the main model array.
 		if (isset($_POST['members']))
 		{
@@ -166,6 +153,21 @@ class MembersController extends Controller
 				$result['heading'] = 'Errors in form';
 				$result['message'] = 'There were errors found with some of the submitted members. Please rectify the errors below and try again';
 			}
+		}
+		else // No post yet, preload database values
+		{
+			// Get the existing members from the database:
+			$existing = Member::model()->findAll('LOWER(membershipId)=LOWER(?)', array($membership->membershipId));
+
+			foreach($existing as $i=>$record)
+			{
+				$members[$i] = new MemberEdit();
+				$members[$i]->attributes = array (
+					'memberName' => $record->firstName,
+					'birthDate' => date('d/m/Y', strtotime($record->dateOfBirth)),
+					'memberType' => $record->type
+				);
+		}
 		}
 		
 		$this->render('editmembers', array(
