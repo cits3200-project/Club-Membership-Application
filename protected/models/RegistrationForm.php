@@ -9,7 +9,7 @@
  * @author Jason Larke
  * @date 25/08/2012
  */
-class RegistrationForm extends MembershipForm
+class RegistrationForm extends MembershipChosenForm
 {
 
 	// user properties.

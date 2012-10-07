@@ -3,6 +3,7 @@
 /**
  * MembershipForm
  * Base class for forms that update the Membership model.
+ * Fields in this class my be changed by both the owner of the membership and by admin.
  */
 class MembershipForm extends CFormModel
 {
@@ -14,10 +15,6 @@ class MembershipForm extends CFormModel
 	public $emailAddress;
 	public $alternateEmail;
 	public $type;
-	public $receiveGeneralNews;
-	public $receiveAdminEmail;
-	public $receiveExpiryNotice;
-	public $receiveEventInvites;
 
 	public function rules()
 	{
@@ -27,7 +24,6 @@ class MembershipForm extends CFormModel
 			array ('phoneNumber, alternatePhone', 'length', 'max' => 20),
 			array ('emailAddress, alternateEmail', 'email'),
 			array ('type', 'in', 'range' => array_keys(Membership::getMembershipTypes())),
-			array (implode(', ', $this->getToggleProperties()), 'in', 'range' => array('Y','N')),
 		);
 	}
 
@@ -41,20 +37,6 @@ class MembershipForm extends CFormModel
 			'emailAddress' => 'Email address',
 			'alternateEmail' => 'Alternate email address',
 			'type' => 'Membership type',
-			'receiveGeneralNews' => 'Receive General News',
-			'receiveAdminEmail' => 'Receive Email from Administrators',
-			'receiveExpiryNotice' => 'Receive Expiry Notices',
-			'receiveEventInvites' => 'Receive Event Invites'
-		);
-	}
-
-	public function getToggleProperties()
-	{
-		return array(
-			'receiveGeneralNews',
-			'receiveAdminEmail',
-			'receiveExpiryNotice',
-			'receiveEventInvites',			
 		);
 	}
 }

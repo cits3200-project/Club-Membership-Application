@@ -8,9 +8,14 @@ $this->breadcrumbs=array(
 );?>
 <div id="templatemo_main"><?php
 if (!$result['complete'])
-	echo $this->renderPartial('_registrationform',array(
-		'model'=>$model
-	));
+	echo $this->renderPartial('/shared/_membershipform',
+		array(
+			'model'=>$model,
+			'heading' => 'Register',
+			'id' => 'registration-form',
+			'submit_label' => 'Register',
+		)
+	);
 else
 	echo $this->renderPartial('/shared/_completedmessage',array(
 		'result'=>$result

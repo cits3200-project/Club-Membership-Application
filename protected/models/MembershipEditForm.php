@@ -3,7 +3,7 @@
 /**
  * MembershipEditForm
  */
-class MembershipEditForm extends MembershipForm
+class MembershipEditForm extends MembershipChosenForm
 {
 	//Nothing additional required for edit form
 }
