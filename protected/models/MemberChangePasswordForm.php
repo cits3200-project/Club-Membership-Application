@@ -13,15 +13,7 @@ class MemberChangePasswordForm extends CFormModel
 	// Membership Properties
 	public $name;
 
-	/*// user properties.
-	public $password;
-	public $repeatPassword;*/
-
-	// Membership_Properties Properties
-	//public $recEvents;
-	//public $recExpire;
-	//public $recNews;
-
+	// User password
 	public $password;
 	public $newPassword;
 	public $repeatNewPassword;
@@ -31,7 +23,7 @@ class MemberChangePasswordForm extends CFormModel
 		return array (
 			array('password, newPassword, repeatNewPassword', 'required'),
 			array('password', 'authenticate'),
-			array('password, newPassword, repeatNewPassword', 'length', 'max' => 100),
+			array('password, newPassword, repeatNewPassword', 'length', 'max' => 40),
 			array('repeatNewPassword', 'compare', 'compareAttribute' => 'newPassword'),
 		);
 	}
@@ -51,21 +43,10 @@ class MemberChangePasswordForm extends CFormModel
 		}
 	}
 
-	/*public function validateProperties($attr,$params)
-	{
-		// Sanitization masquerading as validation.
-		if (is_array($this->$attr))
-		{
-			$accept = $this->getPropertyList();
-			foreach($this->$attr as $prop)
-				if (!isset($accept[$prop]))
-					unset($this->$attr[$prop]);
-		}
-	}*/
-
 	public function attributeLabels()
 	{
 		return array (
+			'password' => 'Current Password',
 		);
 	}
 

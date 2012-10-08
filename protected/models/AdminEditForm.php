@@ -30,9 +30,12 @@ class AdminEditForm extends MembershipForm
 
 	public function attributeLabels()
 	{
-		return array (
-			'status' => 'Membership status',
-			'payMethod' => 'Payment method'
+		return array_merge(
+			parent::attributeLabels(),
+			array (
+				'status' => 'Membership status',
+				'payMethod' => 'Payment method'
+			)
 		);
 	}
 }
