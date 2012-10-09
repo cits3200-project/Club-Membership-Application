@@ -1,7 +1,3 @@
-.ddsmoothmenu{
-	padding-top: 7px;
-}
-
 .ddsmoothmenu ul{
 	z-index:100;
 	margin: 0;
@@ -19,21 +15,26 @@
 /*Top level menu link items style*/
 .ddsmoothmenu ul li a {
 	display: block;
-	height: 50px;
+	height:33px;
 	padding: 12px 30px 0;
 	font-size: 14px;
-	color: #ccc;	
+	color: #FFF;	
 	text-decoration: none;
 	font-weight: 400;
 	outline: none;
 	text-align: left;
-	background: url(../images/templatemo_menu_divider.jpg) no-repeat right
 }
 
-.ddsmoothmenu ul li a span  { display: block; margin-top: 5px; font-size: 10px; line-height: 10px; color: #888 }
+.ddsmoothmenu ul li a span  { 
+	display: block; 
+	margin-top: 5px; 
+	font-size: 10px; 
+	line-height: 10px; 
+	color: #888;
+}
 
 * html .ddsmoothmenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
-display: inline-block;
+	display: inline-block;
 }
 
 .ddsmoothmenu ul li a.selected, .ddsmoothmenu ul li a:hover, .ddsmoothmenu ul li a:hover span  { /*CSS class that's dynamically added to the currently active menu items' LI A element*/
@@ -47,15 +48,23 @@ display: inline-block;
 	left: 0;
 	display: none; /*collapse all sub menus to begin with*/
 	visibility: hidden;
-	background: #181818;
+	background: #093f69;
+	border: 1px solid #000;
 }
 
-.ddsmoothmenu ul li ul span.bottom { position: absolute; width: 178px; height: 13px; bottom: -13px; left: 0;  background: url(../images/templatemo_smb_b.png) no-repeat; }
+.ddsmoothmenu ul li ul span.bottom { 
+	position: absolute; 
+	width: 178px; 
+	height: 13px; 
+	bottom: -13px; 
+	left: 0;  
+	background: url(../images/templatemo_smb_b.png) no-repeat; 
+}
 
 /*Sub level menu list items (undo style from Top level List Items)*/
 .ddsmoothmenu ul li ul li{
-display: list-item;
-float: none;
+	display: list-item;
+	float: none;
 }
 
 /*All subsequent sub menu levels vertical offset after 1st level sub menu */
@@ -75,8 +84,11 @@ top: 0;
 	text-align: left;
 	background: none;
 	color: #999;
-	border-top: 1px solid #2d2d2d;
 	border-bottom: 1px solid #0c0c0c
+}
+
+.ddsmoothmenu ul li ul li:last-child a{
+	border: none;
 }
 
 .ddsmoothmenu ul li ul li .last {

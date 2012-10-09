@@ -1,5 +1,5 @@
 <?php /* @var $this Controller */ ?>
-<?php $this->beginContent('//layouts/main'); ?>
+<?php $this->beginContent('//layouts/swedish'); ?>
 <div id="sidebar">
 <?php
 	$this->beginWidget('zii.widgets.CPortlet', array(
@@ -12,7 +12,7 @@
 	$this->endWidget();
 ?>
 </div><!-- sidebar -->
-<div id="content" style="float: left; margin-top: 15px;">
+<div id="content">
 	<?php echo $content; ?>
 </div><!-- content -->
 <?php $this->endContent(); ?>

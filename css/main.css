@@ -22,11 +22,6 @@ body
 	border-top: 3px solid #C9E0ED;
 }
 
-#sidebar
-{
-	padding: 20px 20px 20px 0;
-}
-
 #footer
 {
 	padding: 10px;
@@ -118,7 +113,7 @@ div.flash-success a
 	color:#264409;
 }
 
-div.form .rememberMe label
+.rememberMe label
 {
 	display: inline;
 }

@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 	'Members'=>array('index'),
 	'Register',
 );?>
-<div id="templatemo_main"><?php
+<?php
 if (!$result['complete'])
 	echo $this->renderPartial('_registrationform',array(
 		'model'=>$model
@@ -16,4 +16,3 @@ else
 		'result'=>$result
 	));
 ?>
-</div>

@@ -25,7 +25,7 @@ $this->breadcrumbs=array(
 	
 	<div class="cleaner h40"></div>
 	
-	<iframe width="940" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=trinity+college+east+perth&amp;aq=&amp;sll=41.747094,-72.690503&amp;sspn=0.095032,0.220757&amp;ie=UTF8&amp;hq=trinity+college&amp;hnear=East+Perth+Western+Australia,+Australia&amp;t=m&amp;ll=-31.960177,115.882545&amp;spn=0.006295,0.024036&amp;output=embed"></iframe>  
+	<iframe width="900" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=trinity+college+east+perth&amp;aq=&amp;sll=41.747094,-72.690503&amp;sspn=0.095032,0.220757&amp;ie=UTF8&amp;hq=trinity+college&amp;hnear=East+Perth+Western+Australia,+Australia&amp;t=m&amp;ll=-31.960177,115.882545&amp;spn=0.006295,0.024036&amp;output=embed"></iframe>  
 	<div class="cleaner"></div>   
 
 </div> 

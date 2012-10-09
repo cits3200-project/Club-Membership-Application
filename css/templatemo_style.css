@@ -450,15 +450,15 @@ p.position { color: #f3a706; font-weight: bold; font-size: 12px; font-style: ita
 }
 
 .half { 
-	width: 400px; 
+	width: 470px; 
 }
 
-#sidebar, .one_third {
-	width: 250px;
+.one_third {
+	width: 313px;
 }
 
 .two-third { 
-	width: 620px; 
+	width: 626px; 
 }
 
 .padding_right { 
