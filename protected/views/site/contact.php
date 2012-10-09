@@ -9,7 +9,27 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Contact Us</h1>
+<h2>Contact Us</h2>
+
+<p>
+If you have inquiries or other questions, please use one of the following contacts, or fill out the following form below. Thank you.
+</p>
+<hr />
+
+<p>
+Facebook: <a href="http://www.facebook.com/groups/169714974189/">http://www.facebook.com/groups/169714974189/</a> <br>
+	<br>
+	Membership questions: <a href="mailto:treasurer@svenskaklubben.org.au">treasurer@svenskaklubben.org.au</a> <br>
+	<br>
+	Questions about the club: <a href="mailto:info@svenskaklubben.org.au">info@svenskaklubben.org.au</a> <br>
+	<br>
+	Web site administrator: <a href="mailto:web@svenskaklubben.org.au">web@svenskaklubben.org.au</a> <br>
+	<br>
+	Svenska Posten (mailout): <a href="mailto:redaktor@svenskaklubben.org.au">redaktor@svenskaklubben.org.au</a> <br>
+	<br>
+	Mobile phone (Peter Thönell): 0405 658 750  <br>
+</p>
+<hr />
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -18,10 +38,6 @@ $this->breadcrumbs=array(
 </div>
 
 <?php else: ?>
-
-<p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-</p>
 
 <div class="form">
 
@@ -75,11 +91,23 @@ If you have business inquiries or other questions, please fill out the following
 	<?php endif; ?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Submit'); ?>
+		<?php echo CHtml::submitButton('Send'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
+<div class="half float_r">
+	<h4>Contact Information</h4>
+	<h5>Peter Thönell</h5>						
+	Phone: 0405 658 750<br />
+	<div class="cleaner h40"></div>
+	<h5>Website Administrator</h5>
+	Email: <a href="mailto:web@svenskaklubben.org.au">web@svenskaklubben.org.au</a><br/>
+	<div class="cleaner h40"></div>
+	<h5>Svenska Posten</h5>
+	Email: <a href="mailto:redaktor@svenskaklubben.org.au"> redaktor@svenskaklubben.org.au</a><br/>
+</div>
 
 <?php endif; ?>

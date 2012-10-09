@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 );
 ?>
 <div id="templatemo_main">
-	<h3>Login</h3>
+	<h2>Login</h2>
 
 	<p>Please fill out the following form with your login credentials:</p>
 

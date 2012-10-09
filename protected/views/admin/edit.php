@@ -14,10 +14,14 @@ $this->breadcrumbs=array(
 if ($membershipId !== NULL)
 {
 	if (!$result['complete'])
-		echo $this->renderPartial('_adminedit',array(
-			'model'=>$model,
-			'membershipId'=>$membershipId
-		));
+		echo $this->renderPartial('/shared/_membershipform',
+			array(
+				'model'=>$model,
+				'heading'=>"Editing membership $membershipId",
+				'id'=>'admin-edit-form',
+				'submit_label'=>'Update',
+			)
+		);
 	else
 		echo $this->renderPartial('/shared/_completedmessage',array(
 			'result'=>$result

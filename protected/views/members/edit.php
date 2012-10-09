@@ -26,7 +26,14 @@ $this->menu = array(
 ?>
 <?php
 if (!$result['complete'])
-	echo $this->renderPartial('_editform',array('model'=>$model));
+	echo $this->renderPartial('/shared/_membershipform',
+		array(
+			'model'=>$model,
+			'heading' => 'Edit your details',
+			'id' => 'edit-form',
+			'submit_label' => 'Update',
+		)
+	);
 else
 	echo $this->renderPartial('/shared/_completedmessage',array('result'=>$result));
 ?>
