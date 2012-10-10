@@ -26,7 +26,7 @@ body {
 
 /* top menu styles */
 #page_nav {
-	background: url('/cits3200/club-membership-application/images/menu-tile.png') repeat-x #005293;
+	background: url('../images/menu-tile.png') repeat-x #005293;
 	height: 45px;
 	color: #FFF;
 	-moz-border-radius: 5px;
