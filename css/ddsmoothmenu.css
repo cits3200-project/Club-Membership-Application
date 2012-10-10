@@ -37,8 +37,13 @@
 	display: inline-block;
 }
 
-.ddsmoothmenu ul li a.selected, .ddsmoothmenu ul li a:hover, .ddsmoothmenu ul li a:hover span  { /*CSS class that's dynamically added to the currently active menu items' LI A element*/
+.ddsmoothmenu ul li a.selected, .ddsmoothmenu ul li a:hover span  { /*CSS class that's dynamically added to the currently active menu items' LI A element*/
 	color: #fff;
+}
+
+.ddsmoothmenu ul li a:hover {
+	background-color: #fecb00;
+	color: #333;
 }
 
 /*1st sub level menu*/
