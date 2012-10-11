@@ -22,13 +22,24 @@ class MembersController extends Controller
 		return array(
 			array(
 				'allow',
-				'actions'=>array('register'),
+				'actions'=>array('register', 'captcha'),
 				'expression'=>'$user->isGuest'
 			),
 			array(
 				'deny',
 				'expression' => '!$user->hasRoles(array("member"))'
 			)
+		);
+	}
+
+	public function actions()
+	{
+		return array(
+			// captcha action renders the CAPTCHA image displayed on the contact page
+			'captcha'=>array(
+				'class'=>'CCaptchaAction',
+				'backColor'=>0xFFFFFF,
+			),
 		);
 	}
 

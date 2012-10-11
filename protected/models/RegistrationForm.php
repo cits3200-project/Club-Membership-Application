@@ -16,6 +16,8 @@ class RegistrationForm extends MembershipChosenForm
 	public $password;
 	public $repeatPassword;
 
+	public $verifyCode;
+
 	public function rules()
 	{
 		return array_merge(
@@ -25,6 +27,18 @@ class RegistrationForm extends MembershipChosenForm
 				array ('password, repeatPassword', 'required'),
 				array ('password, repeatPassword', 'length', 'max' => 40),
 				array ('password', 'compare', 'compareAttribute' => 'repeatPassword'),
+				array ('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
+			)
+		);
+	}
+
+	public function attributeLabels()
+	{
+		return array_merge(
+			//inherit parent's labels
+			parent::attributeLabels(),
+			array(
+				'verifyCode'=>'Verification Code',
 			)
 		);
 	}
