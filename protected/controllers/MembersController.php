@@ -278,9 +278,15 @@ class MembersController extends Controller
 						$role->save();
 					}
 					
+					$membership->emailLoginCredentials($register->password,
+						"Thanks you for signing up to the Swedish Club of WA!\r\n".
+						"You can sign in using the following details:\r\n"
+					);
+
 					$result['message'] = "You have successfully registered with the Swedish Club of WA.<br/>
 										  Your unique username is: <strong>{$membership->membershipId}</strong><br/>
-										  Please save this username somewhere as you will need it to login. You may now login to the site using the above username and the password you chose.";
+										  An email has been sent to the email address you provided with your login details. Please keep a copy of your username as you will need it to login. You may now login to the site using the above username and the password you chose.";
+										  
 										  
 					$result['success'] = true;
 					$result['heading'] = "Success!";
