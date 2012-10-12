@@ -114,8 +114,25 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 		));
 		echo $form->label($model,$property);
 		echo $form->error($model,$property);?>
-	</div><?php
-	}
+		</div>
+<?php } ?>
+
+<?php if (array_key_exists('verifyCode', $model)) { ?>
+	<?php if(CCaptcha::checkRequirements()): ?>
+	<div class="row">
+		<?php echo $form->labelEx($model,'verifyCode'); ?>
+		<div>
+		<?php $this->widget('CCaptcha'); ?>
+		<?php echo $form->textField($model,'verifyCode'); ?>
+		</div>
+		<div class="hint">Please enter the letters as they are shown in the image above.
+		<br/>Letters are not case-sensitive.</div>
+		<?php echo $form->error($model,'verifyCode'); ?>
+	</div>
+	<?php endif; ?>
+<?php } ?>
+
+<?php
 }
 ?>
 

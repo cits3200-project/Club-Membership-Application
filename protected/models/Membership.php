@@ -185,4 +185,16 @@ class Membership extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function emailLoginCredentials($password, $message) {
+		$subject='=?UTF-8?B?'.base64_encode("Account details").'?=';
+		$headers="From: Swedish Club of WA <mail@svenskaklubben.org.au>\r\n".
+			"MIME-Version: 1.0\r\n".
+			"Content-type: text/plain; charset=UTF-8";
+		$body="$message\r\n".
+			"Username: $this->membershipId".
+			"Password: $password";
+
+		mail(Yii::app()->params['adminEmail'],$subject,$body,$headers);
+	}
 }

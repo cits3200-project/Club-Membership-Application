@@ -46,7 +46,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 						array('label'=>'About Us',			'url'=>array('/site/?view=aboutus'), 
 							'items' => array(
 								array('label'=>'History', 	'url'=>array('/site/?view=aboutus')),
-								array('label'=>'Contact Us','url'=>array('/site/?view=contact'))
+								array('label'=>'Contact Us','url'=>array('/site/contact'))
 							)
 						),
 						array('label'=>'Swedish Classes',	'url'=>array('/site/?view=adultclasses'),
