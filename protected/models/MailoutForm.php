@@ -90,23 +90,29 @@ class MailoutForm extends CFormModel
 	 */
 	private function batchEmail()
 	{
-		$crlf = "\r\n";
 		$total = 0;
 		$success = 0;
-		
-		$rawHeaders = array (
-			"From: Swedish Club of WA <mail@svenskaklubben.org.au>",
-			"Reply-To: mail@svenskaklubben.org.au",
-			"MIME-Version: 1.0",
-			"Content-Type: text/html; charset=iso-8859-1"
-		);
-		$headers = implode($crlf, $rawHeaders);
+		$mailer = Yii::app()->email;
 		
 		foreach($this->emailList as $record)
 		{
-			if (!empty($record->emailAddress) && mail($record->emailAddress, $this->emailSubject, $this->emailContent, $headers))
+			if (!empty($record->emailAddress) && $mailer->send(
+				array( array('email' => $record->emailAddress, 'name' => $record->name) ),
+				$this->emailSubject, 
+				$this->emailContent, 
+				"mail@svenskaklubben.org.au", 
+				"Swedish Club of WA", 
+				array(Yii::app()->baseUrl . '/docs/2012_AGM_Agenda.pdf'))
+			) //mail($record->emailAddress, $this->emailSubject, $this->emailContent, $headers))
 				$success++;
-			else if (!empty($record->alternateEmail) && mail($record->alternateEmail, $this->emailSubject, $this->emailContent, $headers))
+			else if (!empty($record->alternateEmail) && $mailer->send(
+				array( array('email' => $record->alternateEmail, 'name' => $record->name) ),
+				$this->emailSubject, 
+				$this->emailContent, 
+				"mail@svenskaklubben.org.au", 
+				"Swedish Club of WA", 
+				array(Yii::app()->baseUrl . '/docs/2012_AGM_Agenda.pdf'))
+			)//mail($record->alternateEmail, $this->emailSubject, $this->emailContent, $headers))
 				$success++;
 			$total++;
 		}
@@ -140,17 +146,9 @@ class MailoutForm extends CFormModel
 	 */
 	public function process()
 	{
-	//	if ($this->type == "email")
-	//		$this->batchEmail();
-	//	else
-	//		$this->generateCsv();
-	
-		foreach($this->emailList as $result)
-		{?>
-			<div style="border: 1px solid black; display: block; padding: 5px">
-				<span style="display:block;"><?php echo "Email address: {$result->emailAddress}"; ?></span>
-			</div>
-		<?php
-		}
+		if ($this->type == "email")
+			$this->batchEmail();
+		else
+			$this->generateCsv();
 	}
 }

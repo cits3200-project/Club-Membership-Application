@@ -27,8 +27,8 @@ $this->breadcrumbs=array(
 		<h3>Important Documents</h3>
 		<ul class="templatemo_list">
 			<li><a href="<?php echo Yii::app()->baseUrl; ?>/docs/2012_AGM_Agenda.pdf" target="_blank">2012 AGM Agenda</a></li>
-			<li><a href="<?php echo Yii::app()->baseUrl; ?>/docs/2012_AGM_Annual_Report.pdf" target="_blank">2012 AGM Annual Report</a></li>
-			<li><a href="<?php echo Yii::app()->baseUrl; ?>/docs/2012_AGM_Projected_Plan.pdf" target="_blank">2012 AGM Projected Plan</a></li>
+			<li><a href="<?php echo Yii::app()->baseUrl; ?>/docs/2012_AGM_Annual_report.pdf" target="_blank">2012 AGM Annual Report</a></li>
+			<li><a href="<?php echo Yii::app()->baseUrl; ?>/docs/2012_AGM_Projected_plan.pdf" target="_blank">2012 AGM Projected Plan</a></li>
 			<li><a href="<?php echo Yii::app()->baseUrl; ?>/docs/AGM_Minutes.pdf" target="_blank">2011 AGM Minutes</a></li>
 		</ul>
 	</div> <!-- end of sidebar -->

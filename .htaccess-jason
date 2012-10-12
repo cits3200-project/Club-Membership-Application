@@ -1,6 +1,6 @@
 RewriteEngine On
 # Change the following to suit your local folder hierarchy.
-RewriteBase /cits3200/Club-Membership-Application/
+RewriteBase /cits3200/club-membership-application/
 
 # Turn SEO-friendly links into Yii-compatible links behind the scenes.
 RewriteCond %{REQUEST_FILENAME} !-f

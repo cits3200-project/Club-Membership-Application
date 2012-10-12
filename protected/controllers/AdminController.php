@@ -41,17 +41,35 @@ class AdminController extends Controller
 		$mailout = new MailoutForm();
 		$search = new SearchForm();
 		
+		$result = array(
+			'complete' => false,
+			'success' => false,
+			'message' => '',
+			'heading' => ''
+		);
+		
 		if(!empty($_POST['MailoutForm']))
 		{
+			$search = Yii::app()->session['mailout-search'];
+			$result['complete'] = true;
 			$mailout->attributes=$_POST['MailoutForm'];
 			$mailout->emailList = $search->runSearch();
 			// validate user input and redirect to the previous page if valid
 			if($mailout->validate())
+			{
 				$mailout->process();
+				$result['success'] = true;
+				if ($mailout->type === 'email')
+				{
+					$result['heading'] = 'Success!';
+					$result['message'] = 'Your email was successfully sent to the chosen recipients!';
+				}
+			}
 			
 			$this->render('mailout', array(
 				'mailout' => $mailout,
-				'search' => $search
+				'search' => $search,
+				'result' => $result
 			));	
 			return;
 		}
@@ -60,9 +78,11 @@ class AdminController extends Controller
 			$search->attributes = $_POST['SearchForm'];
 			if ($search->validate())
 			{
+				Yii::app()->session['mailout-search'] = $search;
 				$this->render('mailout', array(
 					'mailout' => $mailout,
-					'search' => $search
+					'search' => $search,
+					'result' => $result
 				));	
 				return;
 			}

@@ -10,10 +10,10 @@ class ErrorComponent extends CApplicationComponent
 	public $stackTrace;
 	public $traceLevel;
 	
-	public function report($msg, $title="")
+	public function report($msg, $title="", $trace=true)
 	{
 		// most of this code is stolen from Yii's "log" function.	
-		if ($this->traceLevel > 0 && $this->stackTrace)
+		if ($this->traceLevel > 0 && $this->stackTrace && $trace)
 		{
 			$backtrace = debug_backtrace();
 			$level = 0;

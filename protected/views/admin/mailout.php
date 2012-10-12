@@ -3,6 +3,7 @@
 /* @var $mailout MailoutForm */
 /* @var $search SearchForm */
 /* @var $form ExtendedForm */
+/* @var $result array with result info */
 
 $baseUrl = Yii::app()->baseUrl; 
 Yii::app()->clientScript->registerScriptFile($baseUrl.'/ckeditor/ckeditor.js');
@@ -14,6 +15,13 @@ $this->breadcrumbs=array(
 );
 ?>
 <div id="templatemo_main">
+<?php
+if ($result['success'])
+{
+	$this->renderPartial('//shared/_completedmessage', array('result'=>$result));
+}
+else 
+{ ?>
 <div class="form" id="properties">
 
 <?php $form = $this->beginWidget('ExtendedForm', array(
@@ -75,4 +83,6 @@ else
 } ?>
 <?php $this->endWidget(); ?>
 </div>
+<?php 
+}?>
 </div>

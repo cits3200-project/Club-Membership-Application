@@ -83,6 +83,9 @@ return array(
 			'stackTrace'=>true,
 			'traceLevel'=>YII_TRACE_LEVEL
 		),
+		'email'=>array(
+			'class'=>'SimpleMailer'
+		)
 	),
 
 	// application-level parameters that can be accessed

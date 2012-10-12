@@ -20,7 +20,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/ie.css" media="screen, projection" />
 		<![endif]-->
 		
-		<!-- custom CSS styles --->
+		<!-- custom CSS styles -->
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/main.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/form.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/ddsmoothmenu.css" />
@@ -28,6 +28,9 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/slider.css" />
 		
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+		<!--
+		<?php var_dump($_SERVER); ?>
+		-->
 	</head>
 	<body>
 		<div id="page_wrapper">
