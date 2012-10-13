@@ -47,7 +47,18 @@ body {
 #page_footer {
 	margin-top: 20px;
 	border-top: 3px groove gray;
-	padding: 10px 11px
+	padding: 10px 11px;
+	background-color: #bbb;
+	
+	-moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    -khtml-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+#page_footer > div.one_third {
+	padding: 10px;
+	width: 280px;
 }
 
 /* nested content */

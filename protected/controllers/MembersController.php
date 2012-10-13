@@ -124,12 +124,17 @@ class MembersController extends Controller
 			$_POST['MemberEdit'] = array_merge($_POST['MemberEdit'], $_POST['members']);
 		}
 		
+		// if the user submitted the form and deleted all the members, no MemberEdit POST variable will be set, so manually add it.
+		if (isset($_POST['submit']) && !isset($_POST['MemberEdit']))
+			$_POST['MemberEdit'] = array();
+		
 		// process the user input
 		if (isset($_POST['MemberEdit']))
 		{
 			$result['complete'] = true;
 			$result['success'] = true;
 			
+			// build the members array.
 			foreach($_POST['MemberEdit'] as $i=>$data)
 			{
 				$members[$i] = new MemberEdit();
@@ -146,7 +151,7 @@ class MembersController extends Controller
 					$record->attributes = array (
 						'membershipId' => $membership->membershipId,
 						'firstName' => $member->memberName,
-						'dateOfBirth' => $member->birthDate,
+						'dateOfBirth' => implode('-', array_reverse(explode('/', $member->birthDate))),
 						'type' => $member->memberType,
 					);
 					$record->save();
@@ -174,7 +179,7 @@ class MembersController extends Controller
 					'birthDate' => date('d/m/Y', strtotime($record->dateOfBirth)),
 					'memberType' => $record->type
 				);
-		}
+			}
 		}
 		
 		$this->render('editmembers', array(
@@ -278,9 +283,17 @@ class MembersController extends Controller
 						$role->save();
 					}
 					
-					$membership->emailLoginCredentials($register->password,
-						"Thanks you for signing up to the Swedish Club of WA!\r\n".
-						"You can sign in using the following details:\r\n"
+					$email = $this->renderPartial('//shared/registertemplate', array(
+						'username' => $membership->membershipId,
+						'password' => $register->password
+					), true);
+					
+					// send the email to the newly registered member.
+					Yii::app()->email->send(
+						$membership->emailAddress,
+						'Registration at the Swedish Club of WA',
+						$email,
+						'noreply@svenskaklubben.org.au'
 					);
 
 					$result['message'] = "You have successfully registered with the Swedish Club of WA.<br/>

@@ -45,9 +45,11 @@ var SwedishCore = {
 	 * @dependsValue the value of the object upon which the 'targets' will be shown. 
 	 * @speed speed at which to show/hide the targets. This parameter can be any value valid within the jQuery $.show/hide functions (defaults to 0)
 	 */
-    depends : function(targets, dependsOnSelector, dependsValue, speed) {
+    depends : function(targets, dependsOnSelector, dependsValue, speed, negate) {
 		if (typeof(speed) === "undefined")
 			speed = 0;
+		if (typeof(negate) === "undefined")
+			negate = false;
 			
         var dependent = $(dependsOnSelector);
 		
@@ -64,20 +66,20 @@ var SwedishCore = {
 			}
 			
 			dependent.bind(eventName, function(e) {
-				SwedishCore.toggleDependency(targets, $(eventSelector), dependsValue, speed);
+				SwedishCore.toggleDependency(targets, $(eventSelector), dependsValue, speed, negate);
 			});
 			
-			SwedishCore.toggleDependency(targets, $(eventSelector), dependsValue, speed);
+			SwedishCore.toggleDependency(targets, $(eventSelector), dependsValue, speed, negate);
 		}
     },
 	
 	/**
 	 * Toggle a dependency based on the current value of the dependent object
 	 */
-    toggleDependency : function(targets, dependent, value, speed) {
+    toggleDependency : function(targets, dependent, value, speed, negate) {
 		if (dependent.length > 0) {
 			dependent.each(function(i,e) {
-				if (((value instanceof Array) && $.inArray(e.value, value) > -1) || (e.value == value)) {
+				if ((((value instanceof Array) && $.inArray(e.value, value) > -1) || (e.value == value)) != negate) {
 					targets.show(speed);
 					return false; // break from the 'each' to avoid hiding after a value is already found
 				}

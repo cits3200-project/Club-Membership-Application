@@ -14,6 +14,7 @@ class MailoutForm extends CFormModel
 	public $emailContent;
 	public $emailList;
 	public $type = "email";
+	public $attachments;
 	
 	/**
 	 * Declares the validation rules.
@@ -37,7 +38,11 @@ class MailoutForm extends CFormModel
 			array( //validate the emailContent is set if type==email
 				'type',
 				'validateSelection'
-			)
+			),
+			//array(
+			//	'attachments',
+			//	'validateAttachments'
+			//)
 		);
 	}
 	
@@ -54,6 +59,23 @@ class MailoutForm extends CFormModel
 				$this->addError('emailContent', "An email message must be specified for the email");
 			if (empty($this->emailSubject))
 				$this->addError('emailSubject', "A subject must be specified for the email");
+		}
+	}
+	
+	/**
+	 * Custom validator to ensure that all submitted attachments are valid.
+	 * This can include rejecting all extensions not on a specified whitelist, 
+	 * as well as files that are larger than a certain limit, etc.
+	 */
+	public function validateAttachments($attribute, $params)
+	{
+		var_dump($this->$attribute);
+		foreach($this->$attribute as $attach)
+		{
+			if (!empty($attach))
+			{
+				var_dump($attach);
+			}
 		}
 	}
 	
@@ -100,8 +122,7 @@ class MailoutForm extends CFormModel
 				array( array('email' => $record->emailAddress, 'name' => $record->name) ),
 				$this->emailSubject, 
 				$this->emailContent, 
-				"mail@svenskaklubben.org.au", 
-				"Swedish Club of WA", 
+				array('email'=>'mail@svenskaklubben.org.au', 'name'=>'Swedish Club of WA'), 
 				array(Yii::app()->baseUrl . '/docs/2012_AGM_Agenda.pdf'))
 			) //mail($record->emailAddress, $this->emailSubject, $this->emailContent, $headers))
 				$success++;

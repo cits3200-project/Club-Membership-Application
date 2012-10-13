@@ -19,7 +19,7 @@ class MemberEdit extends CFormModel
 		return array (
 			array ('memberName, birthDate, memberType', 'required'),
 			array ('memberType', 'in', 'range' => array_keys(Member::getMemberTypes())),
-			array ('birthDate', 'date', 'format' => 'dd/MM/yyyy'),
+			array ('birthDate', 'date', 'format' => 'dd/MM/yyyy', 'message' => 'Invalid date format, date must be in the format \'dd/mm/yyyy\''),
 			array ('memberName', 'length', 'max' => 100)
 		);
 	}
@@ -28,18 +28,8 @@ class MemberEdit extends CFormModel
 	{
 		return array (
 			'memberName' => 'Name',
-			'birthDate' => 'Date of birth',
+			'birthDate' => 'Date of birth (dd/mm/yyyy)',
 			'memberType' => 'Gender'
-		);
-	}
-
-	public function getToggleProperties()
-	{
-		return array(
-			'receiveGeneralNews',
-			'receiveAdminEmail',
-			'receiveExpiryNotice',
-			'receiveEventInvites',			
 		);
 	}
 }

@@ -85,7 +85,7 @@ foreach($members as $i=>$member)
 		<?php echo CHtml::button('add member', array( 'id' => 'addMoreButton' )); ?>
 	</div>
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('save members'); ?>
+		<?php echo CHtml::submitButton('save members', array('name'=>'submit')); ?>
 	</div>
 	<?php $this->endWidget(); ?>
 </div>

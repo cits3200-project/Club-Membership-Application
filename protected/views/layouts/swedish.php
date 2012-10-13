@@ -28,9 +28,6 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 		<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/slider.css" />
 		
 		<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-		<!--
-		<?php var_dump($_SERVER); ?>
-		-->
 	</head>
 	<body>
 		<div id="page_wrapper">
@@ -104,7 +101,11 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 					<script type="text/javascript" language="javascript" src="<?php echo (!empty($_SERVER['HTTPS']) ? 'https://ssl.microsofttranslator.com' : 'http://www.microsofttranslator.com') . '/ajax/v2/widget.aspx?mode=manual&from=en&layout=ts'; ?>"></script> 				
 				</div>
 				<div class="col one_third">
-					<h4>Something</h4>
+					<h4>Copyright</h4>
+					<p>
+						This website and its content is copyright of Swedish Club of WA &copy; 2012. All rights reserved. <br/>
+						If you have any further questions, please contact the site administrator: Peter Thönell (Mobile: 0405 658 750).
+					</p>
 				</div>
 				<div class="col one_third">
 					<h4>Follow Us</h4>
@@ -116,8 +117,8 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 						<a href="http://users3.smartgb.com/g/g.php?a=s&i=g34-04058-76" title="Swedish Club of WA on Klotterplank" target="_blank"><img src="<?php echo Yii::app()->baseUrl; ?>/images/klotterplank.jpg" title="Klotterplank" alt="Klotterplank" /></a>
 					</div>				
 				</div>
+				<div class="cleaner"></div>
 			</div>
-			<div class="cleaner"></div>
 		</div>
 	</body>
 </html>

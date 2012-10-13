@@ -54,6 +54,7 @@ class Member extends CActiveRecord
 			array('firstName', 'length', 'max'=>30),
 			array('type', 'length', 'max'=>2),
 			array('membershipId', 'length', 'max'=>128),
+			array('dateOfBirth', 'date', 'format' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('memberId, firstName, dateOfBirth, type, membershipId', 'safe', 'on'=>'search'),

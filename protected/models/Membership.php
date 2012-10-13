@@ -26,7 +26,7 @@
  */
 class Membership extends CActiveRecord
 {
-	const MEMBERSHIP_FORMAT = "XXXXXX-XXXX-XXXX-XXXX";
+	const MEMBERSHIP_FORMAT = "xxxxxxxx";
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -184,17 +184,5 @@ class Membership extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-
-	public function emailLoginCredentials($password, $message) {
-		$subject='=?UTF-8?B?'.base64_encode("Account details").'?=';
-		$headers="From: Swedish Club of WA <mail@svenskaklubben.org.au>\r\n".
-			"MIME-Version: 1.0\r\n".
-			"Content-type: text/plain; charset=UTF-8";
-		$body="$message\r\n".
-			"Username: $this->membershipId".
-			"Password: $password";
-
-		mail(Yii::app()->params['adminEmail'],$subject,$body,$headers);
 	}
 }

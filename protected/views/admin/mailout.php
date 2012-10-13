@@ -14,6 +14,7 @@ $this->breadcrumbs=array(
 	'Mailout',
 );
 ?>
+
 <div id="templatemo_main">
 <?php
 if ($result['success'])
@@ -22,11 +23,21 @@ if ($result['success'])
 }
 else 
 { ?>
+<script type="text/javascript" language="Javascript">
+	$(document).ready(function() {
+		var counter = 0;
+		$('#addAttachments').click(function() {
+			SwedishCore.addMoreFields("<?php echo Yii::app()->baseUrl; ?>/ajax/html?f=attachment", $(this), counter++);
+		});
+	});
+</script>
+
 <div class="form" id="properties">
 
 <?php $form = $this->beginWidget('ExtendedForm', array(
 	'id'=>'mailout-form',
-	'enableAjaxValidation'=>false,
+	'htmlOptions' => array('enctype' => 'multipart/form-data'),
+	'enableAjaxValidation'=>false
 )); ?>
 
 	<div class="toggle-options">
@@ -43,9 +54,19 @@ else
 		<div class="row buttons"><?php echo CHtml::submitButton("Generate CSV"); ?></div>
 	</div>
 	<div id="emailOption">
-		<?php echo $form->labelEx($mailout, "emailSubject"); ?>
-		<?php echo $form->textField($mailout, "emailSubject", array("size" => 60)); ?>
+		<?php echo $form->labelEx($mailout, 'emailSubject'); ?>
+		<?php echo $form->textField($mailout, 'emailSubject', array("size" => 60)); ?>
 		<?php echo $form->textArea($mailout, 'emailContent', array("class" => "ckeditor")); ?>
+		
+		<?php 
+			$this->widget('CMultiFileUpload', array(
+				'model' => $mailout,
+				'attribute' => 'attachments',
+				'accept' => 'jpg|gif|png|bmp|jpeg|tiff|pdf|doc|docx|xls|xlsx|csv|txt',
+				'remove' => 'remove'
+			));
+		?>
+		
 		<div class="row buttons"><?php echo CHtml::submitButton("Send emails"); ?></div>
 	</div>
 	
