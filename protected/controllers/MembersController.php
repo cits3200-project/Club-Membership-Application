@@ -22,7 +22,7 @@ class MembersController extends Controller
 		return array(
 			array(
 				'allow',
-				'actions'=>array('register', 'captcha'),
+				'actions'=>array('register', 'captcha', 'forgotpassword'),
 				'expression'=>'$user->isGuest'
 			),
 			array(
@@ -323,6 +323,71 @@ class MembersController extends Controller
 		$this->render('register',array(
 			'model'=>$register,
 			'result'=>$result
+		));
+	}
+	
+	/*
+	 * Action to handle users resetting their passwords.
+	 */
+	public function actionForgotPassword()
+	{
+		$result = array(
+			'complete' => false,
+			'success' => false,
+			'message' => '',
+			'heading' => ''
+		);
+		
+		// check if the search has been submitted.
+		if (isset($_GET['q']))
+		{
+			$result['complete'] = true;
+			
+			$query = strtolower($_GET['q']);
+			$member = Membership::model()->find('LOWER(membershipId)=? OR LOWER(emailAddress)=?', array($query,$query));
+			
+			if ($member && ($user = User::model()->find('LOWER(username) = LOWER(?)', array($member->membershipId)))) // successfully looked up the membership
+			{
+				$password = substr(hash('sha256', microtime()), 0, rand(5, 7)); // simple password generation. Take 5-7 characters from a SHA256 hash of the current microtime.
+				$email = $this->renderPartial('//shared/forgotpasswordtemplate', array(
+					'password' => $password,
+					'membershipId' => $member->membershipId
+				), true);
+				
+				// attempt to send the email to the primary email address, then to the secondary email address if that one fails.
+				if (Yii::app()->email->send(
+					$member->emailAddress,
+					'Password Reset',
+					$email,
+					'noreply@svenskaklubben.org.au'
+				) || Yii::app()->email->send(
+					$member->alternateEmail,
+					'Password Reset',
+					$email,
+					'noreply@svenskaklubben.org.au'
+				))	
+				{
+					// update the user password to the one sent in the email.
+					$user->password = User::hashPassword($password);
+					$user->save();
+					$result['success'] = true;
+					$result['heading'] = 'Password reset';
+					$result['message'] = 'Your password has been successfully reset, please check your email inbox to find your new password.';
+				}
+				else
+				{
+					$result['heading'] = 'Unexpected error';
+					$result['message'] = 'There was an unexpected error when sending out your new password, please try again.';
+				}
+			}
+			else
+			{
+				$result['heading'] = 'No results';
+				$result['message'] = 'Unfortunately, there don\'t appear to be any memberships in the database that match your search query. Please double-check the value you entered and try again.';
+			}
+		}
+		$this->render('forgotpassword', array(
+			'result' => $result
 		));
 	}
 

@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 );
 ?>
 <div id="templatemo_main">
-	<h1>Login</h1>
+	<h2>Login</h2>
 
 	<p>Please fill out the following form with your login credentials:</p>
 
@@ -32,6 +32,10 @@ $this->breadcrumbs=array(
 			<?php echo $form->labelEx($model,'password'); ?>
 			<?php echo $form->passwordField($model,'password'); ?>
 			<?php echo $form->error($model,'password'); ?>
+		</div>
+		
+		<div class="row">
+			<?php echo CHtml::link('forgot your password?', Yii::app()->baseUrl . '/members/forgotpassword'); ?>
 		</div>
 
 		<div class="row rememberMe">

@@ -17,7 +17,7 @@ class SimpleMailer extends CApplicationComponent
 	 * @param $recipients an array of recipients to this email. Each array entry should be either an email address, or a key-value pair of email=>value and name=>value
 	 * @param $subject Email subject string
 	 * @param $body Email body string
-	 * @param $from mixed, can either be a single email address or an associate array specifying both email and name keys i.e array('email'=>'admin@example.com','name'=>'Example')
+	 * @param $from mixed, can either be a single email address or an associative array specifying both email and name keys i.e array('email'=>'admin@example.com','name'=>'Example')
 	 * @param $attachments An array of file-paths to files that should be attached to the email
 	 */
 	public function send($recipients, $subject, $body, $from, $attachments=array())
