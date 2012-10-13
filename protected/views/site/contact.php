@@ -1,21 +1,6 @@
 <div id="templatemo_main">
 	
    <h2>Contact Information</h2>
-		<p>This is from the original website:</p>
-		<p>
-		Facebook: <a href="http://www.facebook.com/groups/169714974189/">http://www.facebook.com/groups/169714974189/</a> <br>
-			<br>
-			Membership questions: <a href="mailto:treasurer@svenskaklubben.org.au">treasurer@svenskaklubben.org.au</a> <br>
-			<br>
-			Questions about the club: <a href="mailto:info@svenskaklubben.org.au">info@svenskaklubben.org.au</a> <br>
-			<br>
-			Web site administrator: <a href="mailto:web@svenskaklubben.org.au">web@svenskaklubben.org.au</a> <br>
-			<br>
-			Svenska Posten (mailout): <a href="mailto:redaktor@svenskaklubben.org.au">redaktor@svenskaklubben.org.au</a> <br>
-			<br>
-			Mobile phone (Peter Thönell): 0405 658 750  <br>
-		</p>
-		<hr />
 	<div class="half float_l">
 		<h4>Send us a message</h4>
 		<!--<div id="contact_form">-->
@@ -87,26 +72,32 @@
 	</div>
 	<div class="half float_r">
 		<h4>Contact Information</h4>
-		<h5>Peter Th�nell</h5>						
-		Phone: 0405 658 750<br />
-					
+		<h5>Facebook</h5>
+		<a href="http://www.facebook.com/groups/169714974189/">http://www.facebook.com/groups/169714974189/</a><br/>
 		<div class="cleaner h40"></div>
-		
-		<h5>Website Administrator</h5>
-					
-		Email: <a href="mailto:web@svenskaklubben.org.au">web@svenskaklubben.org.au</a><br/>
-	
-		<div class="cleaner h40"></div>
-		
-		<h5>Svenska Posten</h5>
-					
-		Email: <a href="mailto:redaktor@svenskaklubben.org.au"> redaktor@svenskaklubben.org.au</a><br/>
 
+		<h5>Membership questions</h5>
+		Email: <a href="mailto:treasurer@svenskaklubben.org.au">treasurer@svenskaklubben.org.au</a><br/>
+		<div class="cleaner h40"></div>
+
+		<h5>Questions about the club</h5>
+		Email: <a href="mailto:info@svenskaklubben.org.au">info@svenskaklubben.org.au</a><br/>
+		<div class="cleaner h40"></div>
+
+		<h5>Web site administrator</h5>
+		Email: <a href="mailto:web@svenskaklubben.org.au">web@svenskaklubben.org.au</a><br/>
+		<div class="cleaner h40"></div>
+
+		<h5>Svenska Posten (mailout)</h5>
+		Email: <a href="mailto:redaktor@svenskaklubben.org.au">redaktor@svenskaklubben.org.au</a><br/>
+		<div class="cleaner h40"></div>
+
+		<h5>Mobile phone (Peter Thönell)</h5>
+		Phone: 0405 658 750 <br/>
+		<div class="cleaner h40"></div>
 	</div>
 	
 	<div class="cleaner h40"></div>
-	
-	<iframe width="940" height="320" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Central+Park,+New+York,+NY,+USA&amp;aq=0&amp;sll=14.093957,1.318359&amp;sspn=69.699334,135.263672&amp;vpsrc=6&amp;ie=UTF8&amp;hq=Central+Park,+New+York,+NY,+USA&amp;ll=40.778265,-73.96988&amp;spn=0.033797,0.06403&amp;t=m&amp;output=embed"></iframe>
 
 	<div class="cleaner"></div>
 
