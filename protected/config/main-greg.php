@@ -19,14 +19,14 @@ return array(
 	),
 
 	'modules'=>array(
-		// uncomment the following to enable the Gii tool
+		/* uncomment the following to enable the Gii tool
 
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'Xyz',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			//'ipFilters'=>array('127.0.0.1','::1'),
-		),
+		),*/
 	),
 
 	// application components
@@ -83,12 +83,16 @@ return array(
 			'stackTrace'=>true,
 			'traceLevel'=>YII_TRACE_LEVEL
 		),
+		'email'=>array(
+			'class'=>'SimpleMailer'
+		)
 	),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'debugEmail'=>'20924425@student.uwa.edu.au'
+		'debugEmail'=>'20924425@student.uwa.edu.au',
+		'tempDirectory'=>Yii::getPathOfAlias('webroot') . '/protected/tmp/'
 	),
 );
