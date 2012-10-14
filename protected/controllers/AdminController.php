@@ -31,9 +31,7 @@ class AdminController extends Controller
 	
 	public function actionIndex()
 	{
-		$this->render('index', array(
-			//'model' => $model
-		));
+		return $this->actionSearch();
 	}
 
 	public function actionMailout()
@@ -54,15 +52,35 @@ class AdminController extends Controller
 			$result['complete'] = true;
 			$mailout->attributes=$_POST['MailoutForm'];
 			$mailout->emailList = $search->runSearch();
+			
+			// extract the attachments (if any)
+			$mailout->attachments=array();
+			$uploads = CUploadedFile::getInstancesByName('attachments');
+			
+			if (!empty($uploads))
+				foreach($uploads as $file)
+					if($file->saveAs(Yii::app()->params['tempDirectory'] . $file->name))
+						$mailout->attachments[] = Yii::app()->params['tempDirectory'] . $file->name;
+
 			// validate user input and redirect to the previous page if valid
 			if($mailout->validate())
 			{
-				$mailout->process();
 				$result['success'] = true;
 				if ($mailout->type === 'email')
 				{
+					$admin = Membership::model()->find('LOWER(membershipId)=LOWER(?)', array(Yii::app()->user->name));
+					$sender = array (
+						'email' => $admin ? $admin->emailAddress : 'noreply@svenskaklubben.org.au',
+						'name' => $admin ? $admin->name : 'noreply@svenskaklubben.org.au'
+					);
+					$sent = $mailout->batchEmail($sender);
+					
 					$result['heading'] = 'Success!';
-					$result['message'] = 'Your email was successfully sent to the chosen recipients!';
+					$result['message'] = "Your email was successfully sent to {$sent['count']} out of {$sent['total']} selected members.";
+				}
+				else
+				{
+					$mailout->generateCsv();
 				}
 			}
 			

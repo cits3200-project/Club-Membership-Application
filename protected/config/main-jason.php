@@ -92,6 +92,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'debugEmail'=>'20924425@student.uwa.edu.au'
+		'debugEmail'=>'20924425@student.uwa.edu.au',
+		'tempDirectory'=>Yii::getPathOfAlias('webroot') . '/protected/tmp/'
 	),
 );

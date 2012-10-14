@@ -60,9 +60,8 @@ else
 		
 		<?php 
 			$this->widget('CMultiFileUpload', array(
-				'model' => $mailout,
-				'attribute' => 'attachments',
-				'accept' => 'jpg|gif|png|bmp|jpeg|tiff|pdf|doc|docx|xls|xlsx|csv|txt',
+				'name' => 'attachments',
+				'accept' => $mailout->getValidExtensions(),
 				'remove' => 'remove'
 			));
 		?>

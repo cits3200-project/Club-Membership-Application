@@ -69,14 +69,20 @@ class MailoutForm extends CFormModel
 	 */
 	public function validateAttachments($attribute, $params)
 	{
-		var_dump($this->$attribute);
+		$validExtensions = explode('|', self::getValidExtensions());
 		foreach($this->$attribute as $attach)
 		{
-			if (!empty($attach))
+			if (($dot = strrpos($attach, '.')) !== FALSE)
 			{
-				var_dump($attach);
+				$extension = strtolower(substr($attach, $dot + 1));
+				if (!in_array($extension, $validExtensions))
+				{
+					$this->addError('attachments', 'Some of the attached files had invalid file extensions. Please only upload valid files');
+					return false;
+				}
 			}
 		}
+		return true;
 	}
 	
 	public function validate($attributes=NULL, $clearErrors=true)
@@ -91,6 +97,11 @@ class MailoutForm extends CFormModel
 			}
 		}
 		return $parentValid;
+	}
+	
+	public static function getValidExtensions()
+	{
+		return 'jpg|gif|png|bmp|jpeg|tiff|pdf|doc|docx|xls|xlsx|csv|txt';
 	}
 
 	/**
@@ -108,9 +119,9 @@ class MailoutForm extends CFormModel
 	}
 	
 	/**
-	 * send out a batch email. Consider abstracting this to a static Email class for reuse.
+	 * send out a batch email.
 	 */
-	private function batchEmail()
+	public function batchEmail($sender)
 	{
 		$total = 0;
 		$success = 0;
@@ -122,32 +133,35 @@ class MailoutForm extends CFormModel
 				array( array('email' => $record->emailAddress, 'name' => $record->name) ),
 				$this->emailSubject, 
 				$this->emailContent, 
-				array('email'=>'mail@svenskaklubben.org.au', 'name'=>'Swedish Club of WA'), 
-				array(Yii::app()->baseUrl . '/docs/2012_AGM_Agenda.pdf'))
-			) //mail($record->emailAddress, $this->emailSubject, $this->emailContent, $headers))
+				$sender,
+				$this->attachments
+			))
 				$success++;
 			else if (!empty($record->alternateEmail) && $mailer->send(
 				array( array('email' => $record->alternateEmail, 'name' => $record->name) ),
 				$this->emailSubject, 
 				$this->emailContent, 
-				"mail@svenskaklubben.org.au", 
-				"Swedish Club of WA", 
-				array(Yii::app()->baseUrl . '/docs/2012_AGM_Agenda.pdf'))
-			)//mail($record->alternateEmail, $this->emailSubject, $this->emailContent, $headers))
+				$sender,
+				$this->attachments
+			))
 				$success++;
 			$total++;
 		}
+		return array (
+			'count' => $success,
+			'total' => $total
+		);
 	}
 	
-	private function generateCsv()
+	public function generateCsv()
 	{
 		$doc = new CsvDocument(array("Member Name","Email Address","Alternate Email"));
 		foreach($this->emailList as $record)
 		{
 			$doc->addRow(array(
 				$record->name,
-				$record->emailAddress,  //(!empty($record->emailAddress) ? "=HYPERLINK(\"mailto:{$record->emailAddress}\")" : ""),
-				$record->alternateEmail //(!empty($record->alternateEmail) ? "=HYPERLINK(\"mailto:{$record->alternateEmail}\")" : ""),
+				$record->emailAddress,  
+				$record->alternateEmail
 			));
 		}
 	
@@ -159,17 +173,5 @@ class MailoutForm extends CFormModel
 
 		echo $doc->getDocument();
 		exit; //premature exit so the templates aren't appended to the document
-	}
-	
-	/**
-	 * Processes the current model.
-	 *
-	 */
-	public function process()
-	{
-		if ($this->type == "email")
-			$this->batchEmail();
-		else
-			$this->generateCsv();
 	}
 }
