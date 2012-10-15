@@ -12,16 +12,16 @@
 class RegistrationForm extends MembershipChosenForm
 {
 
-	// user properties.
 	public $password;
 	public $repeatPassword;
 
+	// matched against the captcha code
 	public $verifyCode;
 
 	public function rules()
 	{
 		return array_merge(
-			//inherit parent's rules
+			//inherit parent class's rules
 			parent::rules(),
 			array (
 				array ('password, repeatPassword', 'required'),
@@ -35,7 +35,7 @@ class RegistrationForm extends MembershipChosenForm
 	public function attributeLabels()
 	{
 		return array_merge(
-			//inherit parent's labels
+			//inherit parent class's labels
 			parent::attributeLabels(),
 			array(
 				'verifyCode'=>'Verification Code',
