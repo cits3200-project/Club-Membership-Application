@@ -285,7 +285,6 @@ class MembersController extends Controller
 					
 					$email = $this->renderPartial('//shared/registertemplate', array(
 						'username' => $membership->membershipId,
-						'password' => $register->password
 					), true);
 					
 					// send the email to the newly registered member.
