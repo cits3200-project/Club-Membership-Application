@@ -56,7 +56,10 @@ else
 	<div id="emailOption">
 		<?php echo $form->labelEx($mailout, 'emailSubject'); ?>
 		<?php echo $form->textField($mailout, 'emailSubject', array("size" => 60)); ?>
+		<?php echo $form->error($mailout, 'emailSubject'); ?>
+		
 		<?php echo $form->textArea($mailout, 'emailContent', array("class" => "ckeditor")); ?>
+		<?php echo $form->error($mailout, 'emailContent'); ?>
 		
 		<?php 
 			$this->widget('CMultiFileUpload', array(

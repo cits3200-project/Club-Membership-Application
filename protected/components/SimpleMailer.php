@@ -40,7 +40,6 @@ class SimpleMailer extends CApplicationComponent
 		{
 			$email = is_array($to) && !empty($to['email']) ? $to['email'] : $to;
 			$name = is_array($to) && !empty($to['name']) ? $to['name'] : $email;
-			echo "<!--\n\tEmail: {$email}\n\tName: {$name}\n-->";
 			$_client->AddAddress($email, $name);
 		}
 	

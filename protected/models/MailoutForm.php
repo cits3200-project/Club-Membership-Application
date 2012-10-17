@@ -39,10 +39,10 @@ class MailoutForm extends CFormModel
 				'type',
 				'validateSelection'
 			),
-			//array(
-			//	'attachments',
-			//	'validateAttachments'
-			//)
+			array(
+				'attachments',
+				'validateAttachments'
+			)
 		);
 	}
 	
@@ -119,7 +119,11 @@ class MailoutForm extends CFormModel
 	}
 	
 	/**
-	 * send out a batch email.
+	 * Send out a batch email to the current mailing list.
+	 * If an email fails to send to a membership's primary email address,
+	 * their alternate email address is used before declaring the email a failure.
+	 * @param $sender The 'reply-to' field of the email. This can either be a string (email address) or an associative array with an email->value, name->value key pair. For more information on this parameter, see the SimpleMailer component.
+	 * @return an associative array with 'count' and 'total' fields, detailing the number of successful emails and the total emails attempted, respectively.
 	 */
 	public function batchEmail($sender)
 	{
@@ -130,7 +134,7 @@ class MailoutForm extends CFormModel
 		foreach($this->emailList as $record)
 		{
 			if (!empty($record->emailAddress) && $mailer->send(
-				array( array('email' => $record->emailAddress, 'name' => $record->name) ),
+				$record->emailAddress,
 				$this->emailSubject, 
 				$this->emailContent, 
 				$sender,
@@ -138,7 +142,7 @@ class MailoutForm extends CFormModel
 			))
 				$success++;
 			else if (!empty($record->alternateEmail) && $mailer->send(
-				array( array('email' => $record->alternateEmail, 'name' => $record->name) ),
+				$record->alternateEmail,
 				$this->emailSubject, 
 				$this->emailContent, 
 				$sender,
@@ -153,6 +157,12 @@ class MailoutForm extends CFormModel
 		);
 	}
 	
+	/**
+	 * void generateCsv
+	 * Generates a CSV file based on the current mailing list.
+	 * The generated CSV file will contain membership names, primary and alternate email address.
+	 * The CSV is immediately fed to the browser for downloading by altering the response headers.
+	 */
 	public function generateCsv()
 	{
 		$doc = new CsvDocument(array("Member Name","Email Address","Alternate Email"));
