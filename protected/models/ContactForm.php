@@ -7,14 +7,19 @@
  */
 class ContactForm extends CFormModel
 {
+	// used in the headers of the email
 	public $name;
 	public $email;
 	public $subject;
+	// body text of the email
 	public $body;
+	// matched against the captcha code
 	public $verifyCode;
 
 	/**
 	 * Declares the validation rules.
+	 * The rules define the compulsory fields, checks the email addres format,
+	 * and verifies the captcha code.
 	 */
 	public function rules()
 	{

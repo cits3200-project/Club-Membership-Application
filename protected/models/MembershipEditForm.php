@@ -5,6 +5,6 @@
  */
 class MembershipEditForm extends MembershipChosenForm
 {
-	//Nothing additional required for edit form
+	//Nothing additional to the MembershipChosenForm required for edit form
 }
 ?>

@@ -3,7 +3,8 @@
 /**
  * MembershipForm
  * Base class for forms that update the Membership model,
- * with field editable ("chosen") by the owner of the membership.
+ * All fields in this class are editable ("chosen") by the owner of the
+ * membership, but not neccessarily the admin.
  */
 class MembershipChosenForm extends MembershipForm
 {
@@ -14,6 +15,12 @@ class MembershipChosenForm extends MembershipForm
 	public $receiveExpiryNotice;
 	public $receiveEventInvites;
 
+	/**
+	 * Declares the validation rules.
+	 * Any rules from the parent form class are inherited.
+	 * The rules state that any "Toggle properites" (yes/no) must be a 'Y' or
+	 * an 'N'.
+	 */
 	public function rules()
 	{
 		return array_merge(
@@ -25,6 +32,9 @@ class MembershipChosenForm extends MembershipForm
 		);
 	}
 
+	/**
+	 * Declares attribute labels.
+	 */
 	public function attributeLabels()
 	{
 		return array_merge(
@@ -39,6 +49,10 @@ class MembershipChosenForm extends MembershipForm
 		);
 	}
 
+	/**
+	 * Defines which properties are "toggle properties".
+	 * Toggle properites must be 'Y' (yes) or 'N' (no).
+	 */
 	public function getToggleProperties()
 	{
 		return array(

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * MembersController
+ * This controller governs all of the explicit member functionality.
+ */
 class MembersController extends Controller
 {
 	/**
@@ -22,9 +26,12 @@ class MembersController extends Controller
 		return array(
 			array(
 				'allow',
+				// allow guests to register (includes captcha),
+				// and request password change
 				'actions'=>array('register', 'captcha', 'forgotpassword'),
 				'expression'=>'$user->isGuest'
 			),
+			// by default, deny any non-member (i.e. would be a guest)
 			array(
 				'deny',
 				'expression' => '!$user->hasRoles(array("member"))'
@@ -32,10 +39,13 @@ class MembersController extends Controller
 		);
 	}
 
+	/**
+	 * External action classes.
+	 */
 	public function actions()
 	{
 		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
+			// captcha action renders the CAPTCHA image displayed on the register page
 			'captcha'=>array(
 				'class'=>'CCaptchaAction',
 				'backColor'=>0xFFFFFF,
@@ -45,6 +55,7 @@ class MembersController extends Controller
 
 	public function actionIndex()
 	{
+		// redirect to the edit details action
 		$this->actionEdit();
 	}
 
@@ -53,11 +64,14 @@ class MembersController extends Controller
 	 */
 	public function actionEdit()
 	{
+		// defines the layout view used
 		$this->layout = '//layouts/column2';
 
 		$edit = new MembershipEditForm();
+		// get current membership name
 		$membership = Membership::model()->find("LOWER(membershipId)=LOWER(?)",array(Yii::app()->user->name));
 
+		// used in the confirmation message
 		$result = array(
 			'complete' => false,
 			'success' => false,
@@ -65,14 +79,16 @@ class MembersController extends Controller
 			'heading' => ''
 		);
 
+		// if the form has been submitted
 		if(isset($_POST['MembershipEditForm']))
 		{
 			$edit->attributes = $_POST['MembershipEditForm'];
 			if ($edit->validate())
 			{
-				$result['complete'] = true;
+				$result['complete'] = true; // successfully validated, but errors may still occur.
+				// copy form details into the actual membership
 				$membership->attributes = $edit->attributes;
-				
+				// commit the changes
 				if ($membership->save())
 				{
 					$result['success'] = true;
@@ -89,7 +105,7 @@ class MembersController extends Controller
 				}
 			}
 		} 
-		else //preload data
+		else //prefill data
 		{ 
 			$edit->attributes = $membership->attributes;
 		}
@@ -227,6 +243,7 @@ class MembersController extends Controller
 			}
 		}
 
+		//render the changepassword view
 		$this->render('changepassword',array(
 			'model'=>$form,
 			'result'=>$result,
@@ -248,6 +265,7 @@ class MembersController extends Controller
 			'heading' => ''
 		);
 
+		// if form was submitted
 		if(isset($_POST['RegistrationForm']))
 		{
 			$register->attributes = $_POST['RegistrationForm'];
@@ -259,6 +277,7 @@ class MembersController extends Controller
 				$user = new User();
 				$role = new UserToRoles();
 				
+				//copy form details into the new membership, and initialise values
 				$membership->attributes = array_merge(array(
 					'membershipId' => Membership::generateUUID(),
 					'expiryDate' => '1920-01-01', // not yet registered. 
@@ -266,13 +285,16 @@ class MembersController extends Controller
 					'status' => 'pending',
 				), $register->attributes);
 
+				//copy user details
 				$user->attributes = array (
 					'username' => $membership->membershipId,
 					'password' => User::hashPassword($register->password)
 				);
 
+				//commit the new membership & user
 				if ($membership->save() && $user->save())
 				{
+					// add 'member' to user roles
 					$memberRole = UserRole::model()->find('LOWER(role)=?', array('member'));
 					if ($memberRole !== NULL && !$user->isNewRecord)
 					{
@@ -285,7 +307,6 @@ class MembersController extends Controller
 					
 					$email = $this->renderPartial('//shared/registertemplate', array(
 						'username' => $membership->membershipId,
-						'password' => $register->password
 					), true);
 					
 					// send the email to the newly registered member.
@@ -389,18 +410,5 @@ class MembersController extends Controller
 		$this->render('forgotpassword', array(
 			'result' => $result
 		));
-	}
-
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer the ID of the model to be loaded
-	 */
-	public function loadModel($id)
-	{
-		$model=Membership::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
 	}
 }
