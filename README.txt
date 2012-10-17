@@ -24,7 +24,7 @@ ckeditor/ - files for the WYSIWYG text editor component
 css/ - style sheets
 docs/ - linked-to documents for download from the website
 documentation/ - project documentation
-.htaccess - Webserver configuration
+.htaccess - web server configuration
 images/ - images displayed in the website
 index.php - home page
 protected/ - this is the application base directory holding all security-sensitive PHP scripts and data files
@@ -34,7 +34,7 @@ protected/:
 	components/ - components of the website
 	config/ - Yii configuration
 	controllers/ - all controller class files
-	data/ - SQL scripts for initial setup of the Database
+	data/ - SQL scripts for initial setup of the database
 	models/ - all model class files
 	runtime/ - this directory holds private temporary files generated during runtime of the application
 	views/ - this directory holds all view files, including controller views, layout views and system views
