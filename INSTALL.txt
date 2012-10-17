@@ -1,0 +1,13 @@
+Installation instructions for the Swedish Club of WA Membership Application
+===========================================================================
+
+* Install the application into the desired directory of the web server.  * Ensure all files are readable by the server processes.
+* Ensure assets/ and protected/runtime/ exist and are writable by the web
+  server process.
+* Edit .htaccess and ensure the line beginning "RewriteBase" is the path of the application, relative to you apache server root.
+* Setup the database:
+  * Create a new database with the name of your choice.
+  * Having selected this database, run the SQL scripts schema.sql and then setup.sql from protected/data/ . These scripts will respectively create the necessary tables, and create an administrative user "admin" with password "admin1209".
+  * Edit protected/config/main.php and find the line "'db'=>array(". In the section within parantheses, edit "dbname=*", 'username' => '*', and 'password' => '*' to reflect your new database and user.
+
+The application should now be functional if you point a browser to the appropriate URL.
