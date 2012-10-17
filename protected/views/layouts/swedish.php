@@ -77,15 +77,17 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/core.
 					),
 				)); ?>
 			</div>
-			<?php 
-			if(isset($this->breadcrumbs)) 
-			{ 
-				$this->widget('zii.widgets.CBreadcrumbs', array(
-					'links'=>$this->breadcrumbs,
-				)); 
-			}?><!-- breadcrumbs -->
 			<div id="page_content">
+				<?php 
+				if(isset($this->breadcrumbs)) 
+				{ 
+					$this->widget('zii.widgets.CBreadcrumbs', array(
+						'links'=>$this->breadcrumbs,
+					)); 
+				}?><!-- breadcrumbs -->
+			
 				<?php echo $content; ?>
+				<div class="cleaner"></div>
 			</div>
 			<div class="cleaner"></div>
 			<div id="page_footer">
