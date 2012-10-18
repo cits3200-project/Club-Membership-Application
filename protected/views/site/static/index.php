@@ -5,10 +5,10 @@ $this->breadcrumbs=array(
 );
 ?>
 <div id="templatemo_slider">
-	<div id="lofslidecontent45" class="lof-slidecontent" style="width:940px; height:340px;">
+	<div id="lofslidecontent45" class="lof-slidecontent" style="width:940px; height:245px;">
 		<div class="preload"><div></div></div>
 		<!-- MAIN CONTENT --> 
-		<div class="lof-main-outer" style="width:940px; height:340px;">
+		<div class="lof-main-outer" style="width:940px; height:245px;">
 			<ul class="lof-main-wapper">
 				<li>
 					<img src="<?php echo Yii::app()->baseUrl; ?>/images/slider/thumbl_980x340.png" title="Welcome" alt="Slider 01" />           
@@ -104,7 +104,4 @@ $this->breadcrumbs=array(
 			<div onclick="return false" class="lof-previous">Next</div>
 		</div> 
 	</div> 
-</div>
-<div id="templatemo_main">
-	aksjdhgkahsdahskdhaskdhashdkjahdk
 </div>

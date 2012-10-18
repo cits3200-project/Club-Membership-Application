@@ -9,11 +9,13 @@
 /**
  * The AppUser class is the session-based web user component for the application.
  * It extends the functionality of the Yii "CWebUser" to allow for a role-based 
- * application user. 
+ * application user. Each role is stored as an array key in the component's "roles"
+ * state. Each key is associated with a boolean true/false value (in this component
+ * the boolean is never set to false, but may be an option in the future)
 */
 class AppUser extends CWebUser
 {
-	public $loginUrl = array('/members/login');
+	public $loginUrl = array('/site/login');
 
 	/**
 	 * void addRoles(array $roles)
@@ -22,7 +24,7 @@ class AppUser extends CWebUser
 	 */
 	public function addRoles($roles=array())
 	{
-		if (!$this->hasState('roles'))
+		if (!$this->hasState('roles')) //check to see if the 'roles' state has already been set, and if not initialize it.
 			$this->setState('roles', array());
 	
 		if ($roles !== null)
@@ -41,8 +43,7 @@ class AppUser extends CWebUser
 	{
 		if ($roles !== null && $this->hasState('roles'))
 		{
-			if (!is_array($roles))
-				$roles = array($roles);
+			$roles = (array)$roles; // sanitize.
 				
 			foreach($roles as $role)
 				if (!isset($this->roles[strtolower($role)]) || !$this->roles[strtolower($role)])
@@ -66,8 +67,7 @@ class AppUser extends CWebUser
 	{
 		if ($roles !== null && $this->hasState('roles'))
 		{
-			if (!is_array($roles))
-				$roles = array($roles);
+			$roles = (array)$roles; //sanitize the input
 				
 			foreach($roles as $role)
 				if (isset($this->roles[strtolower($role)]) && $this->roles[strtolower($role)])

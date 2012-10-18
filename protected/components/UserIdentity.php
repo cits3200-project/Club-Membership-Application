@@ -9,11 +9,11 @@ class UserIdentity extends CUserIdentity
 {
 
 	/**
-	 * Authenticates a user.
-	 * The example implementation makes sure if the username and password
-	 * are both 'demo'.
-	 * In practical applications, this should be changed to authenticate
-	 * against some persistent user identity storage (e.g. database).
+	 * Authenticates a user against the user database.
+     * If the authentication was successful, a 'roles'
+     * state will be attached to this class instance
+     * which contains all of the roles for the current user.
+     *
 	 * @return boolean whether authentication succeeds.
 	 */
 	public function authenticate()

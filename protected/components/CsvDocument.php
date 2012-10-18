@@ -48,7 +48,7 @@
 		{
 			
 			// validate the input.
-			if (!is_array($rowData) && !is_scalar($rowData) && $rowData === NULL)
+			if (!is_array($rowData) && !is_scalar($rowData) && $rowData !== NULL)
 				throw new Exception('Invalid value specified for parameter \'$rowData\'');
 			else if (is_scalar($rowData) || $rowData === NULL)
 				$rowData = array($rowData);

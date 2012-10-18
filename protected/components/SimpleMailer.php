@@ -4,6 +4,9 @@
  * Very basic mail wrapper around PHPMailer,
  * helps to abstract some of PHPMailer's huge feature list
  * and keep the complexity as low as possible
+ *
+ * @author Jason Larke
+ * @date  10/10/2012
  */
 class SimpleMailer extends CApplicationComponent
 {
