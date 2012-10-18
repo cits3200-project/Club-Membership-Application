@@ -14,6 +14,10 @@ class MemberEdit extends CFormModel
 	public $birthDate;
 	public $memberType;
 
+	/**
+	 * Declares the validation rules.
+	 * The rules define the compulsory fields, and checks formatting.
+	 */
 	public function rules()
 	{
 		return array (
@@ -24,6 +28,11 @@ class MemberEdit extends CFormModel
 		);
 	}
 
+	/**
+	 * Declares customized attribute labels.
+	 * If not declared here, an attribute would have a label that is
+	 * the same as its name with the first letter in upper case.
+	 */
 	public function attributeLabels()
 	{
 		return array (

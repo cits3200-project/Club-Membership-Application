@@ -21,7 +21,7 @@ class PaymentMethod extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	
+
 	public static function getPaymentMethods()
 	{
 		$methods = array();
@@ -29,7 +29,7 @@ class PaymentMethod extends CActiveRecord
 			$methods[$record->code] = $record->display;
 		return $methods;
 	}
-	
+
 	/**
 	 * @return string the associated database table name
 	 */

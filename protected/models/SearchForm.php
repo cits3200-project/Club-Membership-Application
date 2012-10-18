@@ -97,7 +97,7 @@ class SearchForm extends CFormModel
 			'label' => 'Phone number',
 			'condition' => 'LOWER({membership}.phoneNumber) LIKE LOWER({value})'
 		)
-	);	
+	);
 
 	/** 
 	 * PHP's magic __get function. Do not explicitly call this method. Used to dynamically
@@ -117,7 +117,7 @@ class SearchForm extends CFormModel
 		else
 			return parent::__get($name);
 	}
-	
+
 	/**
 	 * PHP's magic __set function. Do not explicitly call this method.
 	 * This is the opposite of the __get function above and will set a filter's current
@@ -133,15 +133,15 @@ class SearchForm extends CFormModel
 		else
 			parent::__set($name,$value);
 	}
-	
+
 	public function __construct()
 	{
 		// configure rules
 		$this->searchFields['paymentMethod']['rule'] = array('paymentMethod', 'in', 'range' => array_keys(SearchForm::getPaymentTypes()));
 		$this->searchFields['membershipType']['rule'] = array('membershipType', 'in', 'range' => array_keys(SearchForm::getMembershipTypes()));
 		$this->searchFields['membershipStatus']['rule'] = array('membershipStatus', 'in', 'range' => array_keys(SearchForm::getMembershipStatusTypes()));
-	}	
-	
+	}
+
 	public function getSearchFields()
 	{
 		$fields = array();
@@ -150,7 +150,7 @@ class SearchForm extends CFormModel
 				$fields[] = $field;
 		return $fields;
 	}
-	
+
 	public function getSearchFieldType($fieldName)
 	{
 		return isset($this->searchFields[$fieldName])
@@ -159,7 +159,7 @@ class SearchForm extends CFormModel
 						: 'standard'
 					: NULL;
 	}
-	
+
 	public function getSearchFieldState($fieldName)
 	{
 		return isset($this->searchFields[$fieldName])
@@ -168,21 +168,24 @@ class SearchForm extends CFormModel
 						: true
 					: NULL;
 	}
-		
+
 	public function setSearchFieldState($fieldName, $state)
 	{
 		if (isset($this->searchFields[$fieldName]))
 			$this->searchFields[$fieldName]['active'] = $state ? true : false;
 	}
-	
 
+
+	/**
+	 * Declares the validation rules.
+	 */
 	public function rules()
 	{
 		$defaults = array();
 		$toggles = array();
 		$custom = array();
 		$required = array();
-		
+
 		foreach($this->searchFields as $field=>$data)
 		{
 			$type = $this->getSearchFieldType($field);
@@ -192,18 +195,23 @@ class SearchForm extends CFormModel
 				$required[] = $field;
 			elseif (empty($data['rule']) || !is_array($data['rule']))
 				$defaults[] = $field;
-				
+
 			if (isset($data['rule']) && is_array($data['rule']))
 				$custom[] = $data['rule'];
 		}
-		
+
 		return array_merge(array(
 			array(implode(', ', $required), 'required'),
 			array(implode(', ', $toggles), 'in', 'range' => array('Y','N','I')),
 			array(implode(', ', $defaults), 'length', 'max'=>200)
 		), $custom);
 	}
-	
+
+	/**
+	 * Declares customized attribute labels.
+	 * If not declared here, an attribute would have a label that is
+	 * the same as its name with the first letter in upper case.
+	 */
 	public function attributeLabels()
 	{
 		$labels = array();
@@ -211,44 +219,44 @@ class SearchForm extends CFormModel
 			$labels[$field] = isset($data['label']) ? $data['label'] : parent::generateAttributeLabel($field);
 		return $labels;
 	}
-	
+
 	public function getAttributeLabel($field)
 	{
 		$labels = $this->attributeLabels();
 		return isset($labels[$field]) ? $labels[$field] : parent::getAttributeLabel($field);
 	}
-	
+
 	// Get valid field values for some of the "combobox" options (paymentMethod, membershipStatus and membershipType)
 	public static function getPaymentTypes()
 	{
 		$types = array('' => 'Any');
 		return array_merge($types, PaymentMethod::getPaymentMethods());
 	}
-	
+
 	public static function getMembershipStatusTypes()
 	{
 		$types = array('' => 'Any');
 		return array_merge($types, MembershipStatus::getMembershipStatuses());
 	}
-	
+
 	public static function getMembershipTypes()
 	{
 		$types = array('' => 'Any');
 		return array_merge($types, Membership::getMembershipTypes());
 	}
-	
+
 	public function runSearch()
 	{
-		return Membership::model()->findAll($this->getSearchCriteria());	
+		return Membership::model()->findAll($this->getSearchCriteria());
 	}
-	
+
 	public function getSearchCriteria()
 	{
 		$ma = 'membership'; //membershipAlias. Truncated for brevity.
 
 		$conditions = array();
 		$parameters = array();
-		
+
 		foreach($this->searchFields as $key=>$data) 
 		{
 			$sql = $this->generateSql($data);
@@ -256,11 +264,11 @@ class SearchForm extends CFormModel
 			{
 				if (!empty($sql['parameters']))
 					$parameters = array_merge($parameters, $sql['parameters']);
-				
+
 				$conditions[] = str_replace(array('{membership}'), array($ma), $sql['sql']);
 			}
 		}
-		
+
 		$criteria = new CDbCriteria();
 		$criteria->alias = $ma;
 		$criteria->params = $parameters;
@@ -269,7 +277,7 @@ class SearchForm extends CFormModel
 
 		return $criteria;
 	}
-	
+
 	private function generateSql($fieldData)
 	{
 		$sqlData = array(
@@ -279,21 +287,21 @@ class SearchForm extends CFormModel
 		$type = strtolower(isset($fieldData['type']) ? $fieldData['type'] : 'standard');
 		if ( (isset($fieldData['active']) && !$fieldData['active']) || empty($fieldData['condition']) || ($type === 'standard' && empty($fieldData['value'])) || ($type === 'toggle' && $fieldData['value'] === 'I') )
 			return $sqlData; // don't need to query this field.
-		
+
 		$fieldValue = isset($fieldData['value']) 
 									? $fieldData['value'] 
-									: '';						
-			
+									: '';
+
 		$sqlData['sql'] = '(' . str_replace('{value}','?',$fieldData['condition']) . ')';
-		
+
 		if (($type === 'required' || $type === 'standard') && preg_match('/\bLIKE\b/i', $sqlData['sql']) == 1)
 			$fieldValue = "%{$fieldValue}%";
 		elseif ($fieldValue === 'N') // $type must logically be 'toggle', and the 'N' value requires a negation
 			$sqlData['sql'] = 'NOT ' . $sqlData['sql'];
-			
+
 		for($i = 0; $i < substr_count($sqlData['sql'], '?'); $i++)
 			$sqlData['parameters'][] = $fieldValue;
-			
+
 		return $sqlData;
 	}
 }

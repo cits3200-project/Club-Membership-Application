@@ -24,7 +24,7 @@ class Member extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	
+
 	public static function getMemberTypes()
 	{
 		return array (
@@ -33,7 +33,7 @@ class Member extends CActiveRecord
 			'C' => 'Child'
 		);
 	}
-	
+
 	/**
 	 * @return string the associated database table name
 	 */

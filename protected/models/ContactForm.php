@@ -18,7 +18,7 @@ class ContactForm extends CFormModel
 
 	/**
 	 * Declares the validation rules.
-	 * The rules define the compulsory fields, checks the email addres format,
+	 * The rules define the compulsory fields, checks the email address format,
 	 * and verifies the captcha code.
 	 */
 	public function rules()

@@ -15,7 +15,7 @@ class MailoutForm extends CFormModel
 	public $emailList;
 	public $type = "email";
 	public $attachments;
-	
+
 	/**
 	 * Declares the validation rules.
 	 * The rules state that username and password are required,
@@ -45,7 +45,7 @@ class MailoutForm extends CFormModel
 			)
 		);
 	}
-	
+
 	/** 
 	 * Perform validation on the 'type' attribute. Depending on the value there can
 	 * be different validation needed (dynamic requirements). This function performs
@@ -61,7 +61,7 @@ class MailoutForm extends CFormModel
 				$this->addError('emailSubject', "A subject must be specified for the email");
 		}
 	}
-	
+
 	/**
 	 * Custom validator to ensure that all submitted attachments are valid.
 	 * This can include rejecting all extensions not on a specified whitelist, 
@@ -84,9 +84,10 @@ class MailoutForm extends CFormModel
 		}
 		return true;
 	}
-	
+
 	public function validate($attributes=NULL, $clearErrors=true)
 	{
+		// check parent's validation
 		$parentValid = parent::validate($attributes, $clearErrors);
 		if ($parentValid)
 		{
@@ -98,7 +99,7 @@ class MailoutForm extends CFormModel
 		}
 		return $parentValid;
 	}
-	
+
 	public static function getValidExtensions()
 	{
 		return 'jpg|gif|png|bmp|jpeg|tiff|pdf|doc|docx|xls|xlsx|csv|txt';
@@ -117,20 +118,25 @@ class MailoutForm extends CFormModel
 			)
 		);
 	}
-	
+
 	/**
 	 * Send out a batch email to the current mailing list.
 	 * If an email fails to send to a membership's primary email address,
 	 * their alternate email address is used before declaring the email a failure.
-	 * @param $sender The 'reply-to' field of the email. This can either be a string (email address) or an associative array with an email->value, name->value key pair. For more information on this parameter, see the SimpleMailer component.
-	 * @return an associative array with 'count' and 'total' fields, detailing the number of successful emails and the total emails attempted, respectively.
+	 * @param $sender The 'reply-to' field of the email. This can either be a
+	 * string (email address) or an associative array with an email->value,
+	 * name->value key pair. For more information on this parameter, see the
+	 * SimpleMailer component.
+	 * @return an associative array with 'count' and 'total' fields, detailing
+	 * the number of successful emails and the total emails attempted,
+	 * respectively.
 	 */
 	public function batchEmail($sender)
 	{
 		$total = 0;
 		$success = 0;
 		$mailer = Yii::app()->email;
-		
+
 		foreach($this->emailList as $record)
 		{
 			if (!empty($record->emailAddress) && $mailer->send(
@@ -156,7 +162,7 @@ class MailoutForm extends CFormModel
 			'total' => $total
 		);
 	}
-	
+
 	/**
 	 * void generateCsv
 	 * Generates a CSV file based on the current mailing list.
@@ -174,7 +180,7 @@ class MailoutForm extends CFormModel
 				$record->alternateEmail
 			));
 		}
-	
+
 		$filename = "svenskaklubben_maillist_" . date("d-m-Y_G-i");
 		header("Content-type: application/csv");
 		header("Content-Disposition: attachment; filename={$filename}.csv");

@@ -1,5 +1,5 @@
 <?php
-	
+
 /**
  * MembershipForm
  * Base class for forms that update the Membership model,
@@ -59,7 +59,7 @@ class MembershipChosenForm extends MembershipForm
 			'receiveGeneralNews',
 			'receiveAdminEmail',
 			'receiveExpiryNotice',
-			'receiveEventInvites',			
+
 		);
 	}
 }
