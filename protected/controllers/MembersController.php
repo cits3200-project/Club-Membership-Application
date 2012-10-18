@@ -160,9 +160,11 @@ class MembersController extends Controller
 
 			if ($result['success'] === true) // all members are valid, can save.
 			{
+                // delete all existing members
 				Member::model()->deleteAll('LOWER(membershipId)=LOWER(?)', array($membership->membershipId));
 				foreach($members as $member)
 				{
+                    // insert each member one-by-one
 					$record = new Member();
 					$record->attributes = array (
 						'membershipId' => $membership->membershipId,
