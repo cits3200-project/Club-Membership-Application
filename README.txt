@@ -33,4 +33,16 @@ protected/:
 	data/ - SQL scripts for initial setup of the database
 	models/ - all model class files
 	runtime/ - this directory holds private temporary files generated during runtime of the application
-	views/ - this directory holds all view files, including controller views, layout views and system views
+	views/ - this directory holds all view files (HTML/PHP)
+	views/:
+		admin/ -  views for the admin controller
+		ajax/ - ajax components
+		layouts/ - site layout (header and footer)
+		mailout/ - mailout views
+		members/ - views for the members controller
+		shared/ - shared views used by different controller
+		site/ - views for the site controller
+		site/static/ - static pages
+
+All URLS using Yii (besides any index page, whose name can be omitted) should be in the form [domain]/[path to application directory]/[controller name]/[action name]
+Any static page in protected/site/static/ can be linked to by [domain]/[path to application]/site/?view=[page name]
