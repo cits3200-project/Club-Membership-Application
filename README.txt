@@ -1,9 +1,5 @@
-Club-Membership-Application
-===========================
-
-**Swedish club of WA's club membership application.**
-
-For more information about this project, see [/documents/README.doc](/cits3200-project/Club-Membership-Application/tree/master/documentation/README.doc)
+Swedish club of WA's club membership application
+================================================
 
 This project is a membership application for the Swedish Club of WA, written using Yii/PHP. For more information about Yii please visit <http://www.yiiframework.com/>.
 This application requires MySQL, PHP, and Apache to run.
