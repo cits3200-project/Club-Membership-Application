@@ -110,6 +110,9 @@ class MembersController extends Controller
 			$edit->attributes = $membership->attributes;
 		}
 
+		// fill display-only values
+		$edit->displayOnlyProperties= $membership->attributes;
+
 		$this->render('edit', array(
 			'model'=>$edit,
 			'result' => $result,
@@ -310,10 +313,11 @@ class MembersController extends Controller
 					
 					$email = $this->renderPartial('//shared/registertemplate', array(
 						'username' => $membership->membershipId,
+						'emailAddress' => $membership->emailAddress,
 					), true);
 					
 					// send the email to the newly registered member.
-					// TEMPORARY EMAIL DISABLED
+					echo 'NOTE: email disabled';
 					//Yii::app()->email->send(
 						//$membership->emailAddress,
 						//'Registration at the Swedish Club of WA',
@@ -323,7 +327,8 @@ class MembersController extends Controller
 
 					$result['message'] = "You have successfully registered with the Swedish Club of WA.<br/>
 										  Your unique username is: <strong>{$membership->membershipId}</strong><br/>
-										  An email has been sent to the email address you provided with your login details. Please keep a copy of your username as you will need it to login. You may now login to the site using the above username and the password you chose.";
+										  Your email address is: <strong>{$membership->emailAddress}</strong><br/>
+										  An email has been sent to this email address with your login details. You may now login to the site using the above username or email address together with the password you chose.";
 										  
 										  
 					$result['success'] = true;
@@ -376,7 +381,7 @@ class MembersController extends Controller
 				$password = substr(hash('sha256', microtime()), 0, rand(5, 7)); // simple password generation. Take 5-7 characters from a SHA256 hash of the current microtime.
 				$email = $this->renderPartial('//shared/forgotpasswordtemplate', array(
 					'password' => $password,
-					'membershipId' => $member->membershipId
+					'membershipId' => $member->membershipId,
 				), true);
 				
 				// attempt to send the email to the primary email address, then to the secondary email address if that one fails.

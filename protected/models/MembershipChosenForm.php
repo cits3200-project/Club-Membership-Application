@@ -5,6 +5,8 @@
  * Base class for forms that update the Membership model,
  * All fields in this class are editable ("chosen") by the owner of the
  * membership, but not neccessarily the admin.
+ * This form also includes fields for display only that cannot be edited by
+ * the owner.
  */
 class MembershipChosenForm extends MembershipForm
 {
@@ -14,6 +16,9 @@ class MembershipChosenForm extends MembershipForm
 	public $receiveAdminEmail;
 	public $receiveExpiryNotice;
 	public $receiveEventInvites;
+
+	// properties to display but not edit
+	public $displayOnlyProperties;
 
 	/**
 	 * Declares the validation rules.
@@ -60,6 +65,14 @@ class MembershipChosenForm extends MembershipForm
 			'receiveAdminEmail',
 			'receiveExpiryNotice',
 
+		);
+	}
+
+	public function getDisplayOnlyKeys() {
+		return array(
+			'expiryDate',
+			'type',
+			'status',
 		);
 	}
 }

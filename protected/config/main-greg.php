@@ -1,5 +1,7 @@
 <?php
 
+#define('YII_DEBUG',true);
+
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -79,7 +81,7 @@ return array(
 		),
 		'error'=>array(
 			'class'=>'ErrorComponent',
-			'errorEmail'=>'...',
+			'errorEmail'=>'gregcollin@iinet.net.au',
 			'stackTrace'=>true,
 			'traceLevel'=>YII_TRACE_LEVEL
 		),
@@ -92,7 +94,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'debugEmail'=>'20924425@student.uwa.edu.au',
+		'debugEmail'=>'gregcollin@iinet.net.au',
 		'tempDirectory'=>Yii::getPathOfAlias('webroot') . '/protected/tmp/'
 	),
 );

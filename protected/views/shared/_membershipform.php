@@ -131,6 +131,20 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 		</div>
 <?php } ?>
 
+<?php if (method_exists($model, 'getDisplayOnlyKeys')) { ?>
+	<?php foreach($model->getDisplayOnlyKeys() as $key) {?>
+	<?php $property = $model->displayOnlyProperties[$key]; ?>
+	<div class="row">
+	<?php echo $form->labelEx($model,"$key"); ?>
+		<div>
+			<?php if ($key == 'type')
+				echo Membership::getMembershipTypes()[$property];
+			else echo $property; ?>
+		</div>
+	</div>
+	<?php } ?>
+<?php } ?>
+
 <?php if (array_key_exists('verifyCode', $model)) { ?>
 	<?php if(CCaptcha::checkRequirements()): ?>
 	<div class="row">

@@ -45,7 +45,7 @@ class MembershipForm extends CFormModel
 			'familyName' => 'Family name',
 			'phoneNumber' => 'Phone number',
 			'alternatePhone' => 'Alternate phone number',
-			'emailAddress' => 'Email address',
+			'emailAddress' => 'Primary email address',
 			'alternateEmail' => 'Alternate email address',
 		);
 	}
