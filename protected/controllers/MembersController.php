@@ -282,9 +282,24 @@ class MembersController extends Controller
 				$user = new User();
 				$role = new UserToRoles();
 				
+				//generate username from email address
+				$extension = "";
+				$new_username = strtolower(preg_replace('/([^@]*).*/', '$1', $register->emailAddress));
+				echo 'foo';
+				if (Membership::model()->exists("UPPER(membershipId)=?", array(strtoupper("$new_username")))) {
+					echo "$extension";
+					$extension = 1;
+					while (Membership::model()->exists("UPPER(membershipId)=?", array(strtoupper("$new_username$extension")))) {
+						$extension++;
+					}
+				}
+				$new_username = "$new_username$extension";
+
 				//copy form details into the new membership, and initialise values
 				$membership->attributes = array_merge(array(
-					'membershipId' => Membership::generateUUID(),
+					# Old username generation
+					#'membershipId' => Membership::generateUUID(),
+					'membershipId' => $new_username,
 					'expiryDate' => '1920-01-01', // not yet registered. 
 					'payMethod' => 'none',
 					'status' => 'pending',
@@ -317,7 +332,6 @@ class MembersController extends Controller
 					), true);
 					
 					// send the email to the newly registered member.
-					echo 'NOTE: email disabled';
 					//Yii::app()->email->send(
 						//$membership->emailAddress,
 						//'Registration at the Swedish Club of WA',
@@ -328,7 +342,8 @@ class MembersController extends Controller
 					$result['message'] = "You have successfully registered with the Swedish Club of WA.<br/>
 										  Your unique username is: <strong>{$membership->membershipId}</strong><br/>
 										  Your email address is: <strong>{$membership->emailAddress}</strong><br/>
-										  An email has been sent to this email address with your login details. You may now login to the site using the above username or email address together with the password you chose.";
+										  An email has been sent to this email address with your login details. You may now login to the site using the above username or email address together with the password you chose.
+					<br /><b>Email disabled for testing</b>";
 										  
 										  
 					$result['success'] = true;

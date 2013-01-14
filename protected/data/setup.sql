@@ -1,4 +1,4 @@
-USE swedi361_membership;
+USE swedish_membership;
 
 -- Create an admin user
 INSERT INTO tbl_user_role(role)

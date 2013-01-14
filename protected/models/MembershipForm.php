@@ -11,10 +11,15 @@ class MembershipForm extends CFormModel
 	// The owners first name
 	public $name;
 	public $familyName;
+	public $postName;
 	public $phoneNumber;
 	public $alternatePhone;
 	public $emailAddress;
 	public $alternateEmail;
+	public $postalAddress;
+	public $postalSuburb;
+	public $postalState;
+	public $postcode;
 
 	/**
 	 * Declares the validation rules.
@@ -23,15 +28,20 @@ class MembershipForm extends CFormModel
 	 */
 	public function rules()
 	{
-		return array (
+		return array(
 			// required fields
-			array ('name, familyName, phoneNumber, emailAddress', 'required'),
-			// maximum length of email addreses
-			array ('name, emailAddress, alternateEmail', 'length', 'max' => 100),
-			// maximum length of phone numbers
-			array ('phoneNumber, alternatePhone', 'length', 'max' => 20),
-			// email has to be a valid email address
-			array ('emailAddress, alternateEmail', 'email'),
+			array('name, familyName, phoneNumber, emailAddress', 'required'),
+			// maimum length
+			array('name, familyName', 'length', 'max' => 50),
+			array('name, emailAddress, alternateEmail', 'length', 'max' => 100),
+			array('postName, postalAddress', 'length', 'max'=>60),
+			array('postalSuburb', 'length', 'max'=>40),
+			array('postcode', 'length', 'max'=>8),
+			array('postalState', 'in', 'range'=>array_keys(Membership::getPostalStates())),
+			// maimum length of phone numbers
+			array('phoneNumber, alternatePhone', 'length', 'max' => 20),
+			// emil has to be a valid email address
+			array('emailAddress, alternateEmail', 'email'),
 		);
 	}
 

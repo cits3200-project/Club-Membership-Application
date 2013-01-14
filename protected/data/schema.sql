@@ -21,13 +21,20 @@ CREATE TABLE IF NOT EXISTS tbl_payment_method
 CREATE TABLE IF NOT EXISTS tbl_membership
 (
 	membershipId 		varchar(128) NOT NULL PRIMARY KEY, -- not sure on the format we'll be using for the membership id, so left it wide enough for a SHA512 hash.
-	name 				varchar(100) NOT NULL,
+	name 				varchar(50) NOT NULL,
 	familyName			varchar(50)	 NOT NULL, -- again, confirm the width of this field.
+-- new:
+	postName			varchar(60), -- "Postnamn"
+	postalAddress		varchar(60),
+	postalSuburb		varchar(40),
+	postalState			enum('ACT','NSW','NT','QLD','SA','TAS','VIC','WA'),
+	postcode			varchar(8),
+
 	phoneNumber 		varchar(20), -- need to check that these 2 fields will be wide enough for valid numbers (thinking of swedish numbers here)
 	alternatePhone 		varchar(20),
 	emailAddress 		varchar(100) NOT NULL,
 	alternateEmail 		varchar(100),
-	type				ENUM('N', 'F','C','S','PC') NOT NULL, -- 'Family','Couple','Single','Pensioner Couple' respectively.
+	type				ENUM('N', 'F','C','S','PC') NOT NULL, -- 'Family','Couple','Single','Pensioner Couple','Honorary' respectively.
 	expiryDate			DATE NOT NULL,
 	payMethod			varchar(15), -- fk into the payment_method table
 	status				varchar(15), -- fk into the membership_status table (may not be required)

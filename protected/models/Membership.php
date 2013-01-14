@@ -7,6 +7,11 @@
  * @property string $membershipId
  * @property string $name
  * @property string $familyName
+ * @property string $postName
+ * @property string $postalAddress
+ * @property string $postalSuburb
+ * @property string $postalState
+ * @property string $postcode
  * @property string $phoneNumber
  * @property string $alternatePhone
  * @property string $emailAddress
@@ -37,7 +42,7 @@ class Membership extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	
+
 	/**
 	 * Generates a UUID for a new membership.
 	 * @return string UUID which can be safely used as a PK into the membership table
@@ -49,7 +54,12 @@ class Membership extends CActiveRecord
 			$uuid = Membership::createUUID(self::MEMBERSHIP_FORMAT);
 		return $uuid;
 	}
-	
+
+	public static function getPostalStates()
+	{
+		return array('WA','ACT','NSW','NT','QLD','SA','TAS','VIC');
+	}
+
 	public static function getMembershipTypes()
 	{
 		return array(
@@ -57,7 +67,8 @@ class Membership extends CActiveRecord
 			'F' => 'Family',
 			'C' => 'Couple',
 			'S' => 'Single',
-			'PC' => 'Pensioner Couple'
+			'PC' => 'Pensioner Couple',
+			'H' => 'Honorary',
 		);
 	}
 
@@ -110,10 +121,14 @@ class Membership extends CActiveRecord
 			array('membershipId, name, familyName, emailAddress, phoneNumber, type, expiryDate, payMethod, status', 'required'),
 			array('expiryDate','date','format' => 'yyyy-MM-dd'),
 			array('membershipId', 'length', 'max'=>128),
-			array('name, emailAddress, alternateEmail', 'length', 'max'=>100),
-			array('familyName', 'length', 'max'=>50),
+			array('emailAddress, alternateEmail', 'length', 'max'=>100),
+			array('name, familyName', 'length', 'max'=>50),
+			array('postName, postalAddress', 'length', 'max'=>60),
+			array('postalSuburb', 'length', 'max'=>40),
+			array('postcode', 'length', 'max'=>8),
 			array('phoneNumber, alternatePhone', 'length', 'max'=>20),
 			array('type', 'in', 'range'=>array_keys(Membership::getMembershipTypes())),
+			array('postalState', 'in', 'range'=>array_keys(Membership::getPostalStates())),
 			array('payMethod, status', 'length', 'max'=>15),
 			array('emailAddress, alternateEmail', 'email'),
 			array('receiveGeneralNews, receiveAdminEmail, receiveExpiryNotice, receiveEventInvites', 'in', 'range' => array('Y','N')),

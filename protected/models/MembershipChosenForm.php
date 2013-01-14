@@ -67,13 +67,5 @@ class MembershipChosenForm extends MembershipForm
 
 		);
 	}
-
-	public function getDisplayOnlyKeys() {
-		return array(
-			'expiryDate',
-			'type',
-			'status',
-		);
-	}
 }
 ?>

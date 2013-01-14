@@ -5,6 +5,14 @@
  */
 class MembershipEditForm extends MembershipChosenForm
 {
-	//Nothing additional to the MembershipChosenForm required for edit form
+	// this method is detected in the membershipform view and will cause these
+	// properties to be displayed
+	public function getDisplayOnlyKeys() {
+		return array(
+			'expiryDate',
+			'type',
+			'status',
+		);
+	}
 }
 ?>

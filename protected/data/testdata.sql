@@ -1,3 +1,4 @@
+-- Old file--use setup.sql
 -- Create an admin user
 INSERT INTO tbl_user_role(role)
 VALUES 	('admin');

@@ -82,8 +82,48 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 <?php if (array_key_exists('alternateEmail', $model)) { ?>
 	<div class="row">
 		<?php echo $form->labelEx($model,'alternateEmail'); ?>
-		<?php echo $form->emailField($model,'alternateEmail',array('size'=>30,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'alternateEmail',array('size'=>30,'maxlength'=>100)); ?>
 		<?php echo $form->error($model,'alternateEmail'); ?>
+	</div>
+<?php } ?>
+
+<?php if (array_key_exists('postName', $model)) { ?>
+	<div class="row">
+		<?php echo $form->labelEx($model,'postName'); ?>
+		<?php echo $form->textField($model,'postName',array('size'=>30,'maxlength'=>60)); ?>
+		<?php echo $form->error($model,'postName'); ?>
+	</div>
+<?php } ?>
+
+<?php if (array_key_exists('postalAddress', $model)) { ?>
+	<div class="row">
+		<?php echo $form->labelEx($model,'postalAddress'); ?>
+		<?php echo $form->textField($model,'postalAddress',array('size'=>30,'maxlength'=>60)); ?>
+		<?php echo $form->error($model,'postalAddress'); ?>
+	</div>
+<?php } ?>
+
+<?php if (array_key_exists('postalSuburb', $model)) { ?>
+	<div class="row">
+		<?php echo $form->labelEx($model,'postalSuburb'); ?>
+		<?php echo $form->textField($model,'postalSuburb',array('size'=>30,'maxlength'=>40)); ?>
+		<?php echo $form->error($model,'postalSuburb'); ?>
+	</div>
+<?php } ?>
+
+<?php if (array_key_exists('postalState', $model)) { ?>
+	<div class="row">
+		<?php echo $form->labelEx($model,'postalState'); ?>
+		<?php echo $form->dropDownList($model,'postalState', Membership::getPostalStates()); ?>
+		<?php echo $form->error($model,'postalState'); ?>
+	</div>
+<?php } ?>
+
+<?php if (array_key_exists('postcode', $model)) { ?>
+	<div class="row">
+		<?php echo $form->labelEx($model,'postcode'); ?>
+		<?php echo $form->textField($model,'postcode',array('size'=>4,'maxlength'=>4)); ?>
+		<?php echo $form->error($model,'postcode'); ?>
 	</div>
 <?php } ?>
 
