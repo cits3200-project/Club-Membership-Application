@@ -56,7 +56,7 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=swedish_membership',
 			'emulatePrepare' => true,
-			'username' => 'pma',
+			'username' => 'root',
 			'password' => 'ohoo0Lee',
 			'charset' => 'utf8',
 			'tablePrefix'=>'tbl_'
