@@ -178,8 +178,10 @@ Yii::app()->clientScript->registerCssFile($baseUrl.'/css/registration.css');
 	<?php echo $form->labelEx($model,"$key"); ?>
 		<div>
 			<?php if ($key == 'type')
-				echo Membership::getMembershipTypes()[$property];
-			else echo $property; ?>
+			{
+				$types = Membership::getMembershipTypes();
+				echo $types[$property];
+			} else echo $property; ?>
 		</div>
 	</div>
 	<?php } ?>

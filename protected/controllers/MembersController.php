@@ -285,7 +285,6 @@ class MembersController extends Controller
 				//generate username from email address
 				$extension = "";
 				$new_username = strtolower(preg_replace('/([^@]*).*/', '$1', $register->emailAddress));
-				echo 'foo';
 				if (Membership::model()->exists("UPPER(membershipId)=?", array(strtoupper("$new_username")))) {
 					echo "$extension";
 					$extension = 1;
@@ -332,18 +331,18 @@ class MembersController extends Controller
 					), true);
 					
 					// send the email to the newly registered member.
-					//Yii::app()->email->send(
-						//$membership->emailAddress,
-						//'Registration at the Swedish Club of WA',
-						//$email,
-						//'noreply@svenskaklubben.org.au'
-					//);
+					Yii::app()->email->send(
+						$membership->emailAddress,
+						'Registration at the Swedish Club of WA',
+						$email,
+						'noreply@svenskaklubben.org.au'
+					);
 
 					$result['message'] = "You have successfully registered with the Swedish Club of WA.<br/>
 										  Your unique username is: <strong>{$membership->membershipId}</strong><br/>
 										  Your email address is: <strong>{$membership->emailAddress}</strong><br/>
-										  An email has been sent to this email address with your login details. You may now login to the site using the above username or email address together with the password you chose.
-					<br /><b>Email disabled for testing</b>";
+										  An email has been sent to this email address with your login details. You may now login to the site using the above username or email address together with the password you chose.";
+					//<br /><b>Email disabled for testing</b>";
 										  
 										  
 					$result['success'] = true;

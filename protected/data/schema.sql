@@ -4,8 +4,8 @@
 -- field in the membership table instead. On the other hand, if we got really ambitious, both ENUM fields in
 -- the 'membership' and 'member' table could be replaced with similar tables to allow for more extensibility there also.
 
---USE swedi361_membership;
-USE swedish_membership;
+USE swedi361_membership;
+--USE swedish_membership;
 
 CREATE TABLE IF NOT EXISTS tbl_membership_status
 (
